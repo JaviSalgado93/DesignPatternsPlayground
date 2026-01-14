@@ -1,0 +1,388 @@
+﻿@page "/test-components"
+
+<PageTitle>Test Components</PageTitle>
+
+<div class="max-w-7xl mx-auto p-8">
+    <h1 class="text-4xl font-bold mb-8">Prueba de Componentes</h1>
+
+    <!-- ========== COMPONENTES DE ALTA PRIORIDAD ========== -->    
+    <!-- Test Breadcrumb -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Breadcrumb</h2>
+        <Breadcrumb Items="@breadcrumbItems" />
+    </div>
+
+    <!-- Test InfoBox -->
+    <div class="space-y-4 mb-12">
+        <h2 class="text-2xl font-bold mb-4">InfoBox Variants</h2>
+
+        <InfoBox Type="info" Title="Información">
+            Este es un mensaje informativo normal.
+        </InfoBox>
+
+        <InfoBox Type="success" Title="¡Éxito!">
+            El patrón se implementó correctamente.
+        </InfoBox>
+
+        <InfoBox Type="warning" Title="Advertencia">
+            Ten cuidado con el uso excesivo de este patrón.
+        </InfoBox>
+
+        <InfoBox Type="danger" Title="Error">
+            No uses este patrón en esta situación.
+        </InfoBox>
+
+        <InfoBox Type="tip" Title="Consejo">
+            Considera usar dependency injection.
+        </InfoBox>
+    </div>
+
+    <!-- CodeBlock -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">CodeBlock Component</h2>
+
+        <CodeBlock Language="csharp"
+                   Title="Singleton. cs"
+                   Code="@singletonCode" />
+
+        <div class="mt-4">
+            <CodeBlock Language="csharp"
+                       Code="@shortCode" />
+        </div>
+    </div>
+    <!-- ========== COMPONENTES DE ALTA PRIORIDAD ========== -->
+
+
+    <!-- ========== COMPONENTES DE MEDIA PRIORIDAD ========== -->
+    <!-- Section Component -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Section Component</h2>
+
+        <Section Title="Implementación del Patrón"
+                 Icon="💻"
+                 Subtitle="Este es un subtítulo de ejemplo">
+            <p class="text-secondary-600">
+                Aquí va el contenido de la sección.  Puede ser texto, código, imágenes, etc.
+                Las secciones ayudan a organizar el contenido de forma clara y consistente.
+            </p>
+        </Section>
+
+        <Section Title="Otra Sección" Icon="📚">
+            <InfoBox Type="tip" Title="Tip">
+                Puedes anidar componentes dentro de Section.
+            </InfoBox>
+        </Section>
+    </div>
+
+    <!-- TabContainer Component -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Tabs Component</h2>
+
+        <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+            <TabPanel IsActive="activeTab == 0">
+                <InfoBox Type="info" Title="C# Básico">
+                    <CodeBlock Language="csharp" Code="@basicCode" />
+                </InfoBox>
+            </TabPanel>
+
+            <TabPanel IsActive="activeTab == 1">
+                <InfoBox Type="tip" Title="C# Avanzado">
+                    <CodeBlock Language="csharp" Code="@advancedCode" />
+                </InfoBox>
+            </TabPanel>
+
+            <TabPanel IsActive="activeTab == 2">
+                <InfoBox Type="success" Title="Ejemplo Real">
+                    <p class="text-secondary-600">
+                        Aquí iría un ejemplo práctico del patrón en uso en una aplicación real.
+                        Por ejemplo, cómo usar Singleton para gestionar configuración de app.
+                    </p>
+                </InfoBox>
+            </TabPanel>
+        </TabContainer>
+    </div>
+
+    <!-- PatternDetailCard Component -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">PatternDetailCard Component</h2>
+
+        <div class="grid grid-cols-1 md: grid-cols-2 lg: grid-cols-3 gap-6">
+            <PatternDetailCard Icon="🔒"
+                               PatternName="Singleton"
+                               Category="Creational"
+                               Description="Garantiza que una clase tenga una única instancia y proporciona un punto de acceso global a ella."
+                               Difficulty="Medium"
+                               ColorScheme="blue"
+                               DetailUrl="/creational/singleton"
+                               UseCases="@singletonUseCases"
+                               Tags="@singletonTags" />
+
+            <PatternDetailCard Icon="🏭"
+                               PatternName="Factory Method"
+                               Category="Creational"
+                               Description="Define una interfaz para crear objetos, pero deja que las subclases decidan qué clase instanciar."
+                               Difficulty="Easy"
+                               ColorScheme="blue"
+                               DetailUrl="/creational/factory"
+                               UseCases="@factoryUseCases"
+                               Tags="@factoryTags" />
+
+            <PatternDetailCard Icon="🔌"
+                               PatternName="Adapter"
+                               Category="Structural"
+                               Description="Permite que interfaces incompatibles trabajen juntas convirtiendo la interfaz de una clase en otra."
+                               Difficulty="Easy"
+                               ColorScheme="green"
+                               DetailUrl="/structural/adapter"
+                               UseCases="@adapterUseCases"
+                               Tags="@adapterTags" />
+        </div>
+    </div>
+    <!-- ========== COMPONENTES DE MEDIA PRIORIDAD ========== -->
+
+
+    <!-- ========== COMPONENTES DE BAJA PRIORIDAD ========== -->
+    <!-- Badge Component -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Badge Component</h2>
+
+        <div class="space-y-4">
+            <!-- Variant:  Solid -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Solid Variant</h3>
+                <div class="flex flex-wrap gap-2">
+                    <Badge Text="Blue" Color="blue" Variant="solid" />
+                    <Badge Text="Green" Color="green" Variant="solid" />
+                    <Badge Text="Red" Color="red" Variant="solid" />
+                    <Badge Text="Yellow" Color="yellow" Variant="solid" />
+                    <Badge Text="Purple" Color="purple" Variant="solid" />
+                    <Badge Text="Gray" Color="gray" Variant="solid" />
+                </div>
+            </div>
+
+            <!-- Variant: Outline -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Outline Variant</h3>
+                <div class="flex flex-wrap gap-2">
+                    <Badge Text="Blue" Color="blue" Variant="outline" />
+                    <Badge Text="Green" Color="green" Variant="outline" />
+                    <Badge Text="Red" Color="red" Variant="outline" />
+                    <Badge Text="Yellow" Color="yellow" Variant="outline" />
+                    <Badge Text="Purple" Color="purple" Variant="outline" />
+                </div>
+            </div>
+
+            <!-- Variant: Subtle -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Subtle Variant (default)</h3>
+                <div class="flex flex-wrap gap-2">
+                    <Badge Text="Blue" Color="blue" Variant="subtle" />
+                    <Badge Text="Green" Color="green" Variant="subtle" />
+                    <Badge Text="Red" Color="red" Variant="subtle" />
+                    <Badge Text="Yellow" Color="yellow" Variant="subtle" />
+                    <Badge Text="Purple" Color="purple" Variant="subtle" />
+                </div>
+            </div>
+
+            <!-- Sizes -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Sizes</h3>
+                <div class="flex flex-wrap items-center gap-3">
+                    <Badge Text="Small" Color="blue" Size="sm" />
+                    <Badge Text="Medium" Color="blue" Size="md" />
+                    <Badge Text="Large" Color="blue" Size="lg" />
+                </div>
+            </div>
+
+            <!-- With Icons -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">With Icons</h3>
+                <div class="flex flex-wrap gap-2">
+                    <Badge Icon="✅" Text="Success" Color="green" Variant="solid" />
+                    <Badge Icon="⚠️" Text="Warning" Color="yellow" Variant="solid" />
+                    <Badge Icon="❌" Text="Error" Color="red" Variant="solid" />
+                    <Badge Icon="🚀" Text="New Feature" Color="purple" Variant="solid" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion Component -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Accordion Component</h2>
+
+        <Accordion>
+            <AccordionItem Title="¿Qué es el patrón Singleton?" Icon="🔒" @bind-IsOpen="accordion1Open">
+                <p class="mb-2">
+                    El patrón Singleton es un patrón de diseño creacional que garantiza que una clase
+                    tenga una única instancia y proporciona un punto de acceso global a ella.
+                </p>
+                <CodeBlock Language="csharp" Code="@singletonShortCode" />
+            </AccordionItem>
+
+            <AccordionItem Title="¿Cuándo usar Factory Method?" Icon="🏭" @bind-IsOpen="accordion2Open">
+                <InfoBox Type="tip" Title="Casos de uso">
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Cuando no conoces de antemano el tipo exacto de objeto</li>
+                        <li>Cuando quieres dar flexibilidad a los usuarios de tu librería</li>
+                        <li>Cuando quieres reutilizar objetos existentes</li>
+                    </ul>
+                </InfoBox>
+            </AccordionItem>
+
+            <AccordionItem Title="Ventajas del patrón Observer" Icon="👁️" @bind-IsOpen="accordion3Open">
+                <div class="space-y-2">
+                    <Badge Icon="✅" Text="Desacoplamiento" Color="green" />
+                    <Badge Icon="✅" Text="Escalabilidad" Color="green" />
+                    <Badge Icon="✅" Text="Reusabilidad" Color="green" />
+                    <p class="mt-3 text-secondary-600">
+                        El patrón Observer permite que múltiples objetos se suscriban a eventos sin conocer
+                        los detalles de implementación unos de otros.
+                    </p>
+                </div>
+            </AccordionItem>
+        </Accordion>
+    </div>
+
+    <!-- Alert Component -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Alert Component</h2>
+
+        <div class="space-y-4">
+            <Alert Type="info"
+                   Title="Nueva actualización disponible"
+                   Message="Hay nuevos patrones de diseño disponibles en la biblioteca."
+                   ActionText="Ver ahora"
+                   Dismissible="true" />
+
+            <Alert Type="success"
+                   Title="¡Patrón implementado correctamente!"
+                   Message="El patrón Singleton se ha agregado a tu proyecto exitosamente."
+                   Dismissible="true" />
+
+            <Alert Type="warning"
+                   Title="Considera las implicaciones"
+                   Message="El uso excesivo del patrón Singleton puede llevar a un acoplamiento fuerte y dificultar las pruebas unitarias."
+                   ActionText="Leer más" />
+
+            <Alert Type="error"
+                   Title="Error en la implementación"
+                   Message="El patrón no es thread-safe. Considera usar Lazy<T> o bloqueos."
+                   ActionText="Ver solución"
+                   Dismissible="true" />
+        </div>
+    </div>
+    <!-- ========== COMPONENTES DE BAJA PRIORIDAD ========== -->
+
+</div>
+
+@code {
+    // ========== DATOS PARA COMPONENTES DE ALTA PRIORIDAD ==========
+
+    private string singletonCode = @"public sealed class Singleton
+{
+    private static Singleton?  _instance;
+    private static readonly object _lock = new();
+
+    private Singleton() { }
+
+    public static Singleton Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Singleton();
+                    }
+                }
+            }
+            return _instance;
+        }
+    }
+
+    public void DoSomething()
+    {
+        Console.WriteLine(""Singleton method called"");
+    }
+}";
+
+    private string shortCode = @"var singleton = Singleton.Instance;
+singleton.DoSomething();";
+
+    private string singletonShortCode = @"public sealed class Singleton
+{
+    private static readonly Lazy<Singleton> _lazy =
+        new Lazy<Singleton>(() => new Singleton());
+
+    public static Singleton Instance => _lazy.Value;
+
+    private Singleton() { }
+}";
+
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Creational", "/creational"),
+        new BreadcrumbItem("Singleton", "/creational/singleton")
+    };
+
+    // ========== DATOS PARA COMPONENTES DE MEDIA PRIORIDAD ==========
+
+    // Tabs
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "C# Básico", "C# Avanzado", "Ejemplo Real" };
+
+    // Accordion state
+    private bool accordion1Open = false;
+    private bool accordion2Open = false;
+    private bool accordion3Open = false;
+
+    private string basicCode = @"public class Singleton
+{
+    private static Singleton? _instance;
+
+    public static Singleton Instance => _instance ??= new Singleton();
+}";
+
+    private string advancedCode = @"public sealed class Singleton
+{
+    private static readonly Lazy<Singleton> _lazy =
+        new Lazy<Singleton>(() => new Singleton());
+
+    public static Singleton Instance => _lazy.Value;
+
+    private Singleton() { }
+}";
+
+    // PatternDetailCard data
+    private List<string> singletonUseCases = new()
+    {
+        "Gestión de configuración global",
+        "Logger centralizado de aplicación",
+        "Pool de conexiones a base de datos"
+    };
+
+    private List<string> singletonTags = new() { "Thread-Safe", "Lazy Loading", "Global Access" };
+
+    private List<string> factoryUseCases = new()
+    {
+        "Creación de objetos UI según plataforma",
+        "Parsers de diferentes formatos",
+        "Diferentes tipos de conexiones a BD"
+    };
+
+    private List<string> factoryTags = new() { "Creación", "Polimorfismo", "Desacoplamiento" };
+
+    private List<string> adapterUseCases = new()
+    {
+        "Integración de APIs legacy",
+        "Wrappers de librerías externas",
+        "Compatibilidad entre interfaces"
+    };
+
+    private List<string> adapterTags = new() { "Wrapper", "Integración", "Compatibilidad" };
+}

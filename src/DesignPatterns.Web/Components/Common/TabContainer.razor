@@ -1,0 +1,40 @@
+﻿<div class="mb-8">
+    <div class="border-b border-secondary-200 mb-6">
+        <nav class="flex flex-wrap gap-2 md:gap-8" aria-label="Tabs">
+            @for (int i = 0; i < TabTitles.Count; i++)
+            {
+                var index = i;
+                <button @onclick="() => SetActiveTab(index)"
+                        class="@GetTabClasses(index) py-4 px-4 md:px-1 border-b-2 font-medium text-sm md:text-base transition-colors whitespace-nowrap">
+                    @TabTitles[index]
+                </button>
+            }
+        </nav>
+    </div>
+
+    <div class="animate-fade-in">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<string> TabTitles { get; set; } = new();
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public int ActiveTabIndex { get; set; } = 0;
+    [Parameter] public EventCallback<int> ActiveTabIndexChanged { get; set; }
+
+    private async Task SetActiveTab(int index)
+    {
+        ActiveTabIndex = index;
+        await ActiveTabIndexChanged.InvokeAsync(index);
+    }
+
+    private string GetTabClasses(int index)
+    {
+        if (index == ActiveTabIndex)
+        {
+            return "border-primary-600 text-primary-600";
+        }
+        return "border-transparent text-secondary-500 hover:text-secondary-700 hover:border-secondary-300";
+    }
+}

@@ -1,0 +1,92 @@
+﻿<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 border border-secondary-100 h-full flex flex-col">
+    <!-- Header con gradiente -->
+    <div class="bg-gradient-to-r @GetGradientClass() p-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="text-5xl">@Icon</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white">@PatternName</h3>
+                    <p class="text-white text-opacity-90 text-sm">@Category</p>
+                </div>
+            </div>
+            @if (!string.IsNullOrEmpty(Difficulty))
+            {
+                <span class="@GetDifficultyClasses() px-3 py-1 rounded-full text-xs font-semibold">
+                    @Difficulty
+                </span>
+            }
+        </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="p-6 flex-1 flex flex-col">
+        <p class="text-secondary-600 mb-4 leading-relaxed flex-1">@Description</p>
+
+        @if (UseCases != null && UseCases.Any())
+        {
+            <div class="mb-4">
+                <h4 class="font-semibold text-secondary-800 mb-2 text-sm">📋 Casos de uso: </h4>
+                <ul class="list-disc list-inside text-secondary-600 space-y-1 text-sm">
+                    @foreach (var useCase in UseCases.Take(3))
+                    {
+                        <li>@useCase</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        @if (Tags != null && Tags.Any())
+        {
+            <div class="flex flex-wrap gap-2 mb-4">
+                @foreach (var tag in Tags)
+                {
+                    <span class="px-2 py-1 bg-secondary-100 text-secondary-700 rounded-md text-xs">
+                        @tag
+                    </span>
+                }
+            </div>
+        }
+
+        <!-- Footer con link -->
+        <div class="flex justify-between items-center pt-4 border-t border-secondary-100 mt-auto">
+            <a href="@DetailUrl" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center transition-colors text-sm md:text-base">
+                Ver detalles
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Icon { get; set; } = "📦";
+    [Parameter] public string PatternName { get; set; } = "";
+    [Parameter] public string Category { get; set; } = "";
+    [Parameter] public string Description { get; set; } = "";
+    [Parameter] public string Difficulty { get; set; } = ""; // Easy, Medium, Hard
+    [Parameter] public List<string>? UseCases { get; set; }
+    [Parameter] public List<string>? Tags { get; set; }
+    [Parameter] public string DetailUrl { get; set; } = "#";
+    [Parameter] public string ColorScheme { get; set; } = "blue"; // blue, green, purple
+
+    private string GetGradientClass()
+    {
+        return ColorScheme switch
+        {
+            "green" => "from-accent-green to-teal-600",
+            "purple" => "from-accent-purple to-pink-600",
+            _ => "from-primary-600 to-indigo-600"
+        };
+    }
+
+    private string GetDifficultyClasses()
+    {
+        return Difficulty.ToLower() switch
+        {
+            "easy" => "bg-green-100 text-green-800",
+            "hard" => "bg-red-100 text-red-800",
+            _ => "bg-yellow-100 text-yellow-800"
+        };
+    }
+}

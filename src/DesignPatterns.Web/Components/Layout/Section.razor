@@ -1,0 +1,29 @@
+﻿<section class="mb-12">
+    @if (!string.IsNullOrEmpty(Title))
+    {
+        <div class="flex items-center gap-3 mb-6">
+            @if (!string.IsNullOrEmpty(Icon))
+            {
+                <span class="text-3xl">@Icon</span>
+            }
+            <h2 class="text-3xl font-bold text-secondary-900">@Title</h2>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Subtitle))
+    {
+        <p class="text-lg text-secondary-600 mb-6">@Subtitle</p>
+    }
+
+    <div class="@ContentClass">
+        @ChildContent
+    </div>
+</section>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Subtitle { get; set; } = "";
+    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string ContentClass { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

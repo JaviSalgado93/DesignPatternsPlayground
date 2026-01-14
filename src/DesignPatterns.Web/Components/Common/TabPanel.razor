@@ -1,0 +1,11 @@
+﻿@if (IsActive)
+{
+    <div class="animate-fade-in">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
