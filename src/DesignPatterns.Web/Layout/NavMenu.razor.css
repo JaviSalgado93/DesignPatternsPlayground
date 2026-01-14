@@ -1,0 +1,19 @@
+.nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-lg text-secondary-300 hover:bg-secondary-800 hover:text-white transition-all duration-200 mb-1;
+}
+
+.nav-item.active {
+    @apply bg-primary-600 text-white shadow-lg;
+}
+
+.nav-item ::deep a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-icon {
+    @apply text-xl;
+}

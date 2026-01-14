@@ -1,0 +1,24 @@
+﻿<div class="bg-white rounded-lg shadow-md p-6 hover:shadow-2xl transition-all duration-300 border-t-4 @BorderColor transform hover:-translate-y-1">
+    <div class="text-5xl mb-4">@Icon</div>
+    <h3 class="text-2xl font-bold mb-3 text-secondary-900">@Title</h3>
+    <p class="text-secondary-600 mb-4 leading-relaxed">@Description</p>
+
+    @if (!string.IsNullOrEmpty(LinkUrl))
+    {
+        <a href="@LinkUrl" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-semibold transition-colors">
+            @LinkText
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </a>
+    }
+</div>
+
+@code {
+    [Parameter] public string Icon { get; set; } = "📦";
+    [Parameter] public string Title { get; set; } = "Título";
+    [Parameter] public string Description { get; set; } = "Descripción del componente";
+    [Parameter] public string BorderColor { get; set; } = "border-primary-600";
+    [Parameter] public string LinkUrl { get; set; } = "";
+    [Parameter] public string LinkText { get; set; } = "Ver más";
+}

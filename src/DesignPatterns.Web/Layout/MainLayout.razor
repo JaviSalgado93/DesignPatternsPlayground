@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+<div class="flex min-h-screen bg-secondary-50">
+    <!-- Sidebar -->
+    <NavMenu />
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64">
+        <!-- Top Bar (opcional) -->
+        <div class="bg-white shadow-sm border-b border-secondary-200 px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <!-- Puedes agregar breadcrumbs aquí después -->
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Puedes agregar búsqueda, notificaciones, etc. -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="p-8 animate-fade-in">
+            @Body
+        </div>
+    </main>
+</div>

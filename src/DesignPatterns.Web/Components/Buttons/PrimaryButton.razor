@@ -1,0 +1,44 @@
+﻿<button type="@Type"
+        class="@GetButtonClasses()"
+        @onclick="OnClick"
+        disabled="@Disabled">
+    @if (!string.IsNullOrEmpty(Icon))
+    {
+        <span class="mr-2">@Icon</span>
+    }
+    @Text
+    @ChildContent
+</button>
+
+@code {
+    [Parameter] public string Text { get; set; } = "";
+    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string Type { get; set; } = "button";
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public string Size { get; set; } = "md";
+    [Parameter] public string Variant { get; set; } = "primary";
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string GetButtonClasses()
+    {
+        var baseClasses = "font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100";
+
+        var sizeClasses = Size switch
+        {
+            "sm" => "py-2 px-4 text-sm",
+            "lg" => "py-4 px-10 text-lg",
+            _ => "py-3 px-8 text-base"
+        };
+
+        var variantClasses = Variant switch
+        {
+            "secondary" => "bg-secondary-700 hover:bg-secondary-800 text-white",
+            "success" => "bg-accent-green hover:bg-green-600 text-white",
+            "danger" => "bg-accent-red hover:bg-red-600 text-white",
+            _ => "bg-primary-600 hover:bg-primary-700 text-white"
+        };
+
+        return $"{baseClasses} {sizeClasses} {variantClasses}";
+    }
+}
