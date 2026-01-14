@@ -36,17 +36,12 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
-    .top-row {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
+/* Mobile-first responsive design */
+@media (max-width: 1023px) {
+    /* Hide sidebar on mobile, show hamburger menu in MainLayout */
 }
 
-@media (min-width: 641px) {
+@media (min-width: 1024px) {
     .page {
         flex-direction: row;
     }

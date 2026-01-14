@@ -1,5 +1,25 @@
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Ensure responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive tables */
+table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Better default spacing for mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
 }
 
 h1:focus {
@@ -34,6 +54,13 @@ a, .btn-link {
 
 .validation-message {
     color: red;
+}
+
+/* Mobile-first sidebar overlay */
+@media (max-width: 1023px) {
+    main {
+        margin-left: 0 !important;
+    }
 }
 
 #blazor-error-ui {

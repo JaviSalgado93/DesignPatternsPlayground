@@ -1,4 +1,4 @@
-﻿<div class="bg-secondary-900 text-white h-screen w-64 fixed left-0 top-0 overflow-y-auto shadow-2xl pb-28">
+﻿<div class="bg-secondary-900 text-white h-screen w-64 fixed left-0 top-0 overflow-y-auto shadow-2xl pb-28 transition-transform duration-300 z-50 lg:translate-x-0 @(isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0")" @onclick:stopPropagation="true">
     <!-- Logo/Header -->
     <div class="p-6 border-b border-secondary-800">
         <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-400 to-accent-purple bg-clip-text text-transparent leading-tight">
@@ -10,7 +10,7 @@
     <!-- Navigation Links -->
     <nav class="p-4">
         <div class="flex flex-col gap-1">
-            <NavLink href="" class="nav-item" Match="NavLinkMatch.All">
+            <NavLink href="" class="nav-item" Match="NavLinkMatch.All" @onclick="OnMenuItemClick">
                 <span class="nav-icon">🏠</span>
                 <span>Home</span>
             </NavLink>
@@ -22,17 +22,17 @@
                 </p>
 
                 <div class="flex flex-col gap-1">
-                    <NavLink href="creational" class="nav-item">
+                    <NavLink href="creational" class="nav-item" @onclick="OnMenuItemClick">
                         <span class="nav-icon">🏗️</span>
                         <span>Creational</span>
                     </NavLink>
 
-                    <NavLink href="structural" class="nav-item">
+                    <NavLink href="structural" class="nav-item" @onclick="OnMenuItemClick">
                         <span class="nav-icon">🔧</span>
                         <span>Structural</span>
                     </NavLink>
 
-                    <NavLink href="behavioral" class="nav-item">
+                    <NavLink href="behavioral" class="nav-item" @onclick="OnMenuItemClick">
                         <span class="nav-icon">⚡</span>
                         <span>Behavioral</span>
                     </NavLink>
@@ -46,12 +46,12 @@
                 </p>
 
                 <div class="flex flex-col gap-1">
-                    <NavLink href="about" class="nav-item">
+                    <NavLink href="about" class="nav-item" @onclick="OnMenuItemClick">
                         <span class="nav-icon">📖</span>
                         <span>Acerca de</span>
                     </NavLink>
 
-                    <NavLink href="references" class="nav-item">
+                    <NavLink href="references" class="nav-item" @onclick="OnMenuItemClick">
                         <span class="nav-icon">🔗</span>
                         <span>Referencias</span>
                     </NavLink>
@@ -144,3 +144,28 @@
         transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 </style>
+
+@code {
+    private bool isSidebarOpen = false;
+
+    [Parameter]
+    public EventCallback OnMenuItemClicked { get; set; }
+
+    public async Task Toggle()
+    {
+        isSidebarOpen = !isSidebarOpen;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public async Task CloseSidebar()
+    {
+        isSidebarOpen = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task OnMenuItemClick()
+    {
+        await CloseSidebar();
+        await OnMenuItemClicked.InvokeAsync();
+    }
+}

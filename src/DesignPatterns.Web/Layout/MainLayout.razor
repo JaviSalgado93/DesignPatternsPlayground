@@ -1,26 +1,52 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="flex min-h-screen bg-secondary-50">
+<!-- Mobile Overlay -->
+<div class="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-300 @(isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")" 
+     @onclick="CloseSidebar"></div>
+
+<div class="flex min-h-screen bg-secondary-50 flex-col lg:flex-row">
     <!-- Sidebar -->
-    <NavMenu />
+    <NavMenu @ref="navMenuRef" OnMenuItemClicked="CloseSidebar" />
 
     <!-- Main Content -->
-    <main class="flex-1 ml-64">
-        <!-- Top Bar (opcional) -->
-        <div class="bg-white shadow-sm border-b border-secondary-200 px-8 py-4">
+    <main class="flex-1 w-full lg:ml-0">
+        <!-- Top Bar -->
+        <div class="bg-white shadow-sm border-b border-secondary-200 px-4 md:px-8 py-4">
             <div class="flex items-center justify-between">
+                <button @onclick="ToggleSidebar" class="lg:hidden p-2 hover:bg-secondary-100 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-secondary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
                 <div class="flex items-center space-x-4">
-                    <!-- Puedes agregar breadcrumbs aquí después -->
+                    <!-- Breadcrumbs placeholder -->
                 </div>
                 <div class="flex items-center space-x-4">
-                    <!-- Puedes agregar búsqueda, notificaciones, etc. -->
+                    <!-- Search/notifications placeholder -->
                 </div>
             </div>
         </div>
 
         <!-- Page Content -->
-        <div class="p-8 animate-fade-in">
+        <div class="p-4 md:p-8 animate-fade-in">
             @Body
         </div>
     </main>
 </div>
+
+@code {
+    private NavMenu navMenuRef;
+    private bool isSidebarOpen = false;
+
+    private async Task ToggleSidebar()
+    {
+        await navMenuRef.Toggle();
+        isSidebarOpen = !isSidebarOpen;
+    }
+
+    private async Task CloseSidebar()
+    {
+        await navMenuRef.CloseSidebar();
+        isSidebarOpen = false;
+    }
+}

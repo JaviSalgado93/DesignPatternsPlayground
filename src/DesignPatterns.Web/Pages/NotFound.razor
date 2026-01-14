@@ -3,39 +3,41 @@
 
 <PageTitle>404 - No Encontrado</PageTitle>
 
-<div class="flex flex-col items-center justify-center min-h-[60vh]">
+<div class="flex flex-col items-center justify-center min-h-[60vh] px-4 py-8">
     <!-- Error Code -->
-    <div class="text-9xl font-bold bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent mb-6">
+    <div class="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent mb-4 md:mb-6">
         404
     </div>
 
     <!-- Error Message -->
-    <h1 class="text-4xl font-bold text-secondary-900 mb-3">Página No Encontrada</h1>
+    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-2 md:mb-3 text-center">
+        Página No Encontrada
+    </h1>
     
-    <p class="text-xl text-secondary-600 mb-8 text-center max-w-md">
+    <p class="text-base md:text-lg lg:text-xl text-secondary-600 mb-6 md:mb-8 text-center max-w-md">
         Lo sentimos, la página que buscas no existe o ha sido movida.
     </p>
 
     <!-- Suggestion -->
-    <div class="bg-blue-50 border-l-4 border-primary-600 p-4 mb-8 rounded-lg max-w-md">
-        <p class="text-secondary-700 text-sm">
+    <div class="bg-blue-50 border-l-4 border-primary-600 p-4 mb-6 md:mb-8 rounded-lg w-full max-w-md">
+        <p class="text-secondary-700 text-xs md:text-sm">
             💡 <strong>Sugerencia:</strong> Intenta navegar usando el menú lateral o vuelve a la página de inicio.
         </p>
     </div>
 
     <!-- Action Buttons -->
-    <div class="flex gap-4">
-        <a href="/" class="px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg">
+    <div class="flex flex-col sm:flex-row gap-3 md:gap-4 w-full max-w-md">
+        <a href="/" class="flex-1 px-4 md:px-6 py-2 md:py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg text-center text-sm md:text-base">
             ← Volver al Inicio
         </a>
         
-        <a href="/creational" class="px-6 py-3 bg-secondary-200 text-secondary-900 font-semibold rounded-lg hover:bg-secondary-300 transition-colors shadow-md hover:shadow-lg">
+        <a href="/creational" class="flex-1 px-4 md:px-6 py-2 md:py-3 bg-secondary-200 text-secondary-900 font-semibold rounded-lg hover:bg-secondary-300 transition-colors shadow-md hover:shadow-lg text-center text-sm md:text-base">
             Explorar Patrones →
         </a>
     </div>
 
     <!-- Illustration -->
-    <div class="mt-12 text-7xl opacity-50">
+    <div class="mt-8 md:mt-12 text-5xl md:text-6xl lg:text-7xl opacity-50">
         🔍
     </div>
 </div>
