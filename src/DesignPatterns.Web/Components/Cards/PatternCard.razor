@@ -1,5 +1,7 @@
 ﻿<div class="bg-white rounded-lg shadow-md p-4 md:p-6 hover:shadow-2xl transition-all duration-300 border-t-4 @BorderColor transform hover:-translate-y-1">
-    <div class="text-4xl md:text-5xl mb-3 md:mb-4">@Icon</div>
+    <div class="text-5xl md:text-6xl mb-3 md:mb-4 text-primary-600">
+        <HeroIcon IconName="@IconName" AdditionalClass="w-14 h-14 md:w-16 md:h-16" />
+    </div>
     <h3 class="text-lg md:text-2xl font-bold mb-2 md:mb-3 text-secondary-900">@Title</h3>
     <p class="text-sm md:text-base text-secondary-600 mb-3 md:mb-4 leading-relaxed">@Description</p>
 
@@ -7,15 +9,13 @@
     {
         <a href="@LinkUrl" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-semibold transition-colors text-sm md:text-base">
             @LinkText
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 ml-2" />
         </a>
     }
 </div>
 
 @code {
-    [Parameter] public string Icon { get; set; } = "📦";
+    [Parameter] public string IconName { get; set; } = "square-3-stack-3d";
     [Parameter] public string Title { get; set; } = "Título";
     [Parameter] public string Description { get; set; } = "Descripción del componente";
     [Parameter] public string BorderColor { get; set; } = "border-primary-600";

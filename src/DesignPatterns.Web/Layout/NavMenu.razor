@@ -11,7 +11,9 @@
     <nav class="p-4">
         <div class="flex flex-col gap-1">
             <NavLink href="" class="nav-item" Match="NavLinkMatch.All" @onclick="OnMenuItemClick">
-                <span class="nav-icon">🏠</span>
+                <span class="nav-icon">
+                    <HeroIcon IconName="home" AdditionalClass="w-5 h-5" />
+                </span>
                 <span>Home</span>
             </NavLink>
 
@@ -23,17 +25,23 @@
 
                 <div class="flex flex-col gap-1">
                     <NavLink href="creational" class="nav-item" @onclick="OnMenuItemClick">
-                        <span class="nav-icon">🏗️</span>
+                        <span class="nav-icon">
+                            <HeroIcon IconName="building-library" AdditionalClass="w-5 h-5" />
+                        </span>
                         <span>Creational</span>
                     </NavLink>
 
                     <NavLink href="structural" class="nav-item" @onclick="OnMenuItemClick">
-                        <span class="nav-icon">🔧</span>
+                        <span class="nav-icon">
+                            <HeroIcon IconName="wrench" AdditionalClass="w-5 h-5" />
+                        </span>
                         <span>Structural</span>
                     </NavLink>
 
                     <NavLink href="behavioral" class="nav-item" @onclick="OnMenuItemClick">
-                        <span class="nav-icon">⚡</span>
+                        <span class="nav-icon">
+                            <HeroIcon IconName="bolt" AdditionalClass="w-5 h-5" />
+                        </span>
                         <span>Behavioral</span>
                     </NavLink>
                 </div>
@@ -47,12 +55,16 @@
 
                 <div class="flex flex-col gap-1">
                     <NavLink href="about" class="nav-item" @onclick="OnMenuItemClick">
-                        <span class="nav-icon">📖</span>
+                        <span class="nav-icon">
+                            <HeroIcon IconName="book-open" AdditionalClass="w-5 h-5" />
+                        </span>
                         <span>Acerca de</span>
                     </NavLink>
 
                     <NavLink href="references" class="nav-item" @onclick="OnMenuItemClick">
-                        <span class="nav-icon">🔗</span>
+                        <span class="nav-icon">
+                            <HeroIcon IconName="link" AdditionalClass="w-5 h-5" />
+                        </span>
                         <span>Referencias</span>
                     </NavLink>
                 </div>
