@@ -2,98 +2,54 @@
 
 <PageTitle>Home - Design Patterns</PageTitle>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="~/" />
-    
-    <!-- Google Fonts - Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <link href="css/output.css" rel="stylesheet" />
-    
-    <title>Design Patterns Playground</title>
-</head>
+<div class="max-w-7xl mx-auto animate-slide-up">
+    <!-- Header -->
+    <div class="text-center mb-12">
+        <h1 class="text-6xl font-bold mb-4 pb-3 bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
+            Design Patterns Playground
+        </h1>
+        <p class="text-xl text-secondary-600">Explora los patrones de diseño más importantes en C#</p>
+    </div>
 
-<body>
-    <div class="max-w-7xl mx-auto animate-slide-up">
-        <!-- Header -->
-        <div class="text-center mb-12">
-            <h1 class="text-6xl font-bold mb-4 pb-3 bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
-                Design Patterns Playground
-            </h1>
-            <p class="text-xl text-secondary-600">Explora los patrones de diseño más importantes en C#</p>
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <PatternCard Icon="🏗️"
+                     Title="Creational Patterns (Patrones Creacionales)"
+                     Description="Patrones enfocados en la creación de objetos de manera flexible y reutilizable."
+                     BorderColor="border-primary-600"
+                     LinkUrl="/creational"
+                     LinkText="Explorar patrones" />
+
+        <PatternCard Icon="🔧"
+                     Title="Structural Patterns (Patrones Estructurales)"
+                     Description="Patrones que facilitan el diseño identificando relaciones simples entre entidades."
+                     BorderColor="border-accent-green"
+                     LinkUrl="/structural"
+                     LinkText="Explorar patrones" />
+
+        <PatternCard Icon="⚡"
+                     Title="Behavioral Patterns (Patrones de Comportamiento)"
+                     Description="Patrones que se enfocan en la comunicación entre objetos y la delegación de responsabilidades."
+                     BorderColor="border-accent-purple"
+                     LinkUrl="/behavioral"
+                     LinkText="Explorar patrones" />
+    </div>
+
+    <!-- Stats Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pb-3">
+        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-primary-600 hover:shadow-xl transition-shadow">
+            <div class="text-4xl font-bold text-primary-600 mb-2">23</div>
+            <div class="text-secondary-600">Patrones de Diseño</div>
         </div>
 
-        <!-- Cards Grid -->
-        <div class="grid grid-cols-1 md: grid-cols-2 lg: grid-cols-3 gap-8 mb-12">
-            <PatternCard Icon="🏗️"
-                         Title="Creational Patterns (Patrones Creacionales)"
-                         Description="Patrones enfocados en la creación de objetos de manera flexible y reutilizable."
-                         BorderColor="border-primary-600"
-                         LinkUrl="/creational"
-                         LinkText="Explorar patrones" />
-
-            <PatternCard Icon="🔧"
-                         Title="Structural Patterns (Patrones Estructurales)"
-                         Description="Patrones que facilitan el diseño identificando relaciones simples entre entidades."
-                         BorderColor="border-accent-green"
-                         LinkUrl="/structural"
-                         LinkText="Explorar patrones" />
-
-            <PatternCard Icon="⚡"
-                         Title="Behavioral Patterns (Patrones de Comportamiento)"
-                         Description="Patrones que se enfocan en la comunicación entre objetos y la delegación de responsabilidades."
-                         BorderColor="border-accent-purple"
-                         LinkUrl="/behavioral"
-                         LinkText="Explorar patrones" />
+        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-accent-green hover:shadow-xl transition-shadow">
+            <div class="text-4xl font-bold text-accent-green mb-2">50+</div>
+            <div class="text-secondary-600">Ejemplos de Código</div>
         </div>
 
-        <!-- Hero Section -->
-        @* <div class="bg-gradient-to-r from-primary-600 via-primary-700 to-secondary-800 rounded-2xl p-10 text-white shadow-2xl">
-            <div class="flex flex-wrap gap-2 mb-6">
-                <Badge Text="C#" Color="blue" />
-                <Badge Text="Blazor" Color="purple" />
-                <Badge Text="Tailwind CSS" Color="green" />
-                <Badge Text=".NET 8" Color="gray" />
-            </div>
-
-            <h2 class="text-4xl font-bold mb-4">¡Todo funcionando perfectamente!  ✨</h2>
-            <p class="text-lg mb-8 opacity-90">
-                Este proyecto usa componentes reutilizables con Tailwind CSS para crear interfaces modernas y responsivas con un tema profesional.
-            </p>
-
-            <div class="flex flex-wrap gap-4">
-                <PrimaryButton Text="Comenzar ahora"
-                               Icon="🚀"
-                               Variant="primary"
-                               Size="lg" />
-
-                <PrimaryButton Text="Ver documentación"
-                               Variant="secondary"
-                               Size="lg" />
-            </div>
-        </div> *@
-
-        <!-- Stats Section (opcional) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pb-3">
-            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-primary-600 hover:shadow-xl transition-shadow">
-                <div class="text-4xl font-bold text-primary-600 mb-2">23</div>
-                <div class="text-secondary-600">Patrones de Diseño</div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-accent-green hover:shadow-xl transition-shadow">
-                <div class="text-4xl font-bold text-accent-green mb-2">50+</div>
-                <div class="text-secondary-600">Ejemplos de Código</div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-accent-purple hover:shadow-xl transition-shadow">
-                <div class="text-4xl font-bold text-accent-purple mb-2">100%</div>
-                <div class="text-secondary-600">Gratis y Open Source</div>
-            </div>
+        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-accent-purple hover:shadow-xl transition-shadow">
+            <div class="text-4xl font-bold text-accent-purple mb-2">100%</div>
+            <div class="text-secondary-600">Gratis y Open Source</div>
         </div>
     </div>
-</body>
+</div>
