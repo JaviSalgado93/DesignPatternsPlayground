@@ -1,5 +1,8 @@
 ﻿@inherits LayoutComponentBase
 
+<!-- Header -->
+<Header OnMenuToggleCallback="ToggleSidebar" />
+
 <!-- Mobile Overlay -->
 <div class="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-300 @(isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")" 
      @onclick="CloseSidebar"></div>
@@ -9,28 +12,14 @@
     <NavMenu @ref="navMenuRef" OnMenuItemClicked="CloseSidebar" />
 
     <!-- Main Content -->
-    <main class="flex-1 w-full lg:ml-0">
-        <!-- Top Bar -->
-        <div class="bg-white shadow-sm border-b border-secondary-200 px-4 md:px-8 py-4">
-            <div class="flex items-center justify-between">
-                <button @onclick="ToggleSidebar" class="lg:hidden p-2 hover:bg-secondary-100 rounded-lg transition-colors">
-                    <svg class="w-6 h-6 text-secondary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-                <div class="flex items-center space-x-4">
-                    <!-- Breadcrumbs placeholder -->
-                </div>
-                <div class="flex items-center space-x-4">
-                    <!-- Search/notifications placeholder -->
-                </div>
-            </div>
-        </div>
-
+    <main class="flex-1 w-full flex flex-col">
         <!-- Page Content -->
-        <div class="p-4 md:p-8 animate-fade-in">
+        <div class="flex-1 p-4 md:p-8 animate-fade-in">
             @Body
         </div>
+
+        <!-- Footer -->
+        <Footer />
     </main>
 </div>
 
