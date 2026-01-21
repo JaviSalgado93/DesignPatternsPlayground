@@ -1,7 +1,7 @@
 ﻿<div class="@GetBoxClasses() rounded-xl p-5 mb-6 border-l-4 @GetBorderColor() shadow-sm">
     <div class="flex items-start gap-4">
-        <div class="flex-shrink-0 text-3xl">
-            @GetIcon()
+        <div class="flex-shrink-0">
+            <HeroIcon IconName="@GetIconName()" AdditionalClass="w-6 h-6" />
         </div>
         <div class="flex-1">
             @if (!string.IsNullOrEmpty(Title))
@@ -61,15 +61,15 @@
         };
     }
 
-    private string GetIcon()
+    private string GetIconName()
     {
         return Type switch
         {
-            "success" => "✅",
-            "warning" => "⚠️",
-            "danger" => "❌",
-            "tip" => "💡",
-            _ => "ℹ️"
+            "success" => "check",
+            "warning" => "exclamation-triangle",
+            "danger" => "x-circle",
+            "tip" => "light-bulb",
+            _ => "information-circle"
         };
     }
 }

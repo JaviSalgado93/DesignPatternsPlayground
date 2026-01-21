@@ -1,0 +1,163 @@
+﻿@page "/creational"
+
+<PageTitle>Creational Patterns - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@creationalBreadcrumbs" />
+
+    <!-- Header Section -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="cube" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Creational Patterns</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrones de Creación</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-2xl">
+            Los patrones creacionales se enfocan en mecanismos de creación de objetos.
+            Intentan crear objetos de manera controlada, flexible y reutilizable.
+        </p>
+    </div>
+
+    <!-- Patterns Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Singleton -->
+        <PatternDetailCard IconName="lock"
+                           PatternName="Singleton"
+                           Category="Creational"
+                           Description="Garantiza que una clase tenga una única instancia y proporciona un punto de acceso global a ella."
+                           Difficulty="Medium"
+                           ColorScheme="blue"
+                           DetailUrl="/creational/singleton"
+                           UseCases="@singletonUseCases"
+                           Tags="@singletonTags" />
+
+        <!-- Factory Method -->
+        <PatternDetailCard IconName="building-library"
+                           PatternName="Factory Method"
+                           Category="Creational"
+                           Description="Define una interfaz para crear objetos, pero deja que las subclases decidan qué clase instanciar."
+                           Difficulty="Easy"
+                           ColorScheme="blue"
+                           DetailUrl="/creational/factory"
+                           UseCases="@factoryUseCases"
+                           Tags="@factoryTags" />
+
+        <!-- Abstract Factory -->
+        <PatternDetailCard IconName="building-2"
+                           PatternName="Abstract Factory"
+                           Category="Creational"
+                           Description="Proporciona una interfaz para crear familias de objetos relacionados o dependientes sin especificar sus clases concretas."
+                           Difficulty="Hard"
+                           ColorScheme="blue"
+                           DetailUrl="/creational/abstract-factory"
+                           UseCases="@abstractFactoryUseCases"
+                           Tags="@abstractFactoryTags" />
+
+        <!-- Builder -->
+        <PatternDetailCard IconName="hammer"
+                           PatternName="Builder"
+                           Category="Creational"
+                           Description="Separa la construcción de un objeto complejo de su representación, permitiendo que el mismo proceso de construccióncree diferentes representaciones."
+                           Difficulty="Medium"
+                           ColorScheme="blue"
+                           DetailUrl="/creational/builder"
+                           UseCases="@builderUseCases"
+                           Tags="@builderTags" />
+
+        <!-- Prototype -->
+        <PatternDetailCard IconName="beaker"
+                           PatternName="Prototype"
+                           Category="Creational"
+                           Description="Especifica los tipos de objetos a crear usando una instancia prototípica y crea nuevos objetos por copia de este prototipo."
+                           Difficulty="Medium"
+                           ColorScheme="blue"
+                           DetailUrl="/creational/prototype"
+                           UseCases="@prototypeUseCases"
+                           Tags="@prototypeTags" />
+    </div>
+
+    <!-- Info Section -->
+    <div class="bg-gradient-to-r from-primary-50 to-indigo-50 rounded-xl p-6 md:p-8 border border-primary-200">
+        <div class="flex items-start gap-4 mb-4">
+            <HeroIcon IconName="light-bulb" AdditionalClass="w-8 h-8 text-primary-600 flex-shrink-0 mt-1" />
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-4">¿Cuándo usar patrones creacionales?</h2>
+                <ul class="space-y-3 text-secondary-700">
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
+                        <span>Cuando necesitas crear objetos pero quieres mantener el código desacoplado</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
+                        <span>Cuando quieres controlar cómo se crean los objetos (validaciones, inicializaciones)</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
+                        <span>Cuando necesitas flexibilidad en la instanciación de clases</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
+                        <span>Cuando quieres mejorar la mantenibilidad y escalabilidad del código</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Breadcrumb
+    private List<BreadcrumbItem> creationalBreadcrumbs = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Creational", "/creational")
+    };
+
+    // Singleton
+    private List<string> singletonUseCases = new()
+    {
+        "Gestión de configuración global",
+        "Logger centralizado de aplicación",
+        "Pool de conexiones a base de datos"
+    };
+    private List<string> singletonTags = new() { "Thread-Safe", "Lazy Loading", "Global Access" };
+
+    // Factory Method
+    private List<string> factoryUseCases = new()
+    {
+        "Creación de objetos UI según plataforma",
+        "Parsers de diferentes formatos",
+        "Diferentes tipos de conexiones a BD"
+    };
+    private List<string> factoryTags = new() { "Creación", "Polimorfismo", "Desacoplamiento" };
+
+    // Abstract Factory
+    private List<string> abstractFactoryUseCases = new()
+    {
+        "Crear familias de componentes UI",
+        "Sistemas multiplataforma (Windows, macOS, Linux)",
+        "Temas visuales (Light, Dark, High Contrast)"
+    };
+    private List<string> abstractFactoryTags = new() { "Familias", "Plataformas", "Temas" };
+
+    // Builder
+    private List<string> builderUseCases = new()
+    {
+        "Construcción de objetos complejos (StringBuilder, HttpClient)",
+        "Configuración de aplicaciones",
+        "Construcción paso a paso con validaciones"
+    };
+    private List<string> builderTags = new() { "Construcción", "Fluent", "Validación" };
+
+    // Prototype
+    private List<string> prototypeUseCases = new()
+    {
+        "Clonación de objetos complejos",
+        "Copias profundas de datos",
+        "Deshacer/Rehacer en aplicaciones (Undo/Redo)"
+    };
+    private List<string> prototypeTags = new() { "Clonación", "Deep Copy", "Undo/Redo" };
+}

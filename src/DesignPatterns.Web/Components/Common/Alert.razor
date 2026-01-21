@@ -1,8 +1,8 @@
 ﻿<div class="@GetAlertClasses() rounded-xl p-4 mb-4 shadow-md border @GetBorderClass()" role="alert">
     <div class="flex items-start gap-4">
         <!-- Icon -->
-        <div class="flex-shrink-0 text-3xl">
-            @GetIcon()
+        <div class="flex-shrink-0">
+            <HeroIcon IconName="@GetIconName()" AdditionalClass="w-6 h-6" />
         </div>
 
         <!-- Content -->
@@ -84,14 +84,14 @@
         };
     }
 
-    private string GetIcon()
+    private string GetIconName()
     {
         return Type switch
         {
-            "success" => "✅",
-            "warning" => "⚠️",
-            "error" => "🚫",
-            _ => "ℹ️"
+            "success" => "check",
+            "warning" => "exclamation-triangle",
+            "error" => "x-circle",
+            _ => "information-circle"
         };
     }
 }

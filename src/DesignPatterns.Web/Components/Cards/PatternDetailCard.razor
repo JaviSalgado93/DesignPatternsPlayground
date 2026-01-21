@@ -3,7 +3,7 @@
     <div class="bg-gradient-to-r @GetGradientClass() p-6">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-4">
-                <div class="text-5xl">@Icon</div>
+                <HeroIcon IconName="@IconName" AdditionalClass="w-12 h-12 text-white" />
                 <div>
                     <h3 class="text-2xl font-bold text-white">@PatternName</h3>
                     <p class="text-white text-opacity-90 text-sm">@Category</p>
@@ -25,7 +25,10 @@
         @if (UseCases != null && UseCases.Any())
         {
             <div class="mb-4">
-                <h4 class="font-semibold text-secondary-800 mb-2 text-sm">📋 Casos de uso: </h4>
+                <div class="flex items-center gap-2 mb-2">
+                    <HeroIcon IconName="clipboard-list" AdditionalClass="w-4 h-4 text-secondary-700" />
+                    <h4 class="font-semibold text-secondary-800 text-sm">Casos de uso:</h4>
+                </div>
                 <ul class="list-disc list-inside text-secondary-600 space-y-1 text-sm">
                     @foreach (var useCase in UseCases.Take(3))
                     {
@@ -60,7 +63,7 @@
 </div>
 
 @code {
-    [Parameter] public string Icon { get; set; } = "📦";
+    [Parameter] public string IconName { get; set; } = "cube";
     [Parameter] public string PatternName { get; set; } = "";
     [Parameter] public string Category { get; set; } = "";
     [Parameter] public string Description { get; set; } = "";

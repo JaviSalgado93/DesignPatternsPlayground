@@ -1,0 +1,203 @@
+﻿@page "/structural"
+
+<PageTitle>Structural Patterns - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md: py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@structuralBreadcrumbs" />
+
+    <!-- Header Section -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="squares-2x2" AdditionalClass="w-10 h-10 text-accent-green" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Structural Patterns</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrones Estructurales</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-2xl">
+            Los patrones estructurales se enfocan en la composición de clases y objetos.
+            Crean estructuras más grandes a partir de clases y objetos individuales.
+        </p>
+    </div>
+
+    <!-- Patterns Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Adapter -->
+        <PatternDetailCard IconName="puzzle"
+                           PatternName="Adapter"
+                           Category="Structural"
+                           Description="Permite que interfaces incompatibles trabajen juntas convirtiendo la interfaz de una clase en otra."
+                           Difficulty="Easy"
+                           ColorScheme="green"
+                           DetailUrl="/structural/adapter"
+                           UseCases="@adapterUseCases"
+                           Tags="@adapterTags" />
+
+        <!-- Bridge -->
+        <PatternDetailCard IconName="link"
+                           PatternName="Bridge"
+                           Category="Structural"
+                           Description="Desvincula una abstracción de su implementación para que ambas varíen independientemente."
+                           Difficulty="Hard"
+                           ColorScheme="green"
+                           DetailUrl="/structural/bridge"
+                           UseCases="@bridgeUseCases"
+                           Tags="@bridgeTags" />
+
+        <!-- Composite -->
+        <PatternDetailCard IconName="rectangle-stack"
+                           PatternName="Composite"
+                           Category="Structural"
+                           Description="Compone objetos en estructuras de árbol para representar jerarquías parte-todo, permitiendo a los clientes tratar las composiciones de forma uniforme."
+                           Difficulty="Medium"
+                           ColorScheme="green"
+                           DetailUrl="/structural/composite"
+                           UseCases="@compositeUseCases"
+                           Tags="@compositeTags" />
+
+        <!-- Decorator -->
+        <PatternDetailCard IconName="sparkles"
+                           PatternName="Decorator"
+                           Category="Structural"
+                           Description="Añade responsabilidades adicionales a un objeto dinámicamente, proporcionando una alternativa flexible a la herencia."
+                           Difficulty="Medium"
+                           ColorScheme="green"
+                           DetailUrl="/structural/decorator"
+                           UseCases="@decoratorUseCases"
+                           Tags="@decoratorTags" />
+
+        <!-- Facade -->
+        <PatternDetailCard IconName="film"
+                           PatternName="Facade"
+                           Category="Structural"
+                           Description="Proporciona una interfaz unificada de nivel superior para un conjunto de interfaces en un subsistema."
+                           Difficulty="Easy"
+                           ColorScheme="green"
+                           DetailUrl="/structural/facade"
+                           UseCases="@facadeUseCases"
+                           Tags="@facadeTags" />
+
+        <!-- Flyweight -->
+        <PatternDetailCard IconName="bolt"
+                           PatternName="Flyweight"
+                           Category="Structural"
+                           Description="Utiliza el compartir para soportar eficientemente grandes números de objetos pequeños."
+                           Difficulty="Hard"
+                           ColorScheme="green"
+                           DetailUrl="/structural/flyweight"
+                           UseCases="@flyweightUseCases"
+                           Tags="@flyweightTags" />
+
+        <!-- Proxy -->
+        <PatternDetailCard IconName="shield-check"
+                           PatternName="Proxy"
+                           Category="Structural"
+                           Description="Proporciona un sustituto o marcador de posición para controlar el acceso a otro objeto."
+                           Difficulty="Medium"
+                           ColorScheme="green"
+                           DetailUrl="/structural/proxy"
+                           UseCases="@proxyUseCases"
+                           Tags="@proxyTags" />
+    </div>
+
+    <!-- Info Section -->
+    <div class="bg-gradient-to-r from-accent-green/10 to-teal-50 rounded-xl p-6 md:p-8 border border-accent-green/30">
+        <div class="flex items-start gap-4 mb-4">
+            <HeroIcon IconName="light-bulb" AdditionalClass="w-8 h-8 text-accent-green flex-shrink-0 mt-1" />
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-4">¿Cuándo usar patrones estructurales?</h2>
+                <ul class="space-y-3 text-secondary-700">
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-green flex-shrink-0 mt-0.5" />
+                        <span>Cuando necesitas componer objetos en estructuras más grandes</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-green flex-shrink-0 mt-0.5" />
+                        <span>Cuando quieres simplificar interfaces complejas</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-green flex-shrink-0 mt-0.5" />
+                        <span>Cuando necesitas hacer que objetos incompatibles trabajen juntos</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-green flex-shrink-0 mt-0.5" />
+                        <span>Cuando quieres controlar el acceso a objetos o optimizar memoria</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Breadcrumb
+    private List<BreadcrumbItem> structuralBreadcrumbs = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural")
+    };
+
+    // Adapter
+    private List<string> adapterUseCases = new()
+    {
+        "Integración de APIs legacy",
+        "Wrappers de librerías externas",
+        "Compatibilidad entre interfaces"
+    };
+    private List<string> adapterTags = new() { "Wrapper", "Integración", "Compatibilidad" };
+
+    // Bridge
+    private List<string> bridgeUseCases = new()
+    {
+        "Renderización multiplataforma",
+        "Abstracción de drivers de dispositivos",
+        "Sistemas con múltiples implementaciones"
+    };
+    private List<string> bridgeTags = new() { "Abstracción", "Implementación", "Desvinculación" };
+
+    // Composite
+    private List<string> compositeUseCases = new()
+    {
+        "Sistemas de archivos y directorios",
+        "Jerarquías de componentes UI",
+        "Estructuras de árbol (menús, árboles)"
+    };
+    private List<string> compositeTags = new() { "Árbol", "Jerárquico", "Parte-Todo" };
+
+    // Decorator
+    private List<string> decoratorUseCases = new()
+    {
+        "Añadir responsabilidades dinámicamente",
+        "I/O Streams en Java (BufferedReader, etc)",
+        "Decoración de componentes UI"
+    };
+    private List<string> decoratorTags = new() { "Dinámico", "Responsabilidades", "Alternativa Herencia" };
+
+    // Facade
+    private List<string> facadeUseCases = new()
+    {
+        "Simplificar interfaces complejas",
+        "APIs de nivel superior para subsistemas",
+        "Encapsulación de librerías externas"
+    };
+    private List<string> facadeTags = new() { "Simplificación", "Interfaz Unificada", "Encapsulación" };
+
+    // Flyweight
+    private List<string> flyweightUseCases = new()
+    {
+        "Pool de objetos compartidos",
+        "Optimización de memoria (juegos, texto)",
+        "Cachés de objetos pequeños"
+    };
+    private List<string> flyweightTags = new() { "Memoria", "Compartición", "Pool" };
+
+    // Proxy
+    private List<string> proxyUseCases = new()
+    {
+        "Control de acceso a recursos",
+        "Lazy loading de objetos pesados",
+        "Logging y auditoría de acceso"
+    };
+    private List<string> proxyTags = new() { "Sustituto", "Control Acceso", "Lazy Loading" };
+}

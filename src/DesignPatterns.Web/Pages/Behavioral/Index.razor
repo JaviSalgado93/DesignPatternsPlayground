@@ -1,0 +1,283 @@
+﻿@page "/behavioral"
+
+<PageTitle>Behavioral Patterns - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@behavioralBreadcrumbs" />
+
+    <!-- Header Section -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md: gap-4 mb-4">
+            <HeroIcon IconName="sparkles" AdditionalClass="w-10 h-10 text-accent-purple" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Behavioral Patterns</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrones de Comportamiento</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-2xl">
+            Los patrones de comportamiento se enfocan en la comunicación entre objetos.
+            Definen cómo los objetos interactúan y distribuyen responsabilidades.
+        </p>
+    </div>
+
+    <!-- Patterns Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Strategy -->
+        <PatternDetailCard IconName="target"
+                           PatternName="Strategy"
+                           Category="Behavioral"
+                           Description="Define una familia de algoritmos, encapsula cada uno y los hace intercambiables."
+                           Difficulty="Easy"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/strategy"
+                           UseCases="@strategyUseCases"
+                           Tags="@strategyTags" />
+
+        <!-- Observer -->
+        <PatternDetailCard IconName="eye"
+                           PatternName="Observer"
+                           Category="Behavioral"
+                           Description="Define una dependencia de uno-a-muchos entre objetos para que cuando un objeto cambia de estado, todos sus dependientes son notificados automáticamente."
+                           Difficulty="Medium"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/observer"
+                           UseCases="@observerUseCases"
+                           Tags="@observerTags" />
+
+        <!-- Command -->
+        <PatternDetailCard IconName="cog"
+                           PatternName="Command"
+                           Category="Behavioral"
+                           Description="Encapsula una solicitud como un objeto, permitiendo parametrizar los clientes con diferentes solicitudes."
+                           Difficulty="Medium"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/command"
+                           UseCases="@commandUseCases"
+                           Tags="@commandTags" />
+
+        <!-- Chain of Responsibility -->
+        <PatternDetailCard IconName="link"
+                           PatternName="Chain of Responsibility"
+                           Category="Behavioral"
+                           Description="Evita acoplar al remitente de una solicitud con su receptor, permitiendo que más de un objeto tenga la oportunidad de manejar la solicitud."
+                           Difficulty="Medium"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/chain-of-responsibility"
+                           UseCases="@chainUseCases"
+                           Tags="@chainTags" />
+
+        <!-- State -->
+        <PatternDetailCard IconName="arrow-path"
+                           PatternName="State"
+                           Category="Behavioral"
+                           Description="Permite que un objeto altere su comportamiento cuando su estado interno cambia. Pareciera que cambiara su clase."
+                           Difficulty="Medium"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/state"
+                           UseCases="@stateUseCases"
+                           Tags="@stateTags" />
+
+        <!-- Template Method -->
+        <PatternDetailCard IconName="clipboard"
+                           PatternName="Template Method"
+                           Category="Behavioral"
+                           Description="Define la estructura de un algoritmo en una operación, delegando algunos pasos a las subclases."
+                           Difficulty="Easy"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/template-method"
+                           UseCases="@templateUseCases"
+                           Tags="@templateTags" />
+
+        <!-- Visitor -->
+        <PatternDetailCard IconName="arrow-small-right"
+                           PatternName="Visitor"
+                           Category="Behavioral"
+                           Description="Representa una operación a ser realizada sobre los elementos de una estructura de objeto. Permite definir una nueva operación sin cambiar las clases."
+                           Difficulty="Hard"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/visitor"
+                           UseCases="@visitorUseCases"
+                           Tags="@visitorTags" />
+
+        <!-- Mediator -->
+        <PatternDetailCard IconName="handshake"
+                           PatternName="Mediator"
+                           Category="Behavioral"
+                           Description="Define un objeto que encapsula cómo un conjunto de objetos interactúan. Promueve el acoplamiento débil evitando que los objetos se refieran explícitamente unos a otros."
+                           Difficulty="Medium"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/mediator"
+                           UseCases="@mediatorUseCases"
+                           Tags="@mediatorTags" />
+
+        <!-- Memento -->
+        <PatternDetailCard IconName="archive-box"
+                           PatternName="Memento"
+                           Category="Behavioral"
+                           Description="Captura y externaliza un estado interno de un objeto sin violar la encapsulación, permitiendo que se restaure el objeto a este estado más adelante."
+                           Difficulty="Medium"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/memento"
+                           UseCases="@mementoUseCases"
+                           Tags="@mementoTags" />
+
+        <!-- Iterator -->
+        <PatternDetailCard IconName="arrow-path"
+                           PatternName="Iterator"
+                           Category="Behavioral"
+                           Description="Proporciona una manera de acceder secuencialmente a los elementos de un objeto agregado sin exponer su representación subyacente."
+                           Difficulty="Easy"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/iterator"
+                           UseCases="@iteratorUseCases"
+                           Tags="@iteratorTags" />
+
+        <!-- Interpreter -->
+        <PatternDetailCard IconName="pencil"
+                           PatternName="Interpreter"
+                           Category="Behavioral"
+                           Description="Dada una representación de lenguaje, define un representador para su gramática junto con un intérprete que usa este representador para procesar sentencias."
+                           Difficulty="Hard"
+                           ColorScheme="purple"
+                           DetailUrl="/behavioral/interpreter"
+                           UseCases="@interpreterUseCases"
+                           Tags="@interpreterTags" />
+    </div>
+
+    <!-- Info Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30">
+        <div class="flex items-start gap-4 mb-4">
+            <HeroIcon IconName="light-bulb" AdditionalClass="w-8 h-8 text-accent-purple flex-shrink-0 mt-1" />
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-4">¿Cuándo usar patrones de comportamiento?</h2>
+                <ul class="space-y-3 text-secondary-700">
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-0.5" />
+                        <span>Cuando necesitas definir cómo los objetos se comunican e interactúan</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-0.5" />
+                        <span>Cuando quieres reducir el acoplamiento entre objetos</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-0.5" />
+                        <span>Cuando necesitas cambiar el comportamiento de objetos en tiempo de ejecución</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-0.5" />
+                        <span>Cuando quieres hacer el código más flexible y mantenible</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Breadcrumb
+    private List<BreadcrumbItem> behavioralBreadcrumbs = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Behavioral", "/behavioral")
+    };
+
+    // Strategy
+    private List<string> strategyUseCases = new()
+    {
+        "Diferentes algoritmos de ordenamiento",
+        "Métodos de pago alternativos",
+        "Estrategias de compresión de datos"
+    };
+    private List<string> strategyTags = new() { "Algoritmos", "Intercambiable", "Encapsulación" };
+
+    // Observer
+    private List<string> observerUseCases = new()
+    {
+        "Eventos y notificaciones en UI",
+        "Publicador-Suscriptor",
+        "Sistema de alertas"
+    };
+    private List<string> observerTags = new() { "Eventos", "Notificaciones", "Uno-a-Muchos" };
+
+    // Command
+    private List<string> commandUseCases = new()
+    {
+        "Acciones parametrizables",
+        "Cola de comandos",
+        "Undo/Redo"
+    };
+    private List<string> commandTags = new() { "Encapsulación", "Solicitud", "Undo/Redo" };
+
+    // Chain of Responsibility
+    private List<string> chainUseCases = new()
+    {
+        "Manejo de eventos en jerarquía",
+        "Sistema de aprobaciones",
+        "Logging con múltiples niveles"
+    };
+    private List<string> chainTags = new() { "Cadena", "Manejo", "Desacoplamiento" };
+
+    // State
+    private List<string> stateUseCases = new()
+    {
+        "Máquinas de estado",
+        "Estados de objeto (draft, published, archived)",
+        "Comportamiento dinámico según estado"
+    };
+    private List<string> stateTags = new() { "Estados", "Dinámico", "Máquina Estados" };
+
+    // Template Method
+    private List<string> templateUseCases = new()
+    {
+        "Frameworks con pasos predefinidos",
+        "Algoritmos con variaciones",
+        "Procesos con estructura común"
+    };
+    private List<string> templateTags = new() { "Algoritmo", "Estructura", "Herencia" };
+
+    // Visitor
+    private List<string> visitorUseCases = new()
+    {
+        "Operaciones sobre árboles",
+        "Compiladores (AST)",
+        "Generadores de código"
+    };
+    private List<string> visitorTags = new() { "Operaciones", "Árbol", "Compiladores" };
+
+    // Mediator
+    private List<string> mediatorUseCases = new()
+    {
+        "Diálogos complejos con muchos controles",
+        "Coordinación de objetos",
+        "Chat rooms"
+    };
+    private List<string> mediatorTags = new() { "Coordinación", "Centralizado", "Acoplamiento Débil" };
+
+    // Memento
+    private List<string> mementoUseCases = new()
+    {
+        "Snapshots de estado",
+        "Transacciones de base de datos",
+        "Checkpoints en juegos"
+    };
+    private List<string> mementoTags = new() { "Estado", "Snapshot", "Encapsulación" };
+
+    // Iterator
+    private List<string> iteratorUseCases = new()
+    {
+        "Recorrer colecciones",
+        "Acceso uniforme a estructuras",
+        "IEnumerable en C#"
+    };
+    private List<string> iteratorTags = new() { "Recorrido", "Secuencial", "Colecciones" };
+
+    // Interpreter
+    private List<string> interpreterUseCases = new()
+    {
+        "Intérpretes de lenguaje",
+        "Procesadores de expresiones",
+        "Analizadores sintácticos"
+    };
+    private List<string> interpreterTags = new() { "Lenguaje", "Gramática", "Parsing" };
+}
