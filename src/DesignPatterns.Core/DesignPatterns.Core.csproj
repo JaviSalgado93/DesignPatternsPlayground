@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Behavioral\Strategy\Examples\" />
+    <Folder Include="Behavioral\Strategy\Implementation\" />
+    <Folder Include="Creational\Builder\Examples\" />
+    <Folder Include="Creational\Builder\Implementation\" />
+    <Folder Include="Creational\FactoryMethod\Examples\" />
+    <Folder Include="Creational\FactoryMethod\Implementation\" />
+    <Folder Include="Creational\Singleton\Examples\03-MyOwn\" />
+    <Folder Include="Creational\Singleton\Tests\" />
+    <Folder Include="Structural\Adapter\Examples\" />
+    <Folder Include="Structural\Adapter\Implementation\" />
+  </ItemGroup>
+
 </Project>

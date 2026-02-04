@@ -1,0 +1,367 @@
+﻿@page "/creational/singleton"
+
+<PageTitle>Singleton Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="lock-closed" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Singleton Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Creacional</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            El patrón Singleton garantiza que una clase tenga una única instancia en toda la aplicación
+            y proporciona un punto de acceso global a esa instancia.  Es uno de los patrones más simples
+            pero también uno de los más controvertidos.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es el Singleton?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            El Singleton es un patrón de diseño creacional que garantiza que una clase tenga
+                            una única instancia en toda la aplicación y proporciona un punto de acceso global a esa instancia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Control centralizado de la instancia</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Acceso global a la instancia</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Inicialización lazy (cuando se necesita)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Thread-safe (con implementación correcta)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Acoplamiento global del código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil de testear (oculta dependencias)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Puede llevar a código spaghetti</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>State global mutable</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico:  Logger Centralizado">
+                                Un logger que usa Singleton para garantizar una única instancia en la aplicación.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Lazy Initialization">
+                                Usando Lazy&lt;T&gt; para inicialización perezosa y thread-safe automática.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar el Singleton">
+                                Ejemplo práctico de cómo acceder y utilizar la instancia única.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md: grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Creacional</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Fácil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Garantizar una única instancia</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (pero controvertido)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar <code class="bg-secondary-100 px-1 rounded text-xs">Lazy&lt;T&gt;</code> para inicialización</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Sellar la clase para evitar herencia</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Constructor privado siempre</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Considerar inyección de dependencias</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/creational/factory" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="building-library" AdditionalClass="w-4 h-4" />
+                            Factory Method →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/creational/abstract-factory" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="building-2" AdditionalClass="w-4 h-4" />
+                            Abstract Factory →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/observer" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="eye" AdditionalClass="w-4 h-4" />
+                            Observer →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes el patrón Singleton, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un Singleton para gestionar la configuración global de tu aplicación</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un cache centralizado usando Singleton</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Compara Singleton con inyección de dependencias</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Creational", "/creational"),
+        new BreadcrumbItem("Singleton", "/creational/singleton")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Logger centralizado de aplicación",
+        "Gestor de configuración global",
+        "Pool de conexiones a BD",
+        "Caché centralizado",
+        "Acceso a recursos compartidos",
+        "Gestión de sesiones",
+        "Gestor de eventos global",
+        "Acceso a base de datos"
+    };
+
+    private List<string> tags = new() { "Thread-Safe", "Lazy Loading", "Global Access", "Control Centralizado" };
+
+    private string basicCode = @"
+    // ===== Implementación Básica =====
+    public sealed class SimpleLogger
+    {
+        private static readonly Lazy<SimpleLogger> _instance =
+            new Lazy<SimpleLogger>(() => new SimpleLogger());
+
+        public static SimpleLogger Instance => _instance.Value;
+
+        private List<string> _logs = new();
+
+        private SimpleLogger() { }
+
+        public void Log(string message)
+        {
+            _logs.Add($""[{DateTime.Now}] {message}"");
+        }
+    }
+
+    // ===== Uso =====
+    SimpleLogger.Instance.Log(""Aplicación iniciada"");
+    SimpleLogger.Instance.Log(""Operación completada"");";
+
+    private string advancedCode = @"
+    // ===== Lazy<T> Thread-Safe =====
+    public sealed class LazyInitialization
+    {
+        private static readonly Lazy<LazyInitialization> _instance =
+            new Lazy<LazyInitialization>(
+                valueFactory: () => new LazyInitialization(),
+                isThreadSafe: true
+            );
+
+        public static LazyInitialization Instance => _instance.Value;
+
+        private LazyInitialization()
+        {
+            System.Threading.Thread.Sleep(1000);
+            Console.WriteLine(""Instancia creada"");
+        }
+
+        public bool IsValueCreated => _instance. IsValueCreated;
+    }
+
+    // ===== Verificar si se ha creado =====
+    Console.WriteLine(LazyInitialization.Instance.IsValueCreated); // true
+    var instance = LazyInitialization. Instance;";
+
+    private string usageCode = @"
+    // ===== Cómo Usar Singleton =====
+    // Obtener la instancia (se crea si no existe)
+    var logger1 = SimpleLogger.Instance;
+    logger1.Log(""Primer acceso"");
+
+    // Obtener otra referencia (es la MISMA instancia)
+    var logger2 = SimpleLogger.Instance;
+    logger2.Log(""Segundo acceso"");
+
+    // Verificar que son la misma instancia
+    bool sonIguales = ReferenceEquals(logger1, logger2);
+    Console.WriteLine($""¿Misma instancia? {sonIguales}""); // true
+
+    // IMPORTANTE: Singleton es global
+    // Cambios en logger1 afectan a logger2
+    logger1.Log(""Mensaje 1"");
+    logger2.Log(""Mensaje 2"");
+    // Ambos logs están en la misma lista";
+}

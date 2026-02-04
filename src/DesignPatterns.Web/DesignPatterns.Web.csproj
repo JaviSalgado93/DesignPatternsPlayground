@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Patterns\Behavioral\" />
-    <Folder Include="Pages\Patterns\Creational\" />
     <Folder Include="Pages\Patterns\Structural\" />
     <Folder Include="wwwroot\css\.vscode\" />
   </ItemGroup>
