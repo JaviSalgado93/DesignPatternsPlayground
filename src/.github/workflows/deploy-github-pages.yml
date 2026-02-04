@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      - name: Build
+        run: dotnet build -c Release --no-restore
+      
+      - name: Publish
+        run: dotnet publish src/DesignPatterns.Web/DesignPatterns.Web.csproj -c Release -o release --no-build
+      
+      - name: Change index.html base href
+        run: sed -i 's/<base href="\/" \/>/<base href="\/DesignPatternsPlayground\/" \/>/g' release/wwwroot/index.html
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'release/wwwroot'
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
