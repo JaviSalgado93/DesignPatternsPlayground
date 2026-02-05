@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '10.0.x'
       
       - name: Restore dependencies
-        run: dotnet restore src/DesignPatterns.sln
+        run: dotnet restore src/DesignPatternsPlayground.sln
       
       - name: Build
-        run: dotnet build src/DesignPatterns.sln -c Release --no-restore
+        run: dotnet build src/DesignPatternsPlayground.sln -c Release --no-restore
       
       - name: Publish
         run: dotnet publish src/DesignPatterns.Web/DesignPatterns.Web.csproj -c Release -o release --no-build
