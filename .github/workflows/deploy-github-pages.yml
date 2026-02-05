@@ -35,6 +35,9 @@ jobs:
       - name: Change index.html base href
         run: sed -i 's/<base href="\/" \/>/<base href="\/DesignPatternsPlayground\/" \/>/g' release/wwwroot/index.html
       
+      - name: Create .nojekyll file
+        run: touch release/wwwroot/.nojekyll
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
