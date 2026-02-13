@@ -9,21 +9,11 @@
   <ItemGroup>
     <Folder Include="Behavioral\Strategy\Examples\" />
     <Folder Include="Behavioral\Strategy\Implementation\" />
-    <Folder Include="Creational\AbstractFactory\Examples\03-MyOwn\" />
     <Folder Include="Creational\AbstractFactory\Tests\" />
-    <Folder Include="Creational\Builder\Examples\01-Basic\" />
-    <Folder Include="Creational\Builder\Examples\02-Advanced\" />
-    <Folder Include="Creational\Builder\Examples\03-MyOwn\" />
-    <Folder Include="Creational\Builder\Implementation\" />
     <Folder Include="Creational\Builder\Tests\" />
-    <Folder Include="Creational\FactoryMethod\Examples\03-MyOwn\" />
     <Folder Include="Creational\FactoryMethod\Tests\" />
-    <Folder Include="Creational\Prototype\Examples\01-Basic\" />
-    <Folder Include="Creational\Prototype\Examples\02-Advanced\" />
-    <Folder Include="Creational\Prototype\Examples\03-MyOwn\" />
     <Folder Include="Creational\Prototype\Implementation\" />
     <Folder Include="Creational\Prototype\Tests\" />
-    <Folder Include="Creational\Singleton\Examples\03-MyOwn\" />
     <Folder Include="Creational\Singleton\Tests\" />
     <Folder Include="Structural\Adapter\Examples\" />
     <Folder Include="Structural\Adapter\Implementation\" />

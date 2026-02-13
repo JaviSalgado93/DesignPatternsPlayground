@@ -1,6 +1,6 @@
-﻿@page "/creational/factory"
+﻿@page "/creational/builder"
 
-<PageTitle>Factory Method Pattern - Design Patterns</PageTitle>
+<PageTitle>Builder Pattern - Design Patterns</PageTitle>
 
 <div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
     <!-- Breadcrumb -->
@@ -9,16 +9,15 @@
     <!-- Header -->
     <div class="mb-12">
         <div class="flex items-center gap-3 md:gap-4 mb-4">
-            <HeroIcon IconName="squares-plus" AdditionalClass="w-10 h-10 text-primary-600" />
+            <HeroIcon IconName="wrench-screwdriver" AdditionalClass="w-10 h-10 text-primary-600" />
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Factory Method Pattern</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Builder Pattern</h1>
                 <p class="text-secondary-600 text-lg mt-2">Patrón Creacional</p>
             </div>
         </div>
         <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
-            Factory Method define una interfaz para crear objetos, pero deja que las subclases decidan
-            qué clase instanciar. Permite desacoplar el código cliente de las clases concretas,
-            ofreciendo flexibilidad y mantenibilidad.
+            Builder separa la construcción de un objeto complejo de su representación, permitiendo
+            crear el objeto paso a paso. Evita constructores con demasiados parámetros y hace el código más legible y flexible.
         </p>
     </div>
 
@@ -31,11 +30,11 @@
                 <div class="flex items-start gap-4 mb-4">
                     <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
                     <div class="flex-1">
-                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Factory Method?</h2>
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Builder?</h2>
                         <p class="text-secondary-700 leading-relaxed">
-                            Factory Method es un patrón de diseño creacional que define una interfaz para crear objetos,
-                            pero deja que las subclases decidan qué clase instanciar. Desacopla el código cliente
-                            de las clases concretas que necesita crear.
+                            Builder es un patrón de diseño creacional que separa la construcción de un objeto
+                            complejo de su representación. Permite crear el objeto paso a paso, resultando en código
+                            más legible y evitando constructores con demasiados parámetros.
                         </p>
                     </div>
                 </div>
@@ -52,19 +51,19 @@
                     <ul class="space-y-2 text-secondary-700">
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Desacoplamiento del código cliente</span>
+                            <span>Evita constructores con muchos parámetros</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Fácil agregar nuevos tipos de productos</span>
+                            <span>Código fluido y legible</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Responsabilidad única para cada clase</span>
+                            <span>Construcción flexible paso a paso</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Código más flexible y mantenible</span>
+                            <span>Parámetros opcionales sin complejidad</span>
                         </li>
                     </ul>
                 </div>
@@ -78,19 +77,19 @@
                     <ul class="space-y-2 text-secondary-700">
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Más clases de las necesarias</span>
+                            <span>Más código de lo necesario</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Complejidad inicial mayor</span>
+                            <span>Overhead para objetos simples</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Overhead para casos muy simples</span>
+                            <span>Requiere crear clase Builder</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Requiere jerarquías de clases</span>
+                            <span>Pueden existir estados inválidos intermedios</span>
                         </li>
                     </ul>
                 </div>
@@ -107,8 +106,8 @@
                     <!-- Tab 1: Básico -->
                     <TabPanel IsActive="activeTab == 0">
                         <div class="space-y-4">
-                            <InfoBox Type="info" Title="Ejemplo Básico: Factory de Formas Geométricas">
-                                Una factory que crea diferentes formas (círculo, rectángulo, triángulo) sin que el cliente conozca los detalles.
+                            <InfoBox Type="info" Title="Ejemplo Básico: Fluent Builder">
+                                Construir un objeto Person de forma legible sin constructor complejo.
                             </InfoBox>
                             <CodeBlock Language="csharp" Code="@basicCode" />
                         </div>
@@ -117,8 +116,8 @@
                     <!-- Tab 2: Avanzado -->
                     <TabPanel IsActive="activeTab == 1">
                         <div class="space-y-4">
-                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Factory de Conexiones a BD">
-                                Factory más realista que crea diferentes tipos de conexiones a base de datos (MySQL, SQL Server, PostgreSQL).
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: HTTP Request Builder">
+                                Construir requests HTTP complejos con múltiples parámetros, headers y configuraciones.
                             </InfoBox>
                             <CodeBlock Language="csharp" Code="@advancedCode" />
                         </div>
@@ -127,8 +126,8 @@
                     <!-- Tab 3: Uso -->
                     <TabPanel IsActive="activeTab == 2">
                         <div class="space-y-4">
-                            <InfoBox Type="success" Title="Cómo Usar Factory Method">
-                                Ejemplo práctico de cómo el cliente usa la factory sin conocer las clases concretas.
+                            <InfoBox Type="success" Title="Cómo Usar Builder">
+                                Ejemplo de cómo el cliente usa el builder de forma fluida y legible.
                             </InfoBox>
                             <CodeBlock Language="csharp" Code="@usageCode" />
                         </div>
@@ -167,16 +166,16 @@
                     <div>
                         <span class="font-semibold text-secondary-700">Dificultad:</span>
                         <p>
-                            <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Fácil</span>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
                         </p>
                     </div>
                     <div>
                         <span class="font-semibold text-secondary-700">Propósito:</span>
-                        <p class="text-secondary-600">Crear objetos sin especificar clases concretas</p>
+                        <p class="text-secondary-600">Construir objetos complejos paso a paso</p>
                     </div>
                     <div>
                         <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
-                        <p class="text-secondary-600">Muy alta (muy común)</p>
+                        <p class="text-secondary-600">Muy alta (StringBuilder, HttpClient)</p>
                     </div>
                 </div>
             </div>
@@ -203,19 +202,19 @@
                 <ul class="space-y-2 text-sm text-secondary-700">
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Usar para múltiples tipos de productos relacionados</span>
+                        <span>Usar para objetos con muchos parámetros opcionales</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Implementar interfaz común para todos los productos</span>
+                        <span>Implementar método Build() que valide estado</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Evitar factories muy complejas</span>
+                        <span>Usar interfaces fluidas para mejor usabilidad</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Considerar usar reflection para casos avanzados</span>
+                        <span>Considerar validación en el builder</span>
                     </li>
                 </ul>
             </div>
@@ -231,15 +230,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/creational/abstract-factory" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
-                            <HeroIcon IconName="building-2" AdditionalClass="w-4 h-4" />
-                            Abstract Factory →
+                        <a href="/creational/factory" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="building-library" AdditionalClass="w-4 h-4" />
+                            Factory Method →
                         </a>
                     </li>
                     <li>
-                        <a href="/creational/builder" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
-                            <HeroIcon IconName="wrench-screwdriver" AdditionalClass="w-4 h-4" />
-                            Builder →
+                        <a href="/creational/abstract-factory" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="building-2" AdditionalClass="w-4 h-4" />
+                            Abstract Factory →
                         </a>
                     </li>
                 </ul>
@@ -254,20 +253,20 @@
             Ejercicios Prácticos
         </h2>
         <p class="text-secondary-700 mb-4">
-            Ahora que entiendes Factory Method, intenta implementar tu propio ejemplo:
+            Ahora que entiendes Builder, intenta implementar tu propio ejemplo:
         </p>
         <div class="space-y-3">
             <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
                 <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
-                <span class="text-secondary-700">Crea una factory para diferentes tipos de transporte (Auto, Bicicleta, Bote)</span>
+                <span class="text-secondary-700">Crea un builder para configurar una Pizza con diferentes ingredientes</span>
             </div>
             <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
                 <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
-                <span class="text-secondary-700">Implementa una factory para parsear diferentes formatos (JSON, XML, CSV)</span>
+                <span class="text-secondary-700">Implementa un builder para crear SQL queries de forma segura</span>
             </div>
             <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
                 <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
-                <span class="text-secondary-700">Crea una factory de pagos para diferentes proveedores (Stripe, PayPal, etc)</span>
+                <span class="text-secondary-700">Crea un builder para configurar opciones complejas de una aplicación</span>
             </div>
         </div>
     </div>
@@ -278,7 +277,7 @@
     {
         new BreadcrumbItem("Home", "/"),
         new BreadcrumbItem("Creational", "/creational"),
-        new BreadcrumbItem("Factory Method", "/creational/factory")
+        new BreadcrumbItem("Builder", "/creational/builder")
     };
 
     private int activeTab = 0;
@@ -286,133 +285,152 @@
 
     private List<string> useCases = new()
     {
-        "Crear diferentes tipos de reportes",
-        "Factory de conexiones a bases de datos",
-        "Creación de documentos (PDF, Word, Excel)",
-        "Factory de loggers diferentes",
-        "Crear distintos tipos de parsers",
-        "Generadores de contenido por tipo",
-        "Factory de transporte (Auto, Bus, Tren)",
-        "Creación de notificaciones (Email, SMS, Push)"
+        "Construcción de objetos complejos",
+        "StringBuilder en C# (usado desde siempre)",
+        "HttpClient.HttpRequestMessage",
+        "Configuración de aplicaciones",
+        "Construcción de reportes",
+        "Queries SQL complejas",
+        "Constructores con muchos parámetros opcionales",
+        "Construcción paso a paso de documentos"
     };
 
-    private List<string> tags = new() { "Desacoplamiento", "Polimorfismo", "Creación Flexible", "Extensibilidad" };
+    private List<string> tags = new() { "Construcción Paso a Paso", "Fluent API", "Parámetros Opcionales", "Código Legible" };
 
     private string basicCode = @"
-    // ===== Interfaz de Producto =====
-    public interface IShape
+    // ===== Objeto a construir =====
+    public class Person
     {
-        void Draw();
-        double GetArea();
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 
-    // ===== Productos Concretos =====
-    public class Circle : IShape
+    // ===== Builder Fluent =====
+    public class PersonBuilder
     {
-        private double _radius;
-        public Circle(double radius) => _radius = radius;
+        private Person _person = new();
 
-        public void Draw() => Console.WriteLine($""Dibujando círculo"");
-        public double GetArea() => Math.PI * _radius * _radius;
-    }
-
-    public class Rectangle : IShape
-    {
-        private double _width, _height;
-        public Rectangle(double w, double h) => (_width, _height) = (w, h);
-
-        public void Draw() => Console.WriteLine($""Dibujando rectángulo"");
-        public double GetArea() => _width * _height;
-    }
-
-    // ===== Factory =====
-    public class ShapeFactory
-    {
-        public static IShape CreateShape(string type, params double[] dims)
+        public PersonBuilder WithFirstName(string name)
         {
-            return type.ToLower() switch
-            {
-                ""circle"" => new Circle(dims[0]),
-                ""rectangle"" => new Rectangle(dims[0], dims[1]),
-                _ => throw new ArgumentException(""Tipo desconocido"")
-            };
+            _person.FirstName = name;
+            return this;
         }
+
+        public PersonBuilder WithLastName(string name)
+        {
+            _person.LastName = name;
+            return this;
+        }
+
+        public PersonBuilder WithAge(int age)
+        {
+            _person.Age = age;
+            return this;
+        }
+
+        public PersonBuilder WithEmail(string email)
+        {
+            _person.Email = email;
+            return this;
+        }
+
+        public Person Build() => _person;
     }
 
     // ===== Uso =====
-    var shape = ShapeFactory.CreateShape(""circle"", 5);
-    shape.Draw();
-    Console.WriteLine($""Área: {shape.GetArea()}"");";
+    var person = new PersonBuilder()
+        .WithFirstName(""Juan"")
+        .WithLastName(""Pérez"")
+        .WithAge(30)
+        .WithEmail(""juan@example.com"")
+        .Build();";
 
     private string advancedCode = @"
-    // ===== Interfaz de Conexión =====
-    public interface IDatabaseConnection
+    // ===== HTTP Request =====
+    public class HttpRequest
     {
-        void Connect();
-        void ExecuteQuery(string query);
-        void Disconnect();
+        public string Method { get; set; } = ""GET"";
+        public string Url { get; set; }
+        public Dictionary<string, string> Headers { get; set; } = new();
+        public Dictionary<string, string> QueryParameters { get; set; } = new();
+        public string Body { get; set; }
+        public int TimeoutMs { get; set; } = 5000;
     }
 
-    // ===== Conexiones Concretas =====
-    public class MySqlConnection : IDatabaseConnection
+    // ===== Builder =====
+    public class HttpRequestBuilder
     {
-        public void Connect() => Console.WriteLine(""MySQL conectado"");
-        public void ExecuteQuery(string query) => Console.WriteLine($""MySQL: {query}"");
-        public void Disconnect() => Console.WriteLine(""MySQL desconectado"");
-    }
+        private HttpRequest _request = new();
 
-    public class SqlServerConnection : IDatabaseConnection
-    {
-        public void Connect() => Console.WriteLine(""SQL Server conectado"");
-        public void ExecuteQuery(string query) => Console.WriteLine($""SQL Server: {query}"");
-        public void Disconnect() => Console.WriteLine(""SQL Server desconectado"");
-    }
-
-    // ===== Factory Avanzada =====
-    public class DatabaseConnectionFactory
-    {
-        public static IDatabaseConnection CreateConnection(string dbType)
+        public HttpRequestBuilder WithUrl(string url)
         {
-            return dbType.ToLower() switch
-            {
-                ""mysql"" => new MySqlConnection(),
-                ""sqlserver"" => new SqlServerConnection(),
-                _ => throw new ArgumentException(""BD desconocida"")
-            };
+            _request.Url = url;
+            return this;
         }
+
+        public HttpRequestBuilder WithMethod(string method)
+        {
+            _request.Method = method;
+            return this;
+        }
+
+        public HttpRequestBuilder AddHeader(string key, string value)
+        {
+            _request.Headers[key] = value;
+            return this;
+        }
+
+        public HttpRequestBuilder AddQueryParameter(string key, string value)
+        {
+            _request.QueryParameters[key] = value;
+            return this;
+        }
+
+        public HttpRequestBuilder WithBody(string body)
+        {
+            _request.Body = body;
+            return this;
+        }
+
+        public HttpRequest Build() => _request;
     }
 
     // ===== Uso =====
-    var conn = DatabaseConnectionFactory.CreateConnection(""mysql"");
-    conn.Connect();
-    conn.ExecuteQuery(""SELECT * FROM usuarios"");
-    conn.Disconnect();";
+    var request = new HttpRequestBuilder()
+        .WithUrl(""https://api.example.com/users"")
+        .WithMethod(""POST"")
+        .AddHeader(""Authorization"", ""Bearer token"")
+        .AddQueryParameter(""notify"", ""true"")
+        .WithBody(@""{\""name\"":\""Juan\""}"")
+        .Build();";
 
-    private string usageCode = @"
-    // ===== El cliente NO conoce las clases concretas =====
-    public class DataProcessor
-    {
-        private IDatabaseConnection _connection;
+        private string usageCode = @"// ===== GET Request =====
+    var getRequest = new HttpRequestBuilder()
+        .WithUrl(""https://api.example.com/users"")
+        .WithMethod(""GET"")
+        .AddQueryParameter(""page"", ""1"")
+        .AddQueryParameter(""limit"", ""10"")
+        .AddHeader(""Accept"", ""application/json"")
+        .Build();
 
-        public DataProcessor(string databaseType)
-        {
-            // Solo el factory sabe crear la conexión correcta
-            _connection = DatabaseConnectionFactory.CreateConnection(databaseType);
-        }
+    // ===== POST Request =====
+    var postRequest = new HttpRequestBuilder()
+        .WithUrl(""https://api.example.com/users"")
+        .WithMethod(""POST"")
+        .AddHeader(""Content-Type"", ""application/json"")
+        .WithBody(@""{\""name\"":\""María\""}"")
+        .Build();
 
-        public void ProcessData(string query)
-        {
-            _connection.Connect();
-            _connection.ExecuteQuery(query);
-            _connection.Disconnect();
-        }
-    }
+    // ===== Request con timeout =====
+    var slowRequest = new HttpRequestBuilder()
+        .WithUrl(""https://slow-api.example.com/data"")
+        .WithMethod(""GET"")
+        .WithTimeout(30000)
+        .Build();
 
-    // ===== Cambiar base de datos sin cambiar código cliente =====
-    var processor1 = new DataProcessor(""mysql"");
-    processor1.ProcessData(""SELECT * FROM usuarios"");
-
-    var processor2 = new DataProcessor(""sqlserver"");
-    processor2.ProcessData(""SELECT * FROM usuarios"");
-    // El código cliente es idéntico, solo cambia el parámetro";
-    }
+    // Cada request se construye de forma clara y legible
+    // Solo incluye lo que necesita, nada más";
+}
