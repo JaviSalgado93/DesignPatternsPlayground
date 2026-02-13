@@ -1,0 +1,415 @@
+﻿@page "/creational/factory"
+
+<PageTitle>Factory Method Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="squares-plus" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Factory Method Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Creacional</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Factory Method define una interfaz para crear objetos, pero deja que las subclases decidan
+            qué clase instanciar. Permite desacoplar el código cliente de las clases concretas,
+            ofreciendo flexibilidad y mantenibilidad.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Factory Method?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Factory Method es un patrón de diseño creacional que define una interfaz para crear objetos,
+                            pero deja que las subclases decidan qué clase instanciar. Desacopla el código cliente
+                            de las clases concretas que necesita crear.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Desacoplamiento del código cliente</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Fácil agregar nuevos tipos de productos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Responsabilidad única para cada clase</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Código más flexible y mantenible</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Más clases de las necesarias</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad inicial mayor</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Overhead para casos muy simples</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Requiere jerarquías de clases</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Factory de Formas Geométricas">
+                                Una factory que crea diferentes formas (círculo, rectángulo, triángulo) sin que el cliente conozca los detalles.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Factory de Conexiones a BD">
+                                Factory más realista que crea diferentes tipos de conexiones a base de datos (MySQL, SQL Server, PostgreSQL).
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar Factory Method">
+                                Ejemplo práctico de cómo el cliente usa la factory sin conocer las clases concretas.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Creacional</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Fácil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Crear objetos sin especificar clases concretas</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Muy alta (muy común)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar para múltiples tipos de productos relacionados</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Implementar interfaz común para todos los productos</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Evitar factories muy complejas</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Considerar usar reflection para casos avanzados</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/creational/singleton" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🔒 Singleton →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/creational/abstract-factory" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🏢 Abstract Factory →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/creational/builder" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🔨 Builder →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Factory Method, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea una factory para diferentes tipos de transporte (Auto, Bicicleta, Bote)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa una factory para parsear diferentes formatos (JSON, XML, CSV)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea una factory de pagos para diferentes proveedores (Stripe, PayPal, etc)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Creational", "/creational"),
+        new BreadcrumbItem("Factory Method", "/creational/factory")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Crear diferentes tipos de reportes",
+        "Factory de conexiones a bases de datos",
+        "Creación de documentos (PDF, Word, Excel)",
+        "Factory de loggers diferentes",
+        "Crear distintos tipos de parsers",
+        "Generadores de contenido por tipo",
+        "Factory de transporte (Auto, Bus, Tren)",
+        "Creación de notificaciones (Email, SMS, Push)"
+    };
+
+    private List<string> tags = new() { "Desacoplamiento", "Polimorfismo", "Creación Flexible", "Extensibilidad" };
+
+    private string basicCode = @"
+    // ===== Interfaz de Producto =====
+    public interface IShape
+    {
+        void Draw();
+        double GetArea();
+    }
+
+    // ===== Productos Concretos =====
+    public class Circle : IShape
+    {
+        private double _radius;
+        public Circle(double radius) => _radius = radius;
+
+        public void Draw() => Console.WriteLine($""Dibujando círculo"");
+        public double GetArea() => Math.PI * _radius * _radius;
+    }
+
+    public class Rectangle : IShape
+    {
+        private double _width, _height;
+        public Rectangle(double w, double h) => (_width, _height) = (w, h);
+
+        public void Draw() => Console.WriteLine($""Dibujando rectángulo"");
+        public double GetArea() => _width * _height;
+    }
+
+    // ===== Factory =====
+    public class ShapeFactory
+    {
+        public static IShape CreateShape(string type, params double[] dims)
+        {
+            return type.ToLower() switch
+            {
+                ""circle"" => new Circle(dims[0]),
+                ""rectangle"" => new Rectangle(dims[0], dims[1]),
+                _ => throw new ArgumentException(""Tipo desconocido"")
+            };
+        }
+    }
+
+    // ===== Uso =====
+    var shape = ShapeFactory.CreateShape(""circle"", 5);
+    shape.Draw();
+    Console.WriteLine($""Área: {shape.GetArea()}"");";
+
+    private string advancedCode = @"
+    // ===== Interfaz de Conexión =====
+    public interface IDatabaseConnection
+    {
+        void Connect();
+        void ExecuteQuery(string query);
+        void Disconnect();
+    }
+
+    // ===== Conexiones Concretas =====
+    public class MySqlConnection : IDatabaseConnection
+    {
+        public void Connect() => Console.WriteLine(""MySQL conectado"");
+        public void ExecuteQuery(string query) => Console.WriteLine($""MySQL: {query}"");
+        public void Disconnect() => Console.WriteLine(""MySQL desconectado"");
+    }
+
+    public class SqlServerConnection : IDatabaseConnection
+    {
+        public void Connect() => Console.WriteLine(""SQL Server conectado"");
+        public void ExecuteQuery(string query) => Console.WriteLine($""SQL Server: {query}"");
+        public void Disconnect() => Console.WriteLine(""SQL Server desconectado"");
+    }
+
+    // ===== Factory Avanzada =====
+    public class DatabaseConnectionFactory
+    {
+        public static IDatabaseConnection CreateConnection(string dbType)
+        {
+            return dbType.ToLower() switch
+            {
+                ""mysql"" => new MySqlConnection(),
+                ""sqlserver"" => new SqlServerConnection(),
+                _ => throw new ArgumentException(""BD desconocida"")
+            };
+        }
+    }
+
+    // ===== Uso =====
+    var conn = DatabaseConnectionFactory.CreateConnection(""mysql"");
+    conn.Connect();
+    conn.ExecuteQuery(""SELECT * FROM usuarios"");
+    conn.Disconnect();";
+
+    private string usageCode = @"
+    // ===== El cliente NO conoce las clases concretas =====
+    public class DataProcessor
+    {
+        private IDatabaseConnection _connection;
+
+        public DataProcessor(string databaseType)
+        {
+            // Solo el factory sabe crear la conexión correcta
+            _connection = DatabaseConnectionFactory.CreateConnection(databaseType);
+        }
+
+        public void ProcessData(string query)
+        {
+            _connection.Connect();
+            _connection.ExecuteQuery(query);
+            _connection.Disconnect();
+        }
+    }
+
+    // ===== Cambiar base de datos sin cambiar código cliente =====
+    var processor1 = new DataProcessor(""mysql"");
+    processor1.ProcessData(""SELECT * FROM usuarios"");
+
+    var processor2 = new DataProcessor(""sqlserver"");
+    processor2.ProcessData(""SELECT * FROM usuarios"");
+    // El código cliente es idéntico, solo cambia el parámetro";
+    }
