@@ -1,4 +1,4 @@
-﻿# Patrón Factory Method
+﻿# Factory Method (Método de Fábrica)
 
 ## ¿Qué es Factory Method?
 
@@ -16,15 +16,15 @@ Factory Method es un patrón de diseño **creacional** que define una interfaz p
 ├────────────────────────────┤
 │      + Operation()         │ 
 └────────────────────────────┘ 
-               △              
-               │              
-     ┌─────────┴─────────┐    
-     │         │         │    
+                △              
+                │              
+      ┌─────────┴─────────┐    
+      │         │         │    
 ┌────────┐┌────────┐┌────────┐ 
 │ProductA││ProductB││ProductC│ 
 └────────┘└────────┘└────────┘ 
-     △         △         △    
-     │         │         │    
+      △         △         △    
+      │         │         │    
 ┌────────────────────────────┐ 
 │       Creator (Factory)    │
 ├────────────────────────────┤  

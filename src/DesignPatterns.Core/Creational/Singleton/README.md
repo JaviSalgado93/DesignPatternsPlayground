@@ -1,4 +1,4 @@
-﻿# Patrón Singleton
+﻿# Singleton (Instancia Única)
 
 ## ¿Qué es el Singleton?
 

@@ -1,4 +1,4 @@
-﻿# Patrón Builder
+﻿# Builder (Constructor)
 
 ## ¿Qué es Builder?
 

@@ -1,4 +1,4 @@
-﻿# Patrón Abstract Factory
+﻿# Abstract Factory (Fábrica Abstracta)
 
 ## ¿Qué es Abstract Factory?
 

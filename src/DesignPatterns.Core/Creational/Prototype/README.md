@@ -1,4 +1,4 @@
-﻿# Patrón Prototype
+﻿# Prototype (Prototipo)
 
 ## ¿Qué es Prototype?
 

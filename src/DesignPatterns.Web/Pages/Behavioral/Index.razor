@@ -8,10 +8,10 @@
 
     <!-- Header Section -->
     <div class="mb-12">
-        <div class="flex items-center gap-3 md: gap-4 mb-4">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
             <HeroIcon IconName="sparkles" AdditionalClass="w-10 h-10 text-accent-purple" />
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Behavioral Patterns</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Behavioral Patterns <span class="text-secondary-600">(Patrones de Comportamiento)</span></h1>
                 <p class="text-secondary-600 text-lg mt-2">Patrones de Comportamiento</p>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <!-- Strategy -->
         <PatternDetailCard IconName="target"
-                           PatternName="Strategy"
+                           PatternName="Strategy (Estrategia)"
                            Category="Behavioral"
                            Description="Define una familia de algoritmos, encapsula cada uno y los hace intercambiables."
                            Difficulty="Easy"
@@ -36,7 +36,7 @@
 
         <!-- Observer -->
         <PatternDetailCard IconName="eye"
-                           PatternName="Observer"
+                           PatternName="Observer (Observador)"
                            Category="Behavioral"
                            Description="Define una dependencia de uno-a-muchos entre objetos para que cuando un objeto cambia de estado, todos sus dependientes son notificados automáticamente."
                            Difficulty="Medium"
@@ -47,7 +47,7 @@
 
         <!-- Command -->
         <PatternDetailCard IconName="cog"
-                           PatternName="Command"
+                           PatternName="Command (Comando)"
                            Category="Behavioral"
                            Description="Encapsula una solicitud como un objeto, permitiendo parametrizar los clientes con diferentes solicitudes."
                            Difficulty="Medium"
@@ -58,7 +58,7 @@
 
         <!-- Chain of Responsibility -->
         <PatternDetailCard IconName="link"
-                           PatternName="Chain of Responsibility"
+                           PatternName="Chain of Responsibility (Cadena de Responsabilidad)"
                            Category="Behavioral"
                            Description="Evita acoplar al remitente de una solicitud con su receptor, permitiendo que más de un objeto tenga la oportunidad de manejar la solicitud."
                            Difficulty="Medium"
@@ -69,7 +69,7 @@
 
         <!-- State -->
         <PatternDetailCard IconName="arrow-path"
-                           PatternName="State"
+                           PatternName="State (Estado)"
                            Category="Behavioral"
                            Description="Permite que un objeto altere su comportamiento cuando su estado interno cambia. Pareciera que cambiara su clase."
                            Difficulty="Medium"
@@ -80,7 +80,7 @@
 
         <!-- Template Method -->
         <PatternDetailCard IconName="clipboard"
-                           PatternName="Template Method"
+                           PatternName="Template Method (Método Plantilla)"
                            Category="Behavioral"
                            Description="Define la estructura de un algoritmo en una operación, delegando algunos pasos a las subclases."
                            Difficulty="Easy"
@@ -91,7 +91,7 @@
 
         <!-- Visitor -->
         <PatternDetailCard IconName="arrow-small-right"
-                           PatternName="Visitor"
+                           PatternName="Visitor (Visitante)"
                            Category="Behavioral"
                            Description="Representa una operación a ser realizada sobre los elementos de una estructura de objeto. Permite definir una nueva operación sin cambiar las clases."
                            Difficulty="Hard"
@@ -102,7 +102,7 @@
 
         <!-- Mediator -->
         <PatternDetailCard IconName="handshake"
-                           PatternName="Mediator"
+                           PatternName="Mediator (Mediador)"
                            Category="Behavioral"
                            Description="Define un objeto que encapsula cómo un conjunto de objetos interactúan. Promueve el acoplamiento débil evitando que los objetos se refieran explícitamente unos a otros."
                            Difficulty="Medium"
@@ -113,7 +113,7 @@
 
         <!-- Memento -->
         <PatternDetailCard IconName="archive-box"
-                           PatternName="Memento"
+                           PatternName="Memento (Recuerdo)"
                            Category="Behavioral"
                            Description="Captura y externaliza un estado interno de un objeto sin violar la encapsulación, permitiendo que se restaure el objeto a este estado más adelante."
                            Difficulty="Medium"
@@ -124,7 +124,7 @@
 
         <!-- Iterator -->
         <PatternDetailCard IconName="arrow-path"
-                           PatternName="Iterator"
+                           PatternName="Iterator (Iterador)"
                            Category="Behavioral"
                            Description="Proporciona una manera de acceder secuencialmente a los elementos de un objeto agregado sin exponer su representación subyacente."
                            Difficulty="Easy"
@@ -135,7 +135,7 @@
 
         <!-- Interpreter -->
         <PatternDetailCard IconName="pencil"
-                           PatternName="Interpreter"
+                           PatternName="Interpreter (Intérprete)"
                            Category="Behavioral"
                            Description="Dada una representación de lenguaje, define un representador para su gramática junto con un intérprete que usa este representador para procesar sentencias."
                            Difficulty="Hard"

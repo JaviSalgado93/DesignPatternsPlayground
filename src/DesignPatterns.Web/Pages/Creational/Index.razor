@@ -11,7 +11,7 @@
         <div class="flex items-center gap-3 md:gap-4 mb-4">
             <HeroIcon IconName="cube" AdditionalClass="w-10 h-10 text-primary-600" />
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Creational Patterns</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Creational Patterns <span class="text-secondary-600">(Patrones Creacionales)</span></h1>
                 <p class="text-secondary-600 text-lg mt-2">Patrones de Creación</p>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <!-- Singleton -->
         <PatternDetailCard IconName="lock"
-                           PatternName="Singleton"
+                           PatternName="Singleton (Instancia Única)"
                            Category="Creational"
                            Description="Garantiza que una clase tenga una única instancia y proporciona un punto de acceso global a ella."
                            Difficulty="Medium"
@@ -36,7 +36,7 @@
 
         <!-- Factory Method -->
         <PatternDetailCard IconName="building-library"
-                           PatternName="Factory Method"
+                           PatternName="Factory Method (Método de Fábrica)"
                            Category="Creational"
                            Description="Define una interfaz para crear objetos, pero deja que las subclases decidan qué clase instanciar."
                            Difficulty="Easy"
@@ -47,7 +47,7 @@
 
         <!-- Abstract Factory -->
         <PatternDetailCard IconName="building-2"
-                           PatternName="Abstract Factory"
+                           PatternName="Abstract Factory (Fábrica Abstracta)"
                            Category="Creational"
                            Description="Proporciona una interfaz para crear familias de objetos relacionados o dependientes sin especificar sus clases concretas."
                            Difficulty="Medium"
@@ -58,9 +58,9 @@
 
         <!-- Builder -->
         <PatternDetailCard IconName="hammer"
-                           PatternName="Builder"
+                           PatternName="Builder (Constructor)"
                            Category="Creational"
-                           Description="Separa la construcción de un objeto complejo de su representación, permitiendo que el mismo proceso de construccióncree diferentes representaciones."
+                           Description="Separa la construcción de un objeto complejo de su representación, permitiendo que el mismo proceso de construcción cree diferentes representaciones."
                            Difficulty="Medium"
                            ColorScheme="blue"
                            DetailUrl="/creational/builder"
@@ -69,7 +69,7 @@
 
         <!-- Prototype -->
         <PatternDetailCard IconName="beaker"
-                           PatternName="Prototype"
+                           PatternName="Prototype (Prototipo)"
                            Category="Creational"
                            Description="Especifica los tipos de objetos a crear usando una instancia prototípica y crea nuevos objetos por copia de este prototipo."
                            Difficulty="Medium"
