@@ -12,7 +12,6 @@
     <Folder Include="Creational\AbstractFactory\Tests\" />
     <Folder Include="Creational\Builder\Tests\" />
     <Folder Include="Creational\FactoryMethod\Tests\" />
-    <Folder Include="Creational\Prototype\Implementation\" />
     <Folder Include="Creational\Prototype\Tests\" />
     <Folder Include="Creational\Singleton\Tests\" />
     <Folder Include="Structural\Adapter\Examples\" />
