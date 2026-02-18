@@ -16,6 +16,8 @@
     <Folder Include="Creational\Singleton\Tests\" />
     <Folder Include="Structural\Adapter\Examples\03-MyOwn\" />
     <Folder Include="Structural\Adapter\Tests\" />
+    <Folder Include="Structural\Bridge\Examples\03-MyOwn\" />
+    <Folder Include="Structural\Bridge\Tests\" />
   </ItemGroup>
 
 </Project>
