@@ -1,0 +1,456 @@
+﻿@page "/structural/composite"
+
+<PageTitle>Composite Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="cube-transparent" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Composite Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Composite compone objetos en estructuras de árbol para representar jerarquías parte-todo.
+            Permite que los clientes traten objetos individuales y composiciones de forma uniforme.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Composite?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Composite es un patrón de diseño estructural que compone objetos en estructuras de árbol
+                            para representar jerarquías parte-todo. Permite que los clientes traten objetos individuales
+                            y composiciones de objetos de forma uniforme.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Trabaja fácilmente con estructuras recursivas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Código cliente simplificado</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Fácil agregar nuevos tipos de componentes</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Trata partes y todo uniformemente</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Puede hacer el diseño muy general</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil restringir tipos de componentes hijo</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Performance en estructuras muy grandes</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad en operaciones específicas</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Menu System">
+                                Sistema de menús jerárquicos con acciones individuales.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Organization Hierarchy">
+                                Jerarquía organizacional con departamentos y empleados.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar Composite">
+                                Ejemplo de cómo usar Composite para estructuras de árbol.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Estructuras de árbol parte-todo</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (árboles, jerarquías)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar interfaz común para componentes y composites</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Implementar métodos uniformemente</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Considerar restricciones de tipos en composites</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar recursión cuidadosamente con estructuras grandes</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/decorator" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🎨 Decorator →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/facade" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🏛️ Facade →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/iterator" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            ➡️ Iterator →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Composite, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un sistema de archivos y directorios con operaciones de búsqueda</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un árbol de categorías de productos con precios</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea una estructura de componentes UI (Panels, Buttons, Forms)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Composite", "/structural/composite")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Sistemas de archivos y directorios",
+        "Estructuras de menús jerárquicos",
+        "Jerarquías organizacionales",
+        "Componentes UI y formularios",
+        "Árboles de categorías",
+        "Sistemas de permisos",
+        "Estructuras de comentarios anidados",
+        "DOM de HTML/XML"
+    };
+
+    private List<string> tags = new() { "Árbol", "Jerarquía", "Parte-Todo", "Recursión" };
+
+    private string basicCode = @"
+    // ===== Interfaz común =====
+    public interface IMenuItem
+    {
+        string Name { get; }
+        void Display(int indent = 0);
+        void Execute();
+    }
+
+    // ===== Hoja - Acción =====
+    public class MenuAction : IMenuItem
+    {
+        public string Name { get; set; }
+        private Action _action;
+
+        public MenuAction(string name, Action action)
+        {
+            Name = name;
+            _action = action;
+        }
+
+        public void Display(int indent = 0)
+        {
+            Console.WriteLine(new string(' ', indent) + $""→ {Name}"");
+        }
+
+        public void Execute()
+        {
+            _action?.Invoke();
+        }
+    }
+
+    // ===== Composite - Menú =====
+    public class Menu : IMenuItem
+    {
+        public string Name { get; set; }
+        private List<IMenuItem> _items = new();
+
+        public Menu(string name) => Name = name;
+
+        public void Add(IMenuItem item) => _items.Add(item);
+
+        public void Display(int indent = 0)
+        {
+            Console.WriteLine(new string(' ', indent) + $""📋 {Name}"");
+            foreach (var item in _items)
+                item.Display(indent + 2);
+        }
+
+        public void Execute() => Display();
+    }
+
+    // ===== Uso =====
+    var mainMenu = new Menu(""MENÚ"");
+    var fileMenu = new Menu(""Archivo"");
+    fileMenu.Add(new MenuAction(""Nuevo"", () => Console.WriteLine(""Nuevo"")));
+    fileMenu.Add(new MenuAction(""Abrir"", () => Console.WriteLine(""Abrir"")));
+    mainMenu.Add(fileMenu);
+    mainMenu.Display();";
+
+    private string advancedCode = @"
+    // ===== Interfaz común =====
+    public interface IEmployee
+    {
+        string Name { get; }
+        string Position { get; }
+        decimal Salary { get; }
+        void Display(int indent = 0);
+        decimal GetTotalSalary();
+        int GetEmployeeCount();
+    }
+
+    // ===== Hoja - Empleado =====
+    public class Employee : IEmployee
+    {
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public decimal Salary { get; set; }
+
+        public Employee(string name, string pos, decimal salary)
+        {
+            Name = name;
+            Position = pos;
+            Salary = salary;
+        }
+
+        public void Display(int indent = 0)
+        {
+            Console.WriteLine(new string(' ', indent) + 
+                $""👤 {Name} ({Position}) - ${Salary}"");
+        }
+
+        public decimal GetTotalSalary() => Salary;
+        public int GetEmployeeCount() => 1;
+    }
+
+    // ===== Composite - Departamento =====
+    public class Department : IEmployee
+    {
+        public string Name { get; set; }
+        public string Position => ""Departamento"";
+        public decimal Salary => 0;
+        private List<IEmployee> _members = new();
+
+        public Department(string name) => Name = name;
+        public void Add(IEmployee emp) => _members.Add(emp);
+
+        public void Display(int indent = 0)
+        {
+            Console.WriteLine(new string(' ', indent) + $""🏢 {Name}"");
+            foreach (var m in _members)
+                m.Display(indent + 2);
+        }
+
+        public decimal GetTotalSalary() => _members.Sum(m => m.GetTotalSalary());
+        public int GetEmployeeCount() => _members.Sum(m => m.GetEmployeeCount());
+    }
+
+    // ===== Uso =====
+    var ceo = new Department(""CEO"");
+    var itDept = new Department(""IT"");
+    itDept.Add(new Employee(""Juan"", ""Dev"", 3000));
+    itDept.Add(new Employee(""María"", ""Arch"", 4000));
+    ceo.Add(itDept);
+
+    ceo.Display();
+    Console.WriteLine($""Total: {ceo.GetTotalSalary()}"");";
+
+    private string usageCode = @"
+    // ===== Estructura jerárquica =====
+    var root = new Menu(""SISTEMA"");
+
+    // Nivel 1
+    var archivo = new Menu(""Archivo"");
+    archivo.Add(new MenuAction(""Nuevo"", () => { }));
+    archivo.Add(new MenuAction(""Abrir"", () => { }));
+
+    var editar = new Menu(""Editar"");
+    editar.Add(new MenuAction(""Cortar"", () => { }));
+    editar.Add(new MenuAction(""Copiar"", () => { }));
+
+    var ver = new Menu(""Ver"");
+    var zoom = new Menu(""Zoom"");
+    zoom.Add(new MenuAction(""In"", () => { }));
+    zoom.Add(new MenuAction(""Out"", () => { }));
+    ver.Add(zoom);
+
+    // Construir jerarquía
+    root.Add(archivo);
+    root.Add(editar);
+    root.Add(ver);
+    root.Add(new MenuAction(""Salir"", () => { }));
+
+    // ===== Mostrar toda la estructura =====
+    root.Display();
+
+    // ✅ Mismo código para hojas y composites
+    // ✅ Recursión automática
+    // ✅ Cliente no necesita saber la profundidad";
+}
