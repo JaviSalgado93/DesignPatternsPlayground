@@ -24,10 +24,7 @@
     <Folder Include="Structural\Composite\Tests\" />
     <Folder Include="Structural\Decorator\Examples\03-MyOwn\" />
     <Folder Include="Structural\Decorator\Tests\" />
-    <Folder Include="Structural\Facade\Examples\01-Basic\" />
-    <Folder Include="Structural\Facade\Examples\02-Advanced\" />
     <Folder Include="Structural\Facade\Examples\03-MyOwn\" />
-    <Folder Include="Structural\Facade\Implementation\" />
     <Folder Include="Structural\Facade\Tests\" />
     <Folder Include="Structural\Flyweight\Examples\01-Basic\" />
     <Folder Include="Structural\Flyweight\Examples\02-Advanced\" />

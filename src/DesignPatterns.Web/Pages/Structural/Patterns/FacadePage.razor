@@ -1,0 +1,419 @@
+﻿@page "/structural/facade"
+
+<PageTitle>Facade Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="building-library" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Facade Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Facade proporciona una interfaz unificada y simplificada a un conjunto de interfaces en un subsistema.
+            Oculta la complejidad permitiendo que los clientes interactúen con una única puerta de entrada.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Facade?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Facade es un patrón de diseño estructural que proporciona una interfaz unificada y simplificada
+                            a un conjunto de interfaces más complejas en un subsistema. Actúa como una puerta de entrada
+                            única que oculta la complejidad interna.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Simplifica código cliente significativamente</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Desacopla cliente del subsistema</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Reduce dependencias directas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Punto único de control</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Facade puede crecer muy grande</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Puede ocultar funcionalidad útil</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Riesgo de god object</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Balance difícil de mantener</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Home Theater">
+                                Sistema de cine en casa con múltiples dispositivos coordinados.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Banking System">
+                                Sistema bancario con detección de fraude, préstamos y notificaciones.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar Facade">
+                                Comparación: con y sin Facade.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Fácil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Simplificar interfaz compleja</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (sistemas complejos)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Mantener Facade simple y enfocado</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>No crear god object</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Permitir acceso directo si es necesario</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar claramente operaciones</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/decorator" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🎨 Decorator →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/composite" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🌳 Composite →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/proxy" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🔐 Proxy →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Facade, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un Facade para un sistema de compras online (carrito, pago, envío)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un Facade para un sistema de reportes (extrae, procesa, genera)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un Facade para un sistema de reservas (disponibilidad, pago, confirmación)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Facade", "/structural/facade")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Sistema de cine en casa",
+        "Plataforma de banca online",
+        "Sistema de compras online",
+        "API REST simplificada",
+        "Generador de reportes",
+        "Sistema de reservas",
+        "Gestor de proyectos",
+        "Plataforma de streaming"
+    };
+
+    private List<string> tags = new() { "Simplificación", "Subsistema", "Desacoplamiento", "Puerta de Entrada" };
+
+    private string basicCode = @"
+    // ===== Subsistemas complejos =====
+    public class Amplifier { public void TurnOn() { } }
+    public class DVDPlayer { public void Play(string m) { } }
+    public class Projector { public void TurnOn() { } }
+    public class Screen { public void Down() { } }
+    public class Lights { public void Dim(int l) { } }
+
+    // ===== Facade simplificada =====
+    public class HomeTheaterFacade
+    {
+        private Amplifier _amp = new();
+        private DVDPlayer _dvd = new();
+        private Projector _proj = new();
+        private Screen _screen = new();
+        private Lights _lights = new();
+
+        public void WatchMovie(string movie)
+        {
+            _lights.Dim(10);
+            _screen.Down();
+            _proj.TurnOn();
+            _amp.TurnOn();
+            _dvd.Play(movie);
+        }
+
+        public void EndMovie()
+        {
+            _dvd.Stop();
+            _amp.TurnOff();
+            _proj.TurnOff();
+            _screen.Up();
+            _lights.On();
+        }
+    }
+
+    // ===== Uso simple =====
+    var theater = new HomeTheaterFacade();
+    theater.WatchMovie(""Avatar"");
+    // ... después
+    theater.EndMovie();";
+
+    private string advancedCode = @"
+    // ===== Subsistemas =====
+    public class Account { /* ... */ }
+    public class LoanProcessor { /* ... */ }
+    public class FraudDetection { /* ... */ }
+    public class NotificationService { /* ... */ }
+
+    // ===== Facade coordinadora =====
+    public class BankingFacade
+    {
+        private Account _account;
+        private LoanProcessor _loan;
+        private FraudDetection _fraud;
+        private NotificationService _notify;
+
+        public bool WithdrawMoney(decimal amount)
+        {
+            // Verificar fraude
+            if (_fraud.IsTransactionSuspicious(_account.Id, amount))
+                return false;
+
+            // Realizar retiro
+            if (_account.Withdraw(amount))
+            {
+                _fraud.LogTransaction(_account.Id, ""Retiro"", amount);
+                _notify.SendSMS(""+1234567890"", $""Retiro: ${amount}"");
+                return true;
+            }
+            return false;
+        }
+
+        public bool ApplyForLoan(decimal amount)
+        {
+            if (_loan.ApproveLoan(_account.Id, amount))
+            {
+                var total = _loan.CalculateInterest(amount, 0.05m, 1);
+                _notify.SendEmail(""user@bank.com"", 
+                    $""Préstamo aprobado: ${amount}"");
+                return true;
+            }
+            return false;
+        }
+    }";
+
+    private string usageCode = @"
+    // ===== SIN FACADE (código complejo) =====
+    var amp = new Amplifier();
+    var dvd = new DVDPlayer();
+    var proj = new Projector();
+    var screen = new Screen();
+    var lights = new Lights();
+
+    // Cliente debe saber el orden correcto
+    lights.Dim(10);
+    screen.Down();
+    proj.TurnOn();
+    proj.SetInput(""DVD"");
+    amp.TurnOn();
+    amp.SetVolume(5);
+    dvd.TurnOn();
+    dvd.Play(""Inception"");
+
+    // Después, en orden inverso
+    dvd.Stop();
+    dvd.TurnOff();
+    amp.TurnOff();
+    proj.TurnOff();
+    screen.Up();
+    lights.On();
+
+    // ===== CON FACADE (código simple) =====
+    var theater = new HomeTheaterFacade();
+    theater.WatchMovie(""Inception"");
+    // ... después
+    theater.EndMovie();
+
+    // ✅ Código cliente mucho más simple
+    // ✅ Sin necesidad de conocer detalles internos
+    // ✅ Cambios internos no afectan al cliente
+    // ✅ Operación lógica en una llamada";
+}
