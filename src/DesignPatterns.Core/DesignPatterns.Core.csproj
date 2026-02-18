@@ -22,10 +22,7 @@
     <Folder Include="Structural\Bridge\Tests\" />
     <Folder Include="Structural\Composite\Examples\03-MyOwn\" />
     <Folder Include="Structural\Composite\Tests\" />
-    <Folder Include="Structural\Decorator\Examples\01-Basic\" />
-    <Folder Include="Structural\Decorator\Examples\02-Advanced\" />
     <Folder Include="Structural\Decorator\Examples\03-MyOwn\" />
-    <Folder Include="Structural\Decorator\Implementation\" />
     <Folder Include="Structural\Decorator\Tests\" />
     <Folder Include="Structural\Facade\Examples\01-Basic\" />
     <Folder Include="Structural\Facade\Examples\02-Advanced\" />

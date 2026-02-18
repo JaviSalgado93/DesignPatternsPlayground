@@ -1,0 +1,444 @@
+﻿@page "/structural/decorator"
+
+<PageTitle>Decorator Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="sparkles" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Decorator Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Decorator agrega responsabilidades a un objeto dinámicamente. Proporciona una alternativa flexible
+            a la subclasificación para extender funcionalidad sin modificar el objeto original.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Decorator?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Decorator es un patrón de diseño estructural que agrega responsabilidades a un objeto dinámicamente.
+                            Proporciona una alternativa flexible a la subclasificación para extender funcionalidad, permitiendo
+                            composición dinámica de comportamientos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Flexible, agrega comportamiento sin herencia</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Cumple Responsabilidad Única (SRP)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Composición dinámica de comportamientos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Fácil combinar múltiples decoradores</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Muchos objetos pequeños en el sistema</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Orden de decoradores puede ser importante</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Debugging más complejo</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Posible sobreingeniería</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Coffee Shop">
+                                Agregar ingredientes (decoradores) a un café dinámicamente.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Data Stream Decorators">
+                                Aplicar compresión, encriptación y logging a streams de datos.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar Decorator">
+                                Ejemplo de composición dinámica de comportamientos.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Agregar responsabilidades dinámicamente</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (streams, UI, features)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Decoradores deben ser ligeros</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Mantener interfaz consistente</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar orden de decoradores si importa</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar cuando herencia no es adecuada</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/adapter" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🧩 Adapter →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/composite" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🌳 Composite →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/proxy" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🔐 Proxy →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Decorator, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea decoradores para una pizza (queso, pepperoni, champiñones, etc.)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa decoradores para componentes UI (bordes, sombras, estilos)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea decoradores para requests HTTP (caché, validación, autenticación)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Decorator", "/structural/decorator")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Sistemas de café con ingredientes",
+        "Compresión y encriptación de streams",
+        "Logging y caching de requests",
+        "Componentes UI con estilos dinámicos",
+        "Pizza con toppings adicionales",
+        "Órdenes con extras opcionales",
+        "Notificadores con múltiples canales",
+        "Procesamiento de imágenes con filtros"
+    };
+
+    private List<string> tags = new() { "Composición", "Dinamismo", "Herencia Flexible", "Responsabilidad" };
+
+    private string basicCode = @"
+    // ===== Interfaz común =====
+    public interface ICoffee
+    {
+        double GetCost();
+        string GetDescription();
+    }
+
+    // ===== Componente base =====
+    public class SimpleCoffee : ICoffee
+    {
+        public double GetCost() => 5.0;
+        public string GetDescription() => ""Café simple"";
+    }
+
+    // ===== Decorador base =====
+    public abstract class CoffeeDecorator : ICoffee
+    {
+        protected ICoffee _coffee;
+
+        public CoffeeDecorator(ICoffee coffee) => _coffee = coffee;
+
+        public virtual double GetCost() => _coffee.GetCost();
+        public virtual string GetDescription() => _coffee.GetDescription();
+    }
+
+    // ===== Decoradores específicos =====
+    public class MilkDecorator : CoffeeDecorator
+    {
+        public MilkDecorator(ICoffee coffee) : base(coffee) { }
+
+        public override double GetCost() => base.GetCost() + 0.5;
+        public override string GetDescription() 
+            => base.GetDescription() + "", leche"";
+    }
+
+    public class VanillaDecorator : CoffeeDecorator
+    {
+        public VanillaDecorator(ICoffee coffee) : base(coffee) { }
+
+        public override double GetCost() => base.GetCost() + 0.75;
+        public override string GetDescription() 
+            => base.GetDescription() + "", vainilla"";
+    }
+
+    // ===== Uso =====
+    ICoffee coffee = new SimpleCoffee();
+    coffee = new MilkDecorator(coffee);
+    coffee = new VanillaDecorator(coffee);
+
+    Console.WriteLine($""{coffee.GetDescription()} = ${coffee.GetCost()}"");";
+
+    private string advancedCode = @"
+    // ===== Interfaz común =====
+    public interface IDataStream
+    {
+        void Write(string data);
+        string Read();
+        void Close();
+    }
+
+    // ===== Componente base =====
+    public class FileDataStream : IDataStream
+    {
+        private string _data = """";
+
+        public void Write(string data) => _data += data;
+        public string Read() => _data;
+        public void Close() => Console.WriteLine(""Cerrado"");
+    }
+
+    // ===== Decorador base =====
+    public abstract class DataStreamDecorator : IDataStream
+    {
+        protected IDataStream _stream;
+
+        public DataStreamDecorator(IDataStream stream) => _stream = stream;
+
+        public virtual void Write(string data) => _stream.Write(data);
+        public virtual string Read() => _stream.Read();
+        public virtual void Close() => _stream.Close();
+    }
+
+    // ===== Decoradores =====
+    public class CompressionDecorator : DataStreamDecorator
+    {
+        public CompressionDecorator(IDataStream stream) : base(stream) { }
+
+        public override void Write(string data)
+        {
+            var compressed = Compress(data);
+            base.Write(compressed);
+        }
+
+        private string Compress(string data) 
+            => Convert.ToBase64String(Encoding.UTF8.GetBytes(data));
+    }
+
+    public class EncryptionDecorator : DataStreamDecorator
+    {
+        public EncryptionDecorator(IDataStream stream) : base(stream) { }
+
+        public override void Write(string data)
+        {
+            var encrypted = Encrypt(data);
+            base.Write(encrypted);
+        }
+
+        private string Encrypt(string data) 
+            => string.Join("""", data.Select(c => (char)(c + 1)));
+    }";
+
+    private string usageCode = @"
+    // ===== Composición básica =====
+    ICoffee coffee1 = new SimpleCoffee();
+    // Costo: $5.00, Descripción: Café simple
+
+    // ===== Agregar un decorador =====
+    ICoffee coffee2 = new MilkDecorator(new SimpleCoffee());
+    // Costo: $5.50, Descripción: Café simple, leche
+
+    // ===== Agregar múltiples decoradores =====
+    ICoffee coffee3 = new VanillaDecorator(
+        new MilkDecorator(
+            new SimpleCoffee()
+        )
+    );
+    // Costo: $6.25, Descripción: Café simple, leche, vainilla
+
+    // ===== Composición dinámica =====
+    ICoffee coffee = new SimpleCoffee();
+
+    if (userWantsMilk)
+        coffee = new MilkDecorator(coffee);
+
+    if (userWantsVanilla)
+        coffee = new VanillaDecorator(coffee);
+
+    if (userWantsCaramel)
+        coffee = new CaramelDecorator(coffee);
+
+    Console.WriteLine(coffee.GetDescription());
+    Console.WriteLine($""${coffee.GetCost()}"");
+
+    // ✅ Flexible combinación
+    // ✅ Sin crear nuevas subclases
+    // ✅ Responsabilidades separadas";
+}
