@@ -1,0 +1,430 @@
+﻿@page "/structural/adapter"
+
+<PageTitle>Adapter Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="puzzle-piece" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Adapter Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Adapter convierte la interfaz de una clase en otra interfaz que el cliente espera. Permite que
+            clases incompatibles trabajen juntas, facilitando la integración de librerías externas y código legacy.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Adapter?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Adapter es un patrón de diseño estructural que convierte la interfaz de una clase
+                            en otra interfaz que el cliente espera. Permite que clases con interfaces incompatibles
+                            colaboren entre sí, especialmente útil para integrar código legacy o librerías externas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Permite integrar código incompatible</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Reutiliza clases existentes</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Desacopla cliente de implementación</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Flexible para múltiples adaptaciones</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad adicional al código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Posibles impactos en performance</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Puede ocultar problemas de diseño</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Múltiples adaptadores = confusión</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Audio Players">
+                                Adaptar diferentes reproductores de audio a una interfaz común.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Payment Processors">
+                                Adaptar diferentes procesadores de pago a una interfaz única.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar Adapter">
+                                Ejemplo de cómo el cliente usa diferentes adaptadores transparentemente.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Fácil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Hacer compatible código incompatible</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (integración, legacy code)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar cuando la incompatibilidad es real</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Evitar si se puede refactorizar</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar claramente las adaptaciones</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Monitorear impacto en performance</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/bridge" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="link" AdditionalClass="w-4 h-4" />
+                            Bridge →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/decorator" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="sparkles" AdditionalClass="w-4 h-4" />
+                            Decorator →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/facade" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="building-library" AdditionalClass="w-4 h-4" />
+                            Facade →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Adapter, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un adaptador para diferentes proveedores de email (Gmail, Outlook, SendGrid)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un adaptador para diferentes bases de datos (MySQL, PostgreSQL, SQLite)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un adaptador para convertir entre diferentes formatos de datos (JSON, XML, CSV)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Adapter", "/structural/adapter")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Integrar librerías de terceros",
+        "Trabajar con código legacy",
+        "Diferentes procesadores de pago",
+        "Múltiples proveedores de email",
+        "Interfaces de bases de datos incompatibles",
+        "Reproducción de múltiples formatos",
+        "Sistemas de logging diferentes",
+        "Compatibilidad entre versiones"
+    };
+
+    private List<string> tags = new() { "Compatibilidad", "Integración", "Reutilización", "Legacy Code" };
+
+    private string basicCode = @"
+    // ===== Interfaz esperada por el cliente =====
+    public interface IAudioPlayer
+    {
+        void PlayAudio(string fileName);
+        void StopAudio();
+    }
+
+    // ===== Clase existente (incompatible) =====
+    public class VLCPlayer
+    {
+        public void PlayVLCFile(string fileName)
+        {
+            Console.WriteLine($""[VLC] Reproduciendo: {fileName}"");
+        }
+
+        public void StopVLC()
+        {
+            Console.WriteLine(""[VLC] Detenido"");
+        }
+    }
+
+    // ===== Adapter para hacer VLC compatible =====
+    public class VLCAdapter : IAudioPlayer
+    {
+        private VLCPlayer _vlcPlayer;
+
+        public VLCAdapter(VLCPlayer vlcPlayer)
+        {
+            _vlcPlayer = vlcPlayer;
+        }
+
+        public void PlayAudio(string fileName)
+        {
+            _vlcPlayer.PlayVLCFile(fileName);
+        }
+
+        public void StopAudio()
+        {
+            _vlcPlayer.StopVLC();
+        }
+    }
+
+    // ===== Uso =====
+    IAudioPlayer player = new VLCAdapter(new VLCPlayer());
+    player.PlayAudio(""video.mkv"");
+    player.StopAudio();";
+
+    private string advancedCode = @"
+    // ===== Interfaz común para procesar pagos =====
+    public interface IPaymentProcessor
+    {
+        bool ProcessPayment(decimal amount, string currency);
+        string GetTransactionStatus(string transactionId);
+    }
+
+    // ===== Proveedor 1: Stripe (API diferente) =====
+    public class StripePayment
+    {
+        public string ChargeCard(decimal amount, string currency, string token)
+        {
+            Console.WriteLine($""[Stripe] Cobrando ${amount}"");
+            return $""stripe_{Guid.NewGuid().ToString().Substring(0, 8)}"";
+        }
+    }
+
+    // ===== Proveedor 2: PayPal (API diferente) =====
+    public class PayPalPayment
+    {
+        public void SendPayment(decimal amount, string email)
+        {
+            Console.WriteLine($""[PayPal] Enviando ${amount}"");
+        }
+    }
+
+    // ===== Adapter para Stripe =====
+    public class StripeAdapter : IPaymentProcessor
+    {
+        private StripePayment _stripe;
+
+        public StripeAdapter(StripePayment stripe) => _stripe = stripe;
+
+        public bool ProcessPayment(decimal amount, string currency)
+        {
+            var id = _stripe.ChargeCard(amount, currency, ""token"");
+            return !string.IsNullOrEmpty(id);
+        }
+
+        public string GetTransactionStatus(string id) => ""completed"";
+    }
+
+    // ===== Adapter para PayPal =====
+    public class PayPalAdapter : IPaymentProcessor
+    {
+        private PayPalPayment _paypal;
+
+        public PayPalAdapter(PayPalPayment paypal) => _paypal = paypal;
+
+        public bool ProcessPayment(decimal amount, string currency)
+        {
+            _paypal.SendPayment(amount, ""merchant@example.com"");
+            return true;
+        }
+
+        public string GetTransactionStatus(string id) => ""approved"";
+    }";
+
+    private string usageCode = @"
+    // ===== El cliente trabaja con la interfaz común =====
+    var processors = new List<IPaymentProcessor>
+    {
+        new StripeAdapter(new StripePayment()),
+        new PayPalAdapter(new PayPalPayment())
+    };
+
+    decimal amount = 99.99m;
+
+    // ===== Procesar con cualquier procesador =====
+    foreach (var processor in processors)
+    {
+        bool success = processor.ProcessPayment(amount, ""USD"");
+        if (success)
+        {
+            Console.WriteLine(""Pago procesado"");
+        }
+    }
+
+    // El cliente no conoce los detalles de cada proveedor
+    // Fácil agregar nuevos procesadores
+    // La interfaz es consistente para todos";
+}
