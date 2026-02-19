@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Behavioral\ChainOfResponsibility\Examples\03-MyOwn\" />
+    <Folder Include="Behavioral\ChainOfResponsibility\Tests\" />
     <Folder Include="Behavioral\Strategy\Examples\" />
     <Folder Include="Behavioral\Strategy\Implementation\" />
     <Folder Include="Creational\AbstractFactory\Tests\" />

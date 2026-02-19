@@ -1,6 +1,6 @@
-﻿@page "/structural/bridge"
+﻿@page "/behavioral/chain-of-responsibility"
 
-<PageTitle>Bridge Pattern - Design Patterns</PageTitle>
+<PageTitle>Chain of Responsibility Pattern - Design Patterns</PageTitle>
 
 <div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
     <!-- Breadcrumb -->
@@ -9,15 +9,16 @@
     <!-- Header -->
     <div class="mb-12">
         <div class="flex items-center gap-3 md:gap-4 mb-4">
-            <HeroIcon IconName="arrow-trending-right" AdditionalClass="w-10 h-10 text-primary-600" />
+            <HeroIcon IconName="link" AdditionalClass="w-10 h-10 text-primary-600" />
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Bridge Pattern</h1>
-                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Chain of Responsibility</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Comportamental</p>
             </div>
         </div>
         <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
-            Bridge desacopla una abstracción de su implementación para que ambas puedan variar independientemente.
-            Evita la explosión de subclases y permite cambiar la implementación en tiempo de ejecución.
+            Chain of Responsibility evita acoplar el remitente de una solicitud con su receptor,
+            dando la oportunidad a más de un objeto de manejar la solicitud. Encadena los objetos
+            receptores y pasa la solicitud a lo largo de la cadena.
         </p>
     </div>
 
@@ -30,11 +31,11 @@
                 <div class="flex items-start gap-4 mb-4">
                     <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
                     <div class="flex-1">
-                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Bridge?</h2>
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Chain of Responsibility?</h2>
                         <p class="text-secondary-700 leading-relaxed">
-                            Bridge es un patrón de diseño estructural que desacopla una abstracción de su implementación
-                            permitiendo que ambas varíen independientemente. Soluciona el problema de la explosión de
-                            subclases cuando hay dos dimensiones de variación.
+                            Chain of Responsibility es un patrón comportamental que permite pasar solicitudes a lo largo de
+                            una cadena de manejadores. Cada manejador decide procesar la solicitud o pasarla al siguiente
+                            manejador en la cadena, desacoplando el remitente del receptor.
                         </p>
                     </div>
                 </div>
@@ -51,19 +52,19 @@
                     <ul class="space-y-2 text-secondary-700">
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Desacopla abstracción e implementación</span>
+                            <span>Desacopla remitente del receptor</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Reduce explosión de subclases</span>
+                            <span>Fácil agregar nuevos manejadores</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Cumple Principio Open/Closed</span>
+                            <span>Orden dinámico de cadena</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
-                            <span>Cambiar implementación en runtime</span>
+                            <span>Múltiples manejadores posibles</span>
                         </li>
                     </ul>
                 </div>
@@ -77,19 +78,19 @@
                     <ul class="space-y-2 text-secondary-700">
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Complejidad adicional en el código</span>
+                            <span>No garantiza procesamiento</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Más interfaces a mantener</span>
+                            <span>Difícil debuggear</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Curva de aprendizaje pronunciada</span>
+                            <span>Performance con cadena larga</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
-                            <span>Overhead para casos simples</span>
+                            <span>Complejo de entender</span>
                         </li>
                     </ul>
                 </div>
@@ -106,8 +107,8 @@
                     <!-- Tab 1: Básico -->
                     <TabPanel IsActive="activeTab == 0">
                         <div class="space-y-4">
-                            <InfoBox Type="info" Title="Ejemplo Básico: Remote Controls">
-                                Controles remotos para diferentes dispositivos usando Bridge.
+                            <InfoBox Type="info" Title="Ejemplo Básico: Logging Chain">
+                                Sistema de logging con múltiples niveles en cadena.
                             </InfoBox>
                             <CodeBlock Language="csharp" Code="@basicCode" />
                         </div>
@@ -116,20 +117,20 @@
                     <!-- Tab 2: Avanzado -->
                     <TabPanel IsActive="activeTab == 1">
                         <div class="space-y-4">
-                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Window Renderers">
-                                Ventanas con diferentes renderers para múltiples plataformas.
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Approval System">
+                                Sistema de aprobación de gastos con niveles jerárquicos.
                             </InfoBox>
                             <CodeBlock Language="csharp" Code="@advancedCode" />
                         </div>
                     </TabPanel>
 
-                    <!-- Tab 3: Uso -->
+                    <!-- Tab 3: Flujo -->
                     <TabPanel IsActive="activeTab == 2">
                         <div class="space-y-4">
-                            <InfoBox Type="success" Title="Cómo Usar Bridge">
-                                Ejemplo de cómo usar Bridge con dos dimensiones de variación.
+                            <InfoBox Type="success" Title="Flujo de Cadena">
+                                Cómo funciona el procesamiento en cadena.
                             </InfoBox>
-                            <CodeBlock Language="csharp" Code="@usageCode" />
+                            <CodeBlock Language="csharp" Code="@flowCode" />
                         </div>
                     </TabPanel>
                 </TabContainer>
@@ -151,6 +152,44 @@
                     }
                 </div>
             </div>
+
+            <!-- ===== FLUJO VISUAL ===== -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md p-6 md:p-8 border-l-4 border-blue-500">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="arrow-trending-right" AdditionalClass="w-6 h-6 text-blue-600" />
+                    Flujo de Procesamiento
+                </h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-blue-200">
+                        <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm">1</div>
+                        <div>
+                            <p class="font-semibold text-secondary-900">Solicitud Entra</p>
+                            <p class="text-sm text-secondary-600">La solicitud llega al primer manejador</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-blue-200">
+                        <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm">2</div>
+                        <div>
+                            <p class="font-semibold text-secondary-900">¿Puede Manejar?</p>
+                            <p class="text-sm text-secondary-600">El manejador evalúa si puede procesarla</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-blue-200">
+                        <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm">3</div>
+                        <div>
+                            <p class="font-semibold text-secondary-900">Procesa o Pasa</p>
+                            <p class="text-sm text-secondary-600">Procesa la solicitud o la pasa al siguiente</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-blue-200">
+                        <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm">4</div>
+                        <div>
+                            <p class="font-semibold text-secondary-900">Fin de Cadena</p>
+                            <p class="text-sm text-secondary-600">Proceso termina cuando se maneja o se agota la cadena</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Right Column - Quick Reference -->
@@ -161,21 +200,21 @@
                 <div class="space-y-3 text-sm">
                     <div>
                         <span class="font-semibold text-secondary-700">Tipo: </span>
-                        <p class="text-secondary-600">Patrón Estructural</p>
+                        <p class="text-secondary-600">Patrón Comportamental</p>
                     </div>
                     <div>
                         <span class="font-semibold text-secondary-700">Dificultad:</span>
-                        <p>                            
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">Media-Alta</span>
+                        <p>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
                         </p>
                     </div>
                     <div>
                         <span class="font-semibold text-secondary-700">Propósito:</span>
-                        <p class="text-secondary-600">Desacoplar abstracción de implementación</p>
+                        <p class="text-secondary-600">Pasar solicitud por cadena</p>
                     </div>
                     <div>
                         <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
-                        <p class="text-secondary-600">Media (arquitecturas complejas)</p>
+                        <p class="text-secondary-600">Alta (sistemas complejos)</p>
                     </div>
                 </div>
             </div>
@@ -202,19 +241,19 @@
                 <ul class="space-y-2 text-sm text-secondary-700">
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Usar cuando hay dos dimensiones de variación</span>
+                        <span>Siempre pasar solicitud al siguiente</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Evitar sobre-ingeniería en casos simples</span>
+                        <span>Documentar orden de cadena</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Documentar claramente abstracción e implementación</span>
+                        <span>Manejar fin de cadena</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
-                        <span>Permitir cambio de implementación en runtime</span>
+                        <span>Evitar ciclos infinitos</span>
                     </li>
                 </ul>
             </div>
@@ -224,21 +263,18 @@
                 <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
                 <ul class="space-y-2 text-sm">
                     <li>
-                        <a href="/structural/adapter" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
-                            <HeroIcon IconName="puzzle" AdditionalClass="w-4 h-4" />
-                            Adapter →
+                        <a href="/behavioral/command" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🎮 Command →
                         </a>
                     </li>
                     <li>
-                        <a href="/structural/decorator" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
-                            <HeroIcon IconName="sparkles" AdditionalClass="w-4 h-4" />
-                            Decorator →
+                        <a href="/behavioral/observer" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            👀 Observer →
                         </a>
                     </li>
                     <li>
-                        <a href="/structural/facade" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
-                            <HeroIcon IconName="building-library" AdditionalClass="w-4 h-4" />
-                            Facade →
+                        <a href="/behavioral/mediator" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🤝 Mediator →
                         </a>
                     </li>
                 </ul>
@@ -253,20 +289,20 @@
             Ejercicios Prácticos
         </h2>
         <p class="text-secondary-700 mb-4">
-            Ahora que entiendes Bridge, intenta implementar tu propio ejemplo:
+            Ahora que entiendes Chain of Responsibility, intenta implementar tu propio ejemplo:
         </p>
         <div class="space-y-3">
             <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
                 <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
-                <span class="text-secondary-700">Crea un Bridge para vehículos con diferentes tipos de motores (Gasolina, Eléctrico, Híbrido)</span>
+                <span class="text-secondary-700">Crea una cadena de validadores de formularios (email, teléfono, contraseña)</span>
             </div>
             <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
                 <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
-                <span class="text-secondary-700">Implementa un Bridge para diferentes notificadores (Email, SMS, Push) con diferentes canales</span>
+                <span class="text-secondary-700">Implementa un sistema de filtrado de solicitudes HTTP</span>
             </div>
             <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
                 <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
-                <span class="text-secondary-700">Crea un Bridge para abstracciones de pagos con múltiples proveedores y métodos</span>
+                <span class="text-secondary-700">Crea una cadena de procesadores de eventos</span>
             </div>
         </div>
     </div>
@@ -276,167 +312,161 @@
     private List<BreadcrumbItem> breadcrumbItems = new()
     {
         new BreadcrumbItem("Home", "/"),
-        new BreadcrumbItem("Structural", "/structural"),
-        new BreadcrumbItem("Bridge", "/structural/bridge")
+        new BreadcrumbItem("Behavioral", "/behavioral"),
+        new BreadcrumbItem("Chain of Responsibility", "/behavioral/chain-of-responsibility")
     };
 
     private int activeTab = 0;
-    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Flujo" };
 
     private List<string> useCases = new()
     {
-        "Múltiples plataformas con diferentes renderers",
-        "Controles remotos para diferentes dispositivos",
-        "Vehículos con diferentes motores",
-        "Notificadores con múltiples canales",
-        "Bases de datos con múltiples drivers",
-        "Interfaz gráfica con diferentes temas",
-        "Almacenamiento con múltiples backends",
-        "Sistemas de logging multiplataforma"
+        "Sistemas de logging con niveles",
+        "Procesar solicitudes HTTP",
+        "Validación de formularios",
+        "Manejo de excepciones",
+        "Autorización y permisos",
+        "Procesamiento de eventos",
+        "Filtrado de datos",
+        "Sistema de aprobaciones"
     };
 
-    private List<string> tags = new() { "Desacoplamiento", "Dos Dimensiones", "Abstracción", "Implementación" };
+    private List<string> tags = new() { "Cadena", "Desacoplamiento", "Manejadores", "Dinámico" };
 
     private string basicCode = @"
-    // ===== Implementor - Dispositivo =====
-    public interface IDevice
+    // ===== Handler base =====
+    public abstract class Logger
     {
-        void PowerOn();
-        void PowerOff();
-        void SetVolume(int volume);
-    }
+        protected Logger _next;
 
-    public class Television : IDevice
-    {
-        public void PowerOn() => Console.WriteLine(""[TV] Encendido"");
-        public void PowerOff() => Console.WriteLine(""[TV] Apagado"");
-        public void SetVolume(int v) => Console.WriteLine($""[TV] Volumen: {v}"");
-    }
+        public virtual void SetNext(Logger next) => _next = next;
 
-    public class Radio : IDevice
-    {
-        public void PowerOn() => Console.WriteLine(""[Radio] Encendida"");
-        public void PowerOff() => Console.WriteLine(""[Radio] Apagada"");
-        public void SetVolume(int v) => Console.WriteLine($""[Radio] Volumen: {v}"");
-    }
-
-    // ===== Abstraction - Control Remoto =====
-    public abstract class RemoteControl
-    {
-        protected IDevice _device;
-
-        public RemoteControl(IDevice device) => _device = device;
-
-        public virtual void PowerOn() => _device.PowerOn();
-        public virtual void PowerOff() => _device.PowerOff();
-        public virtual void VolumeUp() => _device.SetVolume(50);
-    }
-
-    // ===== Refined Abstraction =====
-    public class AdvancedRemoteControl : RemoteControl
-    {
-        public AdvancedRemoteControl(IDevice device) : base(device) { }
-
-        public void Mute() 
+        public virtual void Log(string level, string message)
         {
-            _device.SetVolume(0);
-            Console.WriteLine(""Silenciado"");
+            if (Handle(level))
+                Process(level, message);
+            else if (_next != null)
+                _next.Log(level, message);
         }
+
+        protected abstract bool Handle(string level);
+        protected abstract void Process(string level, string message);
+    }
+
+    // ===== Handlers concretos =====
+    public class ConsoleLogger : Logger
+    {
+        protected override bool Handle(string level) 
+            => level == ""Info"" || level == ""Debug"";
+
+        protected override void Process(string level, string msg)
+            => Console.WriteLine($""[Console] {level}: {msg}"");
+    }
+
+    public class FileLogger : Logger
+    {
+        protected override bool Handle(string level) 
+            => level == ""Warning"" || level == ""Error"";
+
+        protected override void Process(string level, string msg)
+            => Console.WriteLine($""[File] {level}: {msg}"");
     }
 
     // ===== Uso =====
-    IDevice tv = new Television();
-    RemoteControl remote = new AdvancedRemoteControl(tv);
-    remote.PowerOn();
-    remote.VolumeUp();";
+    Logger console = new ConsoleLogger();
+    Logger file = new FileLogger();
+    console.SetNext(file);
+
+    console.Log(""Debug"", ""Debugging info"");
+    console.Log(""Error"", ""Something went wrong"");";
 
     private string advancedCode = @"
-    // ===== Implementor - Renderer =====
-    public interface IRenderer
+    // ===== Approver base =====
+    public abstract class Approver
     {
-        void DrawCircle(int x, int y, int r);
-        void DrawRectangle(int x, int y, int w, int h);
-        void DrawText(string text, int x, int y);
-    }
+        protected string _name;
+        protected decimal _limit;
+        protected Approver _next;
 
-    public class WindowsRenderer : IRenderer
-    {
-        public void DrawCircle(int x, int y, int r)
-            => Console.WriteLine($""[Windows] Círculo en ({x},{y})"");
-    
-        public void DrawRectangle(int x, int y, int w, int h)
-            => Console.WriteLine($""[Windows] Rectángulo {w}x{h}"");
-    
-        public void DrawText(string t, int x, int y)
-            => Console.WriteLine($""[Windows] Texto '{t}'"");
-    }
-
-    public class LinuxRenderer : IRenderer
-    {
-        public void DrawCircle(int x, int y, int r)
-            => Console.WriteLine($""[Linux] Renderizando círculo"");
-    
-        public void DrawRectangle(int x, int y, int w, int h)
-            => Console.WriteLine($""[Linux] Renderizando rectángulo"");
-    
-        public void DrawText(string t, int x, int y)
-            => Console.WriteLine($""[Linux] Renderizando texto"");
-    }
-
-    // ===== Abstraction - Window =====
-    public abstract class Window
-    {
-        protected IRenderer _renderer;
-
-        public Window(IRenderer renderer) => _renderer = renderer;
-        public abstract void Draw();
-    }
-
-    // ===== Refined Abstraction =====
-    public class ApplicationWindow : Window
-    {
-        public ApplicationWindow(IRenderer renderer) : base(renderer) { }
-
-        public override void Draw()
+        public Approver(string name, decimal limit)
         {
-            _renderer.DrawRectangle(0, 0, 800, 600);
-            _renderer.DrawText(""Aplicación"", 10, 10);
+            _name = name;
+            _limit = limit;
+        }
+
+        public void SetNext(Approver next) => _next = next;
+
+        public void Approve(decimal amount, string request)
+        {
+            if (amount <= _limit)
+                Console.WriteLine($""[{_name}] ✅ Aprobado: ${amount}"");
+            else if (_next != null)
+            {
+                Console.WriteLine($""[{_name}] Escalando (${amount} > ${_limit})"");
+                _next.Approve(amount, request);
+            }
+            else
+                Console.WriteLine($""❌ Rechazado: ${amount}"");
         }
     }
 
-    // ===== Cambiar renderer en runtime =====
-    var window = new ApplicationWindow(new WindowsRenderer());
-    window.Draw();
-    window.SetRenderer(new LinuxRenderer());
-    window.Draw();";
+    // ===== Approvers =====
+    public class Manager : Approver
+    {
+        public Manager() : base(""Manager"", 1000) { }
+    }
 
-    private string usageCode = @"
-    // ===== Bridge con dos dimensiones de variación =====
+    public class Director : Approver
+    {
+        public Director() : base(""Director"", 5000) { }
+    }
 
-    // Dimensión 1: Abstracción (RemoteControl, AdvancedRemoteControl)
-    // Dimensión 2: Implementación (Television, Radio)
+    public class CEO : Approver
+    {
+        public CEO() : base(""CEO"", decimal.MaxValue) { }
+    }
 
-    // Combinación 1: Control básico + TV
-    RemoteControl basicTv = new BasicRemoteControl(new Television());
+    // ===== Uso =====
+    Approver mgr = new Manager();
+    Approver dir = new Director();
+    Approver ceo = new CEO();
 
-    // Combinación 2: Control básico + Radio
-    RemoteControl basicRadio = new BasicRemoteControl(new Radio());
+    mgr.SetNext(dir);
+    dir.SetNext(ceo);
 
-    // Combinación 3: Control avanzado + TV
-    RemoteControl advancedTv = new AdvancedRemoteControl(new Television());
+    mgr.Approve(500, ""Supplies"");  // Manager aprueba
+    mgr.Approve(3000, ""Travel"");   // Director aprueba
+    mgr.Approve(10000, ""Expansion""); // CEO aprueba";
 
-    // Combinación 4: Control avanzado + Radio
-    RemoteControl advancedRadio = new AdvancedRemoteControl(new Radio());
+    private string flowCode = @"
+    // ===== FLUJO DE CADENA =====
 
-    // ===== Sin Bridge, necesitaríamos 4 clases: =====
-    // BasicTvRemote, BasicRadioRemote, 
-    // AdvancedTvRemote, AdvancedRadioRemote
+    // Solicitud: $2500 para conferencia
+    // Manager aprueba hasta $1000
 
-    // ===== Con Bridge, solo necesitamos: =====
-    // RemoteControl (2 implementaciones) + 
-    // IDevice (2 implementaciones) = 4 clases totales
+    Solicitud ($2500)
+        ↓
+    [Manager] ¿Puedo manejar? ($2500 <= $1000)
+        ❌ No
+        ↓
+    Pasar al siguiente → [Director]
+        ↓
+    [Director] ¿Puedo manejar? ($2500 <= $5000)
+        ✅ Sí!
+        ↓
+    Procesar: ✅ APROBADO
 
-    // ✅ Bridge permite combinar libremente
-    // ✅ Evita explosión de subclases
-    // ✅ Fácil agregar nuevas abstracciones o implementaciones";
+    // Solicitud: $10000 para expansión
+    Solicitud ($10000)
+        ↓
+    [Manager] ¿Puedo manejar? ($10000 <= $1000)
+        ❌ No → Pasar a [Director]
+        ↓
+    [Director] ¿Puedo manejar? ($10000 <= $5000)
+        ❌ No → Pasar a [CEO]
+        ↓
+    [CEO] ¿Puedo manejar? ($10000 <= ∞)
+        ✅ Sí!
+        ↓
+    Procesar: ✅ APROBADO";
 }
