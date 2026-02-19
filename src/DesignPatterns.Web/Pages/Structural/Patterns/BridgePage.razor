@@ -1,0 +1,442 @@
+﻿@page "/structural/bridge"
+
+<PageTitle>Bridge Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="arrow-trending-right" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Bridge Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Bridge desacopla una abstracción de su implementación para que ambas puedan variar independientemente.
+            Evita la explosión de subclases y permite cambiar la implementación en tiempo de ejecución.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Bridge?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Bridge es un patrón de diseño estructural que desacopla una abstracción de su implementación
+                            permitiendo que ambas varíen independientemente. Soluciona el problema de la explosión de
+                            subclases cuando hay dos dimensiones de variación.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Desacopla abstracción e implementación</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Reduce explosión de subclases</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Cumple Principio Open/Closed</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Cambiar implementación en runtime</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad adicional en el código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Más interfaces a mantener</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Curva de aprendizaje pronunciada</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Overhead para casos simples</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Remote Controls">
+                                Controles remotos para diferentes dispositivos usando Bridge.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Window Renderers">
+                                Ventanas con diferentes renderers para múltiples plataformas.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Uso -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Cómo Usar Bridge">
+                                Ejemplo de cómo usar Bridge con dos dimensiones de variación.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@usageCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-semibold">Media-Alta</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Desacoplar abstracción de implementación</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Media (arquitecturas complejas)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar cuando hay dos dimensiones de variación</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Evitar sobre-ingeniería en casos simples</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar claramente abstracción e implementación</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Permitir cambio de implementación en runtime</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/adapter" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="puzzle" AdditionalClass="w-4 h-4" />
+                            Adapter →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/decorator" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="sparkles" AdditionalClass="w-4 h-4" />
+                            Decorator →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/facade" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="building-library" AdditionalClass="w-4 h-4" />
+                            Facade →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Bridge, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un Bridge para vehículos con diferentes tipos de motores (Gasolina, Eléctrico, Híbrido)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un Bridge para diferentes notificadores (Email, SMS, Push) con diferentes canales</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un Bridge para abstracciones de pagos con múltiples proveedores y métodos</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Bridge", "/structural/bridge")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Uso" };
+
+    private List<string> useCases = new()
+    {
+        "Múltiples plataformas con diferentes renderers",
+        "Controles remotos para diferentes dispositivos",
+        "Vehículos con diferentes motores",
+        "Notificadores con múltiples canales",
+        "Bases de datos con múltiples drivers",
+        "Interfaz gráfica con diferentes temas",
+        "Almacenamiento con múltiples backends",
+        "Sistemas de logging multiplataforma"
+    };
+
+    private List<string> tags = new() { "Desacoplamiento", "Dos Dimensiones", "Abstracción", "Implementación" };
+
+    private string basicCode = @"
+    // ===== Implementor - Dispositivo =====
+    public interface IDevice
+    {
+        void PowerOn();
+        void PowerOff();
+        void SetVolume(int volume);
+    }
+
+    public class Television : IDevice
+    {
+        public void PowerOn() => Console.WriteLine(""[TV] Encendido"");
+        public void PowerOff() => Console.WriteLine(""[TV] Apagado"");
+        public void SetVolume(int v) => Console.WriteLine($""[TV] Volumen: {v}"");
+    }
+
+    public class Radio : IDevice
+    {
+        public void PowerOn() => Console.WriteLine(""[Radio] Encendida"");
+        public void PowerOff() => Console.WriteLine(""[Radio] Apagada"");
+        public void SetVolume(int v) => Console.WriteLine($""[Radio] Volumen: {v}"");
+    }
+
+    // ===== Abstraction - Control Remoto =====
+    public abstract class RemoteControl
+    {
+        protected IDevice _device;
+
+        public RemoteControl(IDevice device) => _device = device;
+
+        public virtual void PowerOn() => _device.PowerOn();
+        public virtual void PowerOff() => _device.PowerOff();
+        public virtual void VolumeUp() => _device.SetVolume(50);
+    }
+
+    // ===== Refined Abstraction =====
+    public class AdvancedRemoteControl : RemoteControl
+    {
+        public AdvancedRemoteControl(IDevice device) : base(device) { }
+
+        public void Mute() 
+        {
+            _device.SetVolume(0);
+            Console.WriteLine(""Silenciado"");
+        }
+    }
+
+    // ===== Uso =====
+    IDevice tv = new Television();
+    RemoteControl remote = new AdvancedRemoteControl(tv);
+    remote.PowerOn();
+    remote.VolumeUp();";
+
+    private string advancedCode = @"
+    // ===== Implementor - Renderer =====
+    public interface IRenderer
+    {
+        void DrawCircle(int x, int y, int r);
+        void DrawRectangle(int x, int y, int w, int h);
+        void DrawText(string text, int x, int y);
+    }
+
+    public class WindowsRenderer : IRenderer
+    {
+        public void DrawCircle(int x, int y, int r)
+            => Console.WriteLine($""[Windows] Círculo en ({x},{y})"");
+    
+        public void DrawRectangle(int x, int y, int w, int h)
+            => Console.WriteLine($""[Windows] Rectángulo {w}x{h}"");
+    
+        public void DrawText(string t, int x, int y)
+            => Console.WriteLine($""[Windows] Texto '{t}'"");
+    }
+
+    public class LinuxRenderer : IRenderer
+    {
+        public void DrawCircle(int x, int y, int r)
+            => Console.WriteLine($""[Linux] Renderizando círculo"");
+    
+        public void DrawRectangle(int x, int y, int w, int h)
+            => Console.WriteLine($""[Linux] Renderizando rectángulo"");
+    
+        public void DrawText(string t, int x, int y)
+            => Console.WriteLine($""[Linux] Renderizando texto"");
+    }
+
+    // ===== Abstraction - Window =====
+    public abstract class Window
+    {
+        protected IRenderer _renderer;
+
+        public Window(IRenderer renderer) => _renderer = renderer;
+        public abstract void Draw();
+    }
+
+    // ===== Refined Abstraction =====
+    public class ApplicationWindow : Window
+    {
+        public ApplicationWindow(IRenderer renderer) : base(renderer) { }
+
+        public override void Draw()
+        {
+            _renderer.DrawRectangle(0, 0, 800, 600);
+            _renderer.DrawText(""Aplicación"", 10, 10);
+        }
+    }
+
+    // ===== Cambiar renderer en runtime =====
+    var window = new ApplicationWindow(new WindowsRenderer());
+    window.Draw();
+    window.SetRenderer(new LinuxRenderer());
+    window.Draw();";
+
+    private string usageCode = @"
+    // ===== Bridge con dos dimensiones de variación =====
+
+    // Dimensión 1: Abstracción (RemoteControl, AdvancedRemoteControl)
+    // Dimensión 2: Implementación (Television, Radio)
+
+    // Combinación 1: Control básico + TV
+    RemoteControl basicTv = new BasicRemoteControl(new Television());
+
+    // Combinación 2: Control básico + Radio
+    RemoteControl basicRadio = new BasicRemoteControl(new Radio());
+
+    // Combinación 3: Control avanzado + TV
+    RemoteControl advancedTv = new AdvancedRemoteControl(new Television());
+
+    // Combinación 4: Control avanzado + Radio
+    RemoteControl advancedRadio = new AdvancedRemoteControl(new Radio());
+
+    // ===== Sin Bridge, necesitaríamos 4 clases: =====
+    // BasicTvRemote, BasicRadioRemote, 
+    // AdvancedTvRemote, AdvancedRadioRemote
+
+    // ===== Con Bridge, solo necesitamos: =====
+    // RemoteControl (2 implementaciones) + 
+    // IDevice (2 implementaciones) = 4 clases totales
+
+    // ✅ Bridge permite combinar libremente
+    // ✅ Evita explosión de subclases
+    // ✅ Fácil agregar nuevas abstracciones o implementaciones";
+}
