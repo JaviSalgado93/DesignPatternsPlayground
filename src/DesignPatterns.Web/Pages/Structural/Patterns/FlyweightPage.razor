@@ -1,0 +1,498 @@
+﻿@page "/structural/flyweight"
+
+<PageTitle>Flyweight Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="bolt" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Flyweight Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Flyweight utiliza el compartir para soportar eficientemente grandes números de objetos pequeños.
+            Reduce el uso de memoria compartiendo datos comunes entre múltiples objetos mediante una factory.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Flyweight?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Flyweight es un patrón de diseño estructural que utiliza el compartir para soportar eficientemente
+                            grandes números de objetos pequeños. Reduce significativamente el uso de memoria compartiendo estado
+                            intrínseco entre múltiples objetos a través de una factory.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONCEPTOS CLAVE ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Estado Intrínseco -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="cube" AdditionalClass="w-6 h-6 text-blue-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Estado Intrínseco</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Datos compartibles que permanecen constantes y se almacenan en el Flyweight.
+                        No dependen del contexto. Ejemplo: tipo de fuente, color de árbol.
+                    </p>
+                </div>
+
+                <!-- Estado Extrínseco -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="adjustments-horizontal" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Estado Extrínseco</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Datos únicos para cada objeto que varían según el contexto.
+                        Se pasan externamente. Ejemplo: posición (x, y), tamaño.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Reduce memoria significativamente</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Mejora performance general</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Escala para miles de objetos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Centraliza estado compartido</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad adicional en código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Overhead de CPU en lookup</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Consideraciones de thread-safety</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil debuggear</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Text Editor">
+                                Caracteres compartidos en un editor de texto.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Forest">
+                                Árboles compartidos en un bosque con optimización de memoria.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Conceptos -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Estado Intrínseco vs Extrínseco">
+                                Diferencia entre datos compartidos y únicos.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@conceptCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Difícil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Reducir memoria en muchos objetos</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Media (optimización)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Identificar claramente estado intrínseco</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Usar factory para gestionar caché</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Medir impacto en performance</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Considerar thread-safety</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/composite" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🌳 Composite →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/factory" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🏭 Factory →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/proxy" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🔐 Proxy →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Memory Optimization Card -->
+            <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="lightning-bolt" AdditionalClass="w-5 h-5 text-yellow-600" />
+                    Optimización
+                </h3>
+                <div class="space-y-2 text-sm text-secondary-700">
+                    <p>
+                        <span class="font-semibold">Sin Flyweight:</span>
+                        10,000 objetos = ~1MB
+                    </p>
+                    <p>
+                        <span class="font-semibold">Con Flyweight:</span>
+                        10,000 objetos = ~50KB
+                    </p>
+                    <p class="text-accent-green font-bold">
+                        💾 Ahorro: ~95%
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Flyweight, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un Flyweight para píxeles en una imagen (color compartido)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un Flyweight para partículas en un videojuego</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un Flyweight para emojis en una red social</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Flyweight", "/structural/flyweight")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Conceptos" };
+
+    private List<string> useCases = new()
+    {
+        "Editor de texto con miles de caracteres",
+        "Videojuegos con miles de partículas",
+        "Aplicaciones con muchos objetos visuales",
+        "Base de datos con muchos registros similares",
+        "Redes sociales con emojis compartidos",
+        "Aplicaciones gráficas complejas",
+        "Sistemas de caché de objetos",
+        "Motores de juegos 3D"
+    };
+
+    private List<string> tags = new() { "Memoria", "Caché", "Compartir", "Optimización" };
+
+    private string basicCode = @"
+    // ===== Flyweight - Intrínseco compartido =====
+    public class Character
+    {
+        private char _char; // Compartido
+        private string _font; // Compartido
+
+        public Character(char c, string font)
+        {
+            _char = c;
+            _font = font;
+        }
+
+        public void Display(int row, int col)
+        {
+            Console.WriteLine($""'{_char}' en ({row}, {col})"");
+        }
+    }
+
+    // ===== Factory - Cachea caracteres =====
+    public class CharacterFactory
+    {
+        private Dictionary<string, Character> _cache = new();
+
+        public Character GetCharacter(char c, string font)
+        {
+            string key = $""{c}:{font}"";
+
+            if (!_cache.ContainsKey(key))
+            {
+                _cache[key] = new Character(c, font);
+            }
+
+            return _cache[key];
+        }
+    }
+
+    // ===== Uso =====
+    var factory = new CharacterFactory();
+
+    // Estos comparten el mismo objeto Flyweight
+    var h = factory.GetCharacter('H', ""Arial"");
+    var e1 = factory.GetCharacter('e', ""Arial"");
+    var e2 = factory.GetCharacter('e', ""Arial""); // Mismo objeto que e1
+
+    h.Display(1, 1);
+    e1.Display(1, 2);
+    e2.Display(1, 3);
+
+    Console.WriteLine($""Caracteres únicos: 2"");";
+
+    private string advancedCode = @"
+    // ===== Flyweight - Tipo de árbol (intrínseco) =====
+    public class TreeType
+    {
+        public string Name { get; set; }
+        public string Color { get; set; }
+        public string Texture { get; set; }
+
+        public TreeType(string name, string color, string texture)
+        {
+            Name = name;
+            Color = color;
+            Texture = texture;
+        }
+
+        public void Draw(int x, int y)
+        {
+            Console.WriteLine($""🌳 {Name} en ({x}, {y})"");
+        }
+    }
+
+    // ===== Objeto con estado extrínseco =====
+    public class Tree
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public TreeType Type { get; set; } // Compartido
+
+        public Tree(int x, int y, TreeType type)
+        {
+            X = x;
+            Y = y;
+            Type = type;
+        }
+
+        public void Draw() => Type.Draw(X, Y);
+    }
+
+    // ===== Factory =====
+    public class TreeFactory
+    {
+        private Dictionary<string, TreeType> _types = new();
+
+        public TreeType GetTreeType(string name, string color, string texture)
+        {
+            string key = $""{name}:{color}:{texture}"";
+            if (!_types.ContainsKey(key))
+                _types[key] = new TreeType(name, color, texture);
+            return _types[key];
+        }
+    }
+
+    // ===== Bosque =====
+    public class Forest
+    {
+        private List<Tree> _trees = new();
+        private TreeFactory _factory = new();
+
+        public void PlantTree(int x, int y, string name, string color, string texture)
+        {
+            var type = _factory.GetTreeType(name, color, texture);
+            _trees.Add(new Tree(x, y, type));
+        }
+    }";
+
+    private string conceptCode = @"
+    // ===== ESTADO INTRÍNSECO (Compartido) =====
+    public class TreeType
+    {
+        // Estos datos son INTRÍNSECO - se comparten
+        public string Name { get; set; }      // Ej: ""Roble""
+        public string Color { get; set; }     // Ej: ""Marrón""
+        public string Texture { get; set; }   // Ej: ""Rugosa""
+
+        // Inmutable y constante para todos los árboles del mismo tipo
+    }
+
+    // ===== ESTADO EXTRÍNSECO (Único) =====
+    public class Tree
+    {
+        // Estos datos son EXTRÍNSECO - varían por instancia
+        public int X { get; set; }       // Posición X única
+        public int Y { get; set; }       // Posición Y única
+    
+        // Referencia al Flyweight compartido
+        public TreeType Type { get; set; }
+    }
+
+    // ===== EJEMPLO =====
+    var roble = new TreeType(""Roble"", ""Marrón"", ""Rugosa"");
+
+    // Todos estos árboles COMPARTEN el mismo TreeType
+    var tree1 = new Tree { X = 10, Y = 20, Type = roble };
+    var tree2 = new Tree { X = 30, Y = 40, Type = roble };
+    var tree3 = new Tree { X = 50, Y = 60, Type = roble };
+
+    // Solo 1 TreeType en memoria, pero 3 Trees
+    // TreeType = Intrínseco (100 bytes)
+    // Cada Tree = Extrínseco (16 bytes)
+    // Total: 100 + 16*3 = 148 bytes
+
+    // Sin Flyweight: 100*3 + 16*3 = 348 bytes (57% más memoria)";
+}

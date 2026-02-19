@@ -26,10 +26,7 @@
     <Folder Include="Structural\Decorator\Tests\" />
     <Folder Include="Structural\Facade\Examples\03-MyOwn\" />
     <Folder Include="Structural\Facade\Tests\" />
-    <Folder Include="Structural\Flyweight\Examples\01-Basic\" />
-    <Folder Include="Structural\Flyweight\Examples\02-Advanced\" />
     <Folder Include="Structural\Flyweight\Examples\03-MyOwn\" />
-    <Folder Include="Structural\Flyweight\Implementation\" />
     <Folder Include="Structural\Flyweight\Tests\" />
     <Folder Include="Structural\Proxy\Examples\03-MyOwn\" />
     <Folder Include="Structural\Proxy\Tests\" />
