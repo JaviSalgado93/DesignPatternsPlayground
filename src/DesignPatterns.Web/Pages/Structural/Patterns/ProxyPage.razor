@@ -1,0 +1,531 @@
+﻿@page "/structural/proxy"
+
+<PageTitle>Proxy Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="shield-check" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Proxy Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Estructural</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Proxy proporciona un sustituto o marcador de posición para otro objeto para controlar el acceso a él.
+            Permite implementar lazy loading, control de acceso, logging y caching sin modificar el objeto original.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Proxy?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Proxy es un patrón de diseño estructural que proporciona un sustituto o marcador de posición
+                            para otro objeto para controlar el acceso a él. Permite implementar control fino de acceso,
+                            lazy loading, logging y caching sin cambiar el objeto original.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Lazy loading de recursos costosos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Control de acceso fino</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Caching de resultados</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Logging y auditoría</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad adicional al código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Overhead de performance</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Indirección en el código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil mantener sincronización</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Image Proxy">
+                                Lazy loading de imágenes pesadas con proxy.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Database Proxy">
+                                Control de acceso, caching y auditoría de base de datos.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Tipos -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Tipos de Proxy">
+                                Diferentes tipos de proxies y sus casos de uso.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@typesCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- ===== TIPOS DE PROXY ===== -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md p-6 md:p-8 border-l-4 border-blue-500">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="bookmark" AdditionalClass="w-6 h-6 text-blue-600" />
+                    Tipos de Proxy
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg p-4 border-l-4 border-blue-600">
+                        <h3 class="font-bold text-secondary-900 mb-2">🚀 Lazy Proxy</h3>
+                        <p class="text-secondary-600 text-sm">Crea el objeto real solo cuando se necesita. Ideal para recursos costosos.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border-l-4 border-green-600">
+                        <h3 class="font-bold text-secondary-900 mb-2">🔐 Protection Proxy</h3>
+                        <p class="text-secondary-600 text-sm">Controla acceso al objeto basado en permisos. Implementa autenticación y autorización.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border-l-4 border-yellow-600">
+                        <h3 class="font-bold text-secondary-900 mb-2">💾 Caching Proxy</h3>
+                        <p class="text-secondary-600 text-sm">Cachea resultados de operaciones costosas. Mejora performance significativamente.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border-l-4 border-purple-600">
+                        <h3 class="font-bold text-secondary-900 mb-2">📋 Logging Proxy</h3>
+                        <p class="text-secondary-600 text-sm">Registra todas las operaciones. Útil para auditoría y debugging.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border-l-4 border-pink-600">
+                        <h3 class="font-bold text-secondary-900 mb-2">🌐 Remote Proxy</h3>
+                        <p class="text-secondary-600 text-sm">Representa un objeto en proceso remoto. Base de RPC y servicios web.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Estructural</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Controlar acceso a otro objeto</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (acceso remoto, caching)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Proxy implementa la misma interfaz</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>No modificar objeto original</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Mantener sincronización si es necesario</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar comportamiento del proxy</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/structural/adapter" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🧩 Adapter →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/decorator" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🎨 Decorator →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/structural/facade" class="text-primary-600 hover:text-primary-800 font-semibold">
+                            🏛️ Facade →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Proxy, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un Proxy para conexiones a API REST con caché</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un Proxy con control de acceso basado en roles</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un Proxy para recursos remotos con reconexión automática</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Structural", "/structural"),
+        new BreadcrumbItem("Proxy", "/structural/proxy")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Tipos" };
+
+    private List<string> useCases = new()
+    {
+        "Lazy loading de imágenes pesadas",
+        "Control de acceso a recursos",
+        "Caching de resultados costosos",
+        "Acceso a servicios remotos",
+        "Auditoría y logging de operaciones",
+        "Conexiones a base de datos",
+        "APIs con rate limiting",
+        "Protección de objetos sensibles"
+    };
+
+    private List<string> tags = new() { "Control de Acceso", "Lazy Loading", "Caching", "Auditoría" };
+
+    private string basicCode = @"
+    // ===== Interfaz común =====
+    public interface IImage
+    {
+        void Display();
+    }
+
+    // ===== Objeto real pesado =====
+    public class RealImage : IImage
+    {
+        private string _filename;
+
+        public RealImage(string filename)
+        {
+            _filename = filename;
+            LoadImageFromDisk();
+        }
+
+        private void LoadImageFromDisk()
+        {
+            Console.WriteLine($""Cargando: {_filename} (lento...)"");
+            Thread.Sleep(2000);
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($""Mostrando: {_filename}"");
+        }
+    }
+
+    // ===== Proxy con lazy loading =====
+    public class ImageProxy : IImage
+    {
+        private string _filename;
+        private RealImage _realImage;
+
+        public ImageProxy(string filename)
+        {
+            _filename = filename;
+            // No se carga todavía
+        }
+
+        public void Display()
+        {
+            if (_realImage == null)
+            {
+                // Primera vez: crear el objeto real
+                _realImage = new RealImage(_filename);
+            }
+            _realImage.Display();
+        }
+    }
+
+    // ===== Uso =====
+    IImage image = new ImageProxy(""photo.jpg"");
+    // No se carga la imagen aún
+
+    image.Display(); // Ahora se carga
+    image.Display(); // Ya está cargada";
+
+    private string advancedCode = @"
+    // ===== Interfaz común =====
+    public interface IDatabase
+    {
+        void Execute(string query);
+        string FetchData(string query);
+    }
+
+    // ===== Proxy con control, caché y auditoría =====
+    public class DatabaseProxy : IDatabase
+    {
+        private RealDatabase _db;
+        private Dictionary<string, string> _cache;
+        private string _currentUser;
+        private List<string> _auditLog;
+
+        public DatabaseProxy(string conn, string user)
+        {
+            _db = new RealDatabase(conn);
+            _currentUser = user;
+            _cache = new();
+            _auditLog = new();
+        }
+
+        public void Execute(string query)
+        {
+            // Control de acceso
+            if (!HasPermission(_currentUser, ""execute""))
+            {
+                Console.WriteLine(""Acceso denegado"");
+                LogAudit($""Intento: {query}"");
+                return;
+            }
+
+            LogAudit($""Execute: {query}"");
+            _db.Execute(query);
+        }
+
+        public string FetchData(string query)
+        {
+            // Control de acceso
+            if (!HasPermission(_currentUser, ""read""))
+            {
+                LogAudit($""Intento de lectura: {query}"");
+                return """";
+            }
+
+            // Caché
+            if (_cache.ContainsKey(query))
+            {
+                Console.WriteLine(""📊 Desde caché"");
+                return _cache[query];
+            }
+
+            // Auditoría
+            LogAudit($""FetchData: {query}"");
+
+            // Ejecutar
+            var result = _db.FetchData(query);
+
+            // Guardar caché
+            _cache[query] = result;
+
+            return result;
+        }
+
+        private void LogAudit(string msg)
+        {
+            _auditLog.Add($""[{DateTime.Now}] {_currentUser}: {msg}"");
+        }
+    }";
+
+    private string typesCode = @"
+    // ===== TIPOS DE PROXY =====
+
+    // 1️⃣ LAZY PROXY - Carga diferida
+    public class LazyProxy : IImage
+    {
+        private RealImage _real;
+
+        public void Display()
+        {
+            if (_real == null)
+                _real = new RealImage(""photo.jpg"");
+            _real.Display();
+        }
+    }
+
+    // 2️⃣ PROTECTION PROXY - Control de acceso
+    public class ProtectionProxy : IImage
+    {
+        private RealImage _real;
+        private bool _canAccess;
+
+        public void Display()
+        {
+            if (!_canAccess)
+            {
+                Console.WriteLine(""❌ Acceso denegado"");
+                return;
+            }
+            _real.Display();
+        }
+    }
+
+    // 3️⃣ CACHING PROXY - Almacenamiento en caché
+    public class CachingProxy : IDatabase
+    {
+        private Dictionary<string, string> _cache = new();
+
+        public string FetchData(string query)
+        {
+            if (_cache.ContainsKey(query))
+                return _cache[query];
+
+            var result = _db.FetchData(query);
+            _cache[query] = result;
+            return result;
+        }
+    }
+
+    // 4️⃣ LOGGING PROXY - Auditoría
+    public class LoggingProxy : IDatabase
+    {
+        private List<string> _logs = new();
+
+        public void Execute(string query)
+        {
+            _logs.Add($""Execute: {query}"");
+            _db.Execute(query);
+        }
+    }
+
+    // 5️⃣ REMOTE PROXY - Objeto remoto
+    public class RemoteProxy : IService
+    {
+        private HttpClient _client;
+
+        public string GetData()
+        {
+            var response = _client.GetAsync(""http://api.example.com/data"");
+            return response.Content;
+        }
+    }";
+}
