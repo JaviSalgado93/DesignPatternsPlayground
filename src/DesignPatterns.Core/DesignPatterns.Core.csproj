@@ -13,6 +13,8 @@
     <Folder Include="Behavioral\Command\Tests\" />
     <Folder Include="Behavioral\Interpreter\Examples\03-MyOwn\" />
     <Folder Include="Behavioral\Interpreter\Tests\" />
+    <Folder Include="Behavioral\Mediator\Examples\03-MyOwn\" />
+    <Folder Include="Behavioral\Mediator\Tests\" />
     <Folder Include="Behavioral\Strategy\Examples\" />
     <Folder Include="Behavioral\Strategy\Implementation\" />
     <Folder Include="Creational\AbstractFactory\Tests\" />
