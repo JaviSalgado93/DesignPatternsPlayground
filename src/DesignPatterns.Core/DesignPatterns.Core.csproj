@@ -23,6 +23,8 @@
     <Folder Include="Behavioral\State\Tests\" />
     <Folder Include="Behavioral\Strategy\Examples\03-MyOwn\" />
     <Folder Include="Behavioral\Strategy\Tests\" />
+    <Folder Include="Behavioral\TemplateMethod\Examples\03-MyOwn\" />
+    <Folder Include="Behavioral\TemplateMethod\Tests\" />
     <Folder Include="Creational\AbstractFactory\Tests\" />
     <Folder Include="Creational\Builder\Tests\" />
     <Folder Include="Creational\FactoryMethod\Tests\" />

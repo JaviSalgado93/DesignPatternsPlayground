@@ -1,0 +1,581 @@
+﻿@page "/behavioral/template-method"
+
+<PageTitle>Template Method Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="rectangle-stack" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Template Method Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Comportamental</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Template Method define el esqueleto de un algoritmo en una clase base, permitiendo que
+            las subclases redefinan pasos específicos sin cambiar la estructura del algoritmo.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Template Method?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Template Method es un patrón comportamental que define el esqueleto de un algoritmo
+                            en una clase base, permitiendo que las subclases redefinan pasos específicos sin
+                            cambiar la estructura general del algoritmo. Promueve la reutilización de código y
+                            mantiene la consistencia en la ejecución.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COMPONENTES CLAVE ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- AbstractClass -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="cube" AdditionalClass="w-6 h-6 text-blue-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">AbstractClass</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Define template method con estructura del algoritmo. Declara pasos abstractos.
+                    </p>
+                </div>
+
+                <!-- ConcreteClass -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">ConcreteClass</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Implementa pasos abstractos. Mantiene estructura del algoritmo.
+                    </p>
+                </div>
+
+                <!-- Herencia -->
+                <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="arrow-top-right-on-square" AdditionalClass="w-6 h-6 text-yellow-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Herencia</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Subclases heredan template method. Polimorfismo en pasos específicos.
+                    </p>
+                </div>
+
+                <!-- Reutilización -->
+                <div class="bg-purple-50 rounded-xl shadow-md p-6 border-l-4 border-purple-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="arrow-path" AdditionalClass="w-6 h-6 text-purple-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Reutilización</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Código común en clase base. Pasos específicos en subclases.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Evita duplicación de código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Controlado y predecible</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Reutilización de código</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Estructura clara</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Requiere herencia</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad de jerarquía</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Hollywood Principle</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil cambiar estructura</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Cooking Recipe">
+                                Estructura de recetas de cocina con pasos variables.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Document Generation">
+                                Generación de documentos en múltiples formatos.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Comparación -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Sin Template Method vs Con Template Method">
+                                Comparación de enfoques.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@comparisonCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Comportamental</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Estructura de algoritmo</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (muy común)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Template method claro</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Pasos bien definidos</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Evitar lógica condicional</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar jerarquía</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/behavioral/strategy" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="target" AdditionalClass="w-4 h-4" />
+                            Strategy →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/state" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="arrow-path" AdditionalClass="w-4 h-4" />
+                            State →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/command" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="cog" AdditionalClass="w-4 h-4" />
+                            Command →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Algorithm Structure Card -->
+            <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl shadow-md p-6 border-l-4 border-teal-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="list-bullet" AdditionalClass="w-5 h-5 text-teal-600" />
+                    Estructura
+                </h3>
+                <div class="space-y-2 text-sm text-secondary-700">
+                    <p>
+                        <span class="font-semibold">Template Method:</span><br />
+                        Define esqueleto
+                    </p>
+                    <p>
+                        <span class="font-semibold">Pasos Abstractos:</span><br />
+                        Para implementar
+                    </p>
+                    <p class="text-teal-600 font-bold flex items-center gap-1">
+                        <HeroIcon IconName="rectangle-stack" AdditionalClass="w-4 h-4" />
+                        Orden fijo, detalles variables
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Template Method, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un template para diferentes tipos de reportes (PDF, CSV, HTML)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un template para procesos de instalación</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un template para diferentes tipos de búsqueda en base de datos</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Behavioral", "/behavioral"),
+        new BreadcrumbItem("Template Method", "/behavioral/template-method")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Comparación" };
+
+    private List<string> useCases = new()
+    {
+        "Generación de documentos",
+        "Procesos de instalación",
+        "Pipeline de procesamiento",
+        "Flujos de trabajo",
+        "Algoritmos con estructura fija",
+        "Conexiones a bases de datos",
+        "Importación de datos",
+        "Procesamiento de archivos"
+    };
+
+    private List<string> tags = new() { "Herencia", "Reutilización", "Estructura", "Algoritmo" };
+
+    private string basicCode = @"
+    // ===== Abstract Class =====
+    public abstract class Recipe
+    {
+        // Template Method
+        public void Cook()
+        {
+            GatherIngredients();
+            PrepareIngredients();
+            CookInternal();
+            Season();
+            Serve();
+        }
+
+        // Pasos comunes
+        protected void GatherIngredients()
+        {
+            Console.WriteLine(""Reuniendo ingredientes"");
+        }
+
+        protected void Serve()
+        {
+            Console.WriteLine(""Sirviendo"");
+        }
+
+        // Pasos abstractos
+        protected abstract void PrepareIngredients();
+        protected abstract void CookInternal();
+        protected abstract void Season();
+    }
+
+    // ===== Concrete Classes =====
+    public class Pasta : Recipe
+    {
+        protected override void PrepareIngredients()
+        {
+            Console.WriteLine(""Picando tomates"");
+        }
+
+        protected override void CookInternal()
+        {
+            Console.WriteLine(""Cocinando pasta"");
+        }
+
+        protected override void Season()
+        {
+            Console.WriteLine(""Agregando orégano"");
+        }
+    }
+
+    public class Omelette : Recipe
+    {
+        protected override void PrepareIngredients()
+        {
+            Console.WriteLine(""Batiendo huevos"");
+        }
+
+        protected override void CookInternal()
+        {
+            Console.WriteLine(""Cocinando en sartén"");
+        }
+
+        protected override void Season()
+        {
+            Console.WriteLine(""Agregando queso"");
+        }
+    }
+
+    // ===== Uso =====
+    var pasta = new Pasta();
+    pasta.Cook();
+
+    var omelette = new Omelette();
+    omelette.Cook();";
+
+    private string advancedCode = @"
+    // ===== Abstract Class =====
+    public abstract class Document
+    {
+        // Template Method
+        public void Generate(string fileName)
+        {
+            CreateHeader();
+            CreateBody();
+            CreateFooter();
+            Format();
+            Save(fileName);
+        }
+
+        // Pasos comunes
+        protected void CreateHeader()
+        {
+            Console.WriteLine(""Creando encabezado"");
+        }
+
+        protected void CreateFooter()
+        {
+            Console.WriteLine(""Creando pie"");
+        }
+
+        // Pasos abstractos
+        protected abstract void CreateBody();
+        protected abstract void Format();
+        protected abstract void Save(string fileName);
+    }
+
+    // ===== Concrete Classes =====
+    public class PDFDocument : Document
+    {
+        protected override void CreateBody()
+        {
+            Console.WriteLine(""Agregando contenido PDF"");
+        }
+
+        protected override void Format()
+        {
+            Console.WriteLine(""Renderizando a PDF"");
+        }
+
+        protected override void Save(string fileName)
+        {
+            Console.WriteLine($""Guardando: {fileName}.pdf"");
+        }
+    }
+
+    public class WordDocument : Document
+    {
+        protected override void CreateBody()
+        {
+            Console.WriteLine(""Agregando párrafos"");
+        }
+
+        protected override void Format()
+        {
+            Console.WriteLine(""Aplicando estilos"");
+        }
+
+        protected override void Save(string fileName)
+        {
+            Console.WriteLine($""Guardando: {fileName}.docx"");
+        }
+    }
+
+    public class HTMLDocument : Document
+    {
+        protected override void CreateBody()
+        {
+            Console.WriteLine(""Creando estructura HTML"");
+        }
+
+        protected override void Format()
+        {
+            Console.WriteLine(""Agregando CSS"");
+        }
+
+        protected override void Save(string fileName)
+        {
+            Console.WriteLine($""Guardando: {fileName}.html"");
+        }
+    }";
+
+    private string comparisonCode = @"
+    // ===== SIN TEMPLATE METHOD (Con duplicación) =====
+    public class PastaRecipe
+    {
+        public void Cook()
+        {
+            Console.WriteLine(""Reuniendo ingredientes"");
+            Console.WriteLine(""Picando tomates"");
+            Console.WriteLine(""Cocinando pasta"");
+            Console.WriteLine(""Agregando orégano"");
+            Console.WriteLine(""Sirviendo"");
+        }
+    }
+
+    public class OmeletteRecipe
+    {
+        public void Cook()
+        {
+            Console.WriteLine(""Reuniendo ingredientes"");
+            Console.WriteLine(""Batiendo huevos"");
+            Console.WriteLine(""Cocinando en sartén"");
+            Console.WriteLine(""Agregando queso"");
+            Console.WriteLine(""Sirviendo"");
+        }
+    }
+    // ❌ Código duplicado, difícil mantener
+
+    // ===== CON TEMPLATE METHOD (Patrón) =====
+    public abstract class Recipe
+    {
+        public void Cook()
+        {
+            GatherIngredients();
+            PrepareIngredients();
+            CookInternal();
+            Season();
+            Serve();
+        }
+
+        protected void GatherIngredients() 
+            => Console.WriteLine(""Ingredientes"");
+
+        protected void Serve() 
+            => Console.WriteLine(""Sirviendo"");
+
+        protected abstract void PrepareIngredients();
+        protected abstract void CookInternal();
+        protected abstract void Season();
+    }
+    // ✅ Sin duplicación, reutilizable, fácil mantener";
+}
