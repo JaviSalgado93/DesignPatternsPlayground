@@ -1,0 +1,545 @@
+﻿@page "/behavioral/visitor"
+
+<PageTitle>Visitor Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="eye" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Visitor Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Comportamental</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Visitor representa una operación a ser realizada en elementos de una estructura de objetos.
+            Visitor permite definir nuevas operaciones sin cambiar las clases de los elementos sobre los que opera.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Visitor?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Visitor es un patrón comportamental que representa una operación a realizar sobre
+                            elementos de una estructura de objetos. Permite definir nuevas operaciones sin cambiar
+                            las clases de los elementos. Utiliza double dispatch para aplicar diferentes operaciones
+                            según el tipo de elemento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COMPONENTES CLAVE ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Visitor -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="user-plus" AdditionalClass="w-6 h-6 text-blue-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Visitor</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Define interfaz para operaciones en elementos. Métodos Visit para cada tipo.
+                    </p>
+                </div>
+
+                <!-- ConcreteVisitor -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">ConcreteVisitor</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Implementa operaciones concretas. Un visitor por operación.
+                    </p>
+                </div>
+
+                <!-- Element -->
+                <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="cube-transparent" AdditionalClass="w-6 h-6 text-yellow-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Element</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Define interfaz Accept. Acepta visitors para procesar.
+                    </p>
+                </div>
+
+                <!-- Double Dispatch -->
+                <div class="bg-purple-50 rounded-xl shadow-md p-6 border-l-4 border-purple-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="arrow-right-left" AdditionalClass="w-6 h-6 text-purple-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Double Dispatch</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Despacho según tipo de elemento y tipo de visitor.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Agregar operaciones sin cambiar elementos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Agrupar lógica relacionada</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Separa datos de lógica</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Double dispatch elegante</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil agregar nuevos elementos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad inicial alta</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Viola encapsulación</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Requiere acceso privado</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Shape Operations">
+                                Operaciones en figuras geométricas.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Document Processing">
+                                Procesamiento de elementos de documento.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Double Dispatch -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Double Dispatch Explained">
+                                Cómo funciona el despacho doble.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@dispatchCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Comportamental</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Difícil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Operaciones en estructuras</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Media (especializado)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Estructura estable primero</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Visitors independientes</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Documentar double dispatch</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Validar en visitors</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/behavioral/composite" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="rectangle-stack" AdditionalClass="w-4 h-4" />
+                            Composite →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/iterator" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="arrow-path" AdditionalClass="w-4 h-4" />
+                            Iterator →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/strategy" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="target" AdditionalClass="w-4 h-4" />
+                            Strategy →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Double Dispatch Card -->
+            <div class="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl shadow-md p-6 border-l-4 border-pink-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="arrow-left-right" AdditionalClass="w-5 h-5 text-pink-600" />
+                    Double Dispatch
+                </h3>
+                <div class="space-y-2 text-sm text-secondary-700">
+                    <p>
+                        <span class="font-semibold">Primera llamada:</span><br />
+                        Element.Accept(Visitor)
+                    </p>
+                    <p>
+                        <span class="font-semibold">Segunda llamada:</span><br />
+                        Visitor.Visit(Element)
+                    </p>
+                    <p class="text-pink-600 font-bold flex items-center gap-1">
+                        <HeroIcon IconName="target" AdditionalClass="w-4 h-4" />
+                        Polimorfismo doble
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Visitor, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea visitors para validar y serializar un árbol de expresiones</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa visitors para calcular y simplificar expresiones matemáticas</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un sistema de reportes con múltiples visitors para diferentes formatos</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Behavioral", "/behavioral"),
+        new BreadcrumbItem("Visitor", "/behavioral/visitor")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Double Dispatch" };
+
+    private List<string> useCases = new()
+    {
+        "Operaciones en estructuras complejas",
+        "Procesamiento de documentos",
+        "Análisis de código (AST)",
+        "Generación de reportes",
+        "Compiladores e intérpretes",
+        "Validación de datos",
+        "Exportación de formatos",
+        "Recorrido de árboles"
+    };
+
+    private List<string> tags = new() { "Double Dispatch", "Operaciones", "Estructuras", "Polimorfismo" };
+
+    private string basicCode = @"
+    // ===== Element Interface =====
+    public interface IShape
+    {
+        void Accept(IShapeVisitor visitor);
+    }
+
+    // ===== Concrete Elements =====
+    public class Circle : IShape
+    {
+        public double Radius { get; set; }
+        public void Accept(IShapeVisitor v) => v.VisitCircle(this);
+    }
+
+    public class Rectangle : IShape
+    {
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public void Accept(IShapeVisitor v) => v.VisitRectangle(this);
+    }
+
+    // ===== Visitor Interface =====
+    public interface IShapeVisitor
+    {
+        void VisitCircle(Circle c);
+        void VisitRectangle(Rectangle r);
+    }
+
+    // ===== Concrete Visitors =====
+    public class AreaCalculator : IShapeVisitor
+    {
+        public void VisitCircle(Circle c)
+        {
+            double area = Math.PI * c.Radius * c.Radius;
+            Console.WriteLine($""Área: {area:F2}"");
+        }
+
+        public void VisitRectangle(Rectangle r)
+        {
+            double area = r.Width * r.Height;
+            Console.WriteLine($""Área: {area:F2}"");
+        }
+    }
+
+    // ===== Uso =====
+    var shapes = new List<IShape>
+    {
+        new Circle { Radius = 5 },
+        new Rectangle { Width = 4, Height = 6 }
+    };
+
+    var calculator = new AreaCalculator();
+    foreach (var shape in shapes)
+        shape.Accept(calculator);";
+
+    private string advancedCode = @"
+    // ===== Document Elements =====
+    public interface IDocumentElement
+    {
+        void Accept(IDocumentVisitor v);
+    }
+
+    public class Paragraph : IDocumentElement
+    {
+        public string Text { get; set; }
+        public void Accept(IDocumentVisitor v) => v.VisitParagraph(this);
+    }
+
+    public class Image : IDocumentElement
+    {
+        public string Path { get; set; }
+        public void Accept(IDocumentVisitor v) => v.VisitImage(this);
+    }
+
+    public class Link : IDocumentElement
+    {
+        public string Url { get; set; }
+        public string Text { get; set; }
+        public void Accept(IDocumentVisitor v) => v.VisitLink(this);
+    }
+
+    // ===== Document Visitor =====
+    public interface IDocumentVisitor
+    {
+        void VisitParagraph(Paragraph p);
+        void VisitImage(Image i);
+        void VisitLink(Link l);
+    }
+
+    // ===== Concrete Visitors =====
+    public class WordCountVisitor : IDocumentVisitor
+    {
+        private int _count = 0;
+
+        public void VisitParagraph(Paragraph p)
+        {
+            _count += p.Text.Split(' ').Length;
+        }
+
+        public void VisitImage(Image i) { }
+        public void VisitLink(Link l)
+        {
+            _count += l.Text.Split(' ').Length;
+        }
+
+        public int GetCount() => _count;
+    }
+
+    public class HTMLExporter : IDocumentVisitor
+    {
+        private StringBuilder _html = new();
+
+        public void VisitParagraph(Paragraph p)
+            => _html.AppendLine($""<p>{p.Text}</p>"");
+
+        public void VisitImage(Image i)
+            => _html.AppendLine(
+                $""<img src='{i.Path}' />"");
+
+        public void VisitLink(Link l)
+            => _html.AppendLine(
+                $""<a href='{l.Url}'>{l.Text}</a>"");
+
+        public string GetHTML() => _html.ToString();
+    }";
+
+    private string dispatchCode = @"
+    // ===== DOUBLE DISPATCH =====
+    // Primera llamada (polimorfismo): 
+    // El tipo de 'element' determina qué Accept se llama
+
+    public interface IElement
+    {
+        void Accept(IVisitor visitor);
+    }
+
+    public class ElementA : IElement
+    {
+        public void Accept(IVisitor visitor)
+        {
+            // Segunda llamada (polimorfismo):
+            // El tipo de 'visitor' determina qué Visit se llama
+            visitor.VisitElementA(this);
+        }
+    }
+
+    public interface IVisitor
+    {
+        void VisitElementA(ElementA e);
+        void VisitElementB(ElementB e);
+    }
+
+    public class VisitorX : IVisitor
+    {
+        public void VisitElementA(ElementA e)
+        {
+            Console.WriteLine(""VisitorX visitando ElementA"");
+        }
+
+        public void VisitElementB(ElementB e)
+        {
+            Console.WriteLine(""VisitorX visitando ElementB"");
+        }
+    }
+
+    // ===== USO =====
+    IElement element = new ElementA();
+    IVisitor visitor = new VisitorX();
+
+    // 1ª llamada: element.Accept(visitor)
+    //    → ElementA.Accept(visitor) se ejecuta
+    // 2ª llamada: visitor.VisitElementA(this)
+    //    → VisitorX.VisitElementA(element) se ejecuta
+
+    element.Accept(visitor);";
+}
