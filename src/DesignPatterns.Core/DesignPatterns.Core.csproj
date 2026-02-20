@@ -19,6 +19,8 @@
     <Folder Include="Behavioral\Memento\Tests\" />
     <Folder Include="Behavioral\Observer\Examples\03-MyOwn\" />
     <Folder Include="Behavioral\Observer\Tests\" />
+    <Folder Include="Behavioral\State\Examples\03-MyOwn\" />
+    <Folder Include="Behavioral\State\Tests\" />
     <Folder Include="Behavioral\Strategy\Examples\" />
     <Folder Include="Behavioral\Strategy\Implementation\" />
     <Folder Include="Creational\AbstractFactory\Tests\" />
