@@ -11,8 +11,13 @@
     <Folder Include="Behavioral\ChainOfResponsibility\Tests\" />
     <Folder Include="Behavioral\Command\Examples\03-MyOwn\" />
     <Folder Include="Behavioral\Command\Tests\" />
+    <Folder Include="Behavioral\Interpreter\Examples\01-Basic\" />
+    <Folder Include="Behavioral\Interpreter\Examples\02-Advanced\" />
     <Folder Include="Behavioral\Interpreter\Examples\03-MyOwn\" />
+    <Folder Include="Behavioral\Interpreter\Implementation\" />
     <Folder Include="Behavioral\Interpreter\Tests\" />
+    <Folder Include="Behavioral\Iterator\Examples\03-MyOwn\" />
+    <Folder Include="Behavioral\Iterator\Tests\" />
     <Folder Include="Behavioral\Mediator\Examples\03-MyOwn\" />
     <Folder Include="Behavioral\Mediator\Tests\" />
     <Folder Include="Behavioral\Memento\Examples\03-MyOwn\" />

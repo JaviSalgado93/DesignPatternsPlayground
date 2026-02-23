@@ -1,0 +1,509 @@
+﻿@page "/behavioral/iterator"
+
+<PageTitle>Iterator Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="arrow-right" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Iterator Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Comportamental</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Iterator proporciona una forma de acceder secuencialmente a los elementos de una colección
+            sin exponer su representación subyacente. Permite múltiples formas de recorrido de manera uniforme.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Iterator?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Iterator es un patrón comportamental que proporciona una forma de acceder secuencialmente
+                            a los elementos de una colección sin exponer su representación subyacente. Permite diferentes
+                            formas de recorrido manteniendo la abstracción de la estructura interna.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COMPONENTES CLAVE ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Iterator -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="arrow-right" AdditionalClass="w-6 h-6 text-blue-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Iterator</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Define interfaz para recorrer elementos. Métodos HasNext y Next.
+                    </p>
+                </div>
+
+                <!-- ConcreteIterator -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">ConcreteIterator</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Implementa iteración específica. Rastrea posición actual.
+                    </p>
+                </div>
+
+                <!-- Aggregate -->
+                <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="list-bullet" AdditionalClass="w-6 h-6 text-yellow-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Aggregate</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Define interfaz para crear iteradores. Mantiene elementos.
+                    </p>
+                </div>
+
+                <!-- Abstracción -->
+                <div class="bg-purple-50 rounded-xl shadow-md p-6 border-l-4 border-purple-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="eye-slash" AdditionalClass="w-6 h-6 text-purple-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Abstracción</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Oculta estructura interna. Acceso uniforme.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Acceso uniforme a colecciones</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Oculta estructura interna</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Múltiples iteradores simultáneos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Responsabilidad única</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Overhead de clases</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Complejidad inicial</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>No ideal para colecciones pequeñas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>C# tiene IEnumerable nativo</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Book Collection">
+                                Iteración sobre una librería de libros con múltiples iteradores.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Product Catalog">
+                                Catálogo con iteradores especializados (rango, stock, ordenado).
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Comparación -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Sin Iterator vs Con Iterator">
+                                Exposición vs Abstracción.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@comparisonCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Comportamental</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Media</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Recorrido de colecciones</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Alta (muy común)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Interfaz clara y sencilla</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Mantener estado privado</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Soportar Reset para reinicio</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Múltiples iteradores independientes</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/behavioral/composite" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="rectangle-stack" AdditionalClass="w-4 h-4" />
+                            Composite →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/visitor" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="eye" AdditionalClass="w-4 h-4" />
+                            Visitor →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/strategy" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="target" AdditionalClass="w-4 h-4" />
+                            Strategy →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Traversal Types Card -->
+            <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl shadow-md p-6 border-l-4 border-cyan-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="arrow-path-rounded-square" AdditionalClass="w-5 h-5 text-cyan-600" />
+                    Tipos de Recorrido
+                </h3>
+                <div class="space-y-2 text-sm text-secondary-700">
+                    <p>
+                        <span class="font-semibold">Forward:</span><br />
+                        Iteración normal
+                    </p>
+                    <p>
+                        <span class="font-semibold">Reverse:</span><br />
+                        Iteración inversa
+                    </p>
+                    <p>
+                        <span class="font-semibold">Filtered:</span><br />
+                        Con predicado
+                    </p>
+                    <p class="text-cyan-600 font-bold flex items-center gap-1">
+                        <HeroIcon IconName="arrow-path" AdditionalClass="w-4 h-4" />
+                        Flexibilidad
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Iterator, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un iterator para una lista de tareas ordenadas por prioridad</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un iterator para grafo que recorra en BFS o DFS</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea iterators para árbol binario (in-order, pre-order, post-order)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Behavioral", "/behavioral"),
+        new BreadcrumbItem("Iterator", "/behavioral/iterator")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Comparación" };
+
+    private List<string> useCases = new()
+    {
+        "Recorrido de colecciones",
+        "Múltiples formas de iteración",
+        "Catálogos de productos",
+        "Gestión de playlists",
+        "Listados paginados",
+        "Búsqueda filtrada",
+        "Recorrido de árboles",
+        "Iteración de grafos"
+    };
+
+    private List<string> tags = new() { "Recorrido", "Colecciones", "Abstracción", "Secuencial" };
+
+    private string basicCode = @"
+    // ===== Collection =====
+    public class BookCollection
+    {
+        private List<Book> _books = new();
+
+        public void AddBook(Book book) => _books.Add(book);
+
+        public IBookIterator CreateIterator() 
+            => new BookIterator(this);
+
+        public IBookIterator CreateReverseIterator() 
+            => new ReverseBookIterator(this);
+
+        public int GetBookCount() => _books.Count;
+        public Book GetBook(int index) => _books[index];
+
+        // Iterator privado dentro
+        private class BookIterator : IBookIterator
+        {
+            private BookCollection _collection;
+            private int _index = 0;
+
+            public BookIterator(BookCollection collection) 
+                => _collection = collection;
+
+            public bool HasNext() 
+                => _index < _collection.GetBookCount();
+
+            public Book Next()
+            {
+                if (!HasNext())
+                    throw new InvalidOperationException();
+                return _collection.GetBook(_index++);
+            }
+
+            public void Reset() => _index = 0;
+        }
+    }
+
+    // ===== Uso =====
+    var library = new BookCollection();
+    library.AddBook(new Book(""1984"", ""Orwell"", 1949));
+    library.AddBook(new Book(""Brave New World"", ""Huxley"", 1932));
+
+    var iterator = library.CreateIterator();
+    while (iterator.HasNext())
+    Console.WriteLine(iterator.Next());";
+
+    private string advancedCode = @"
+    // ===== Product Catalog =====
+    public class ProductCatalog
+    {
+        private List<Product> _products = new();
+
+        public void AddProduct(Product p) => _products.Add(p);
+
+        // Iterator básico
+        public IProductIterator CreateIterator() 
+            => new ProductIterator(this);
+
+        // Iterator por rango de precio
+        public IProductIterator CreateIteratorByPriceRange(
+            decimal min, decimal max)
+            => new PriceRangeIterator(this, min, max);
+
+        // Iterator por stock mínimo
+        public IProductIterator CreateIteratorByStock(int min)
+            => new StockIterator(this, min);
+
+        // Iterator ordenado
+        public IProductIterator CreateIteratorSortedByPrice()
+            => new SortedPriceIterator(this);
+
+        public int GetProductCount() => _products.Count;
+        public Product GetProduct(int i) => _products[i];
+    }
+
+    // ===== Uso =====
+    var catalog = new ProductCatalog();
+    catalog.AddProduct(new Product(1, ""Laptop"", 999.99m, 5));
+    catalog.AddProduct(new Product(2, ""Mouse"", 29.99m, 50));
+
+    // Todos
+    var all = catalog.CreateIterator();
+
+    // Solo entre $50 y $300
+    var expensive = catalog.CreateIteratorByPriceRange(50, 300);
+
+    // Solo con stock > 15
+    var inStock = catalog.CreateIteratorByStock(15);
+
+    // Ordenados por precio
+    var sorted = catalog.CreateIteratorSortedByPrice();";
+
+    private string comparisonCode = @"
+    // ===== SIN ITERATOR (Problema) =====
+    public class BadLibrary
+    {
+        public List<Book> Books { get; set; } // ❌ Expone
+    }
+
+    var lib = new BadLibrary();
+    lib.Books.Add(new Book(""1984"", ""Orwell"", 1949));
+
+    // Cliente manipula directamente
+    foreach (var book in lib.Books) // ❌ Acoplamiento
+        Console.WriteLine(book);
+
+    // No hay abstracción, cambio de estructura afecta clientes
+
+    // ===== CON ITERATOR (Solución) =====
+    public class GoodLibrary
+    {
+        private List<Book> _books = new(); // ✅ Privado
+
+        public void AddBook(Book book) => _books.Add(book);
+
+        public IBookIterator CreateIterator() 
+            => new BookIterator(this);
+
+        public IBookIterator CreateReverseIterator() 
+            => new ReverseBookIterator(this);
+    
+        // Estructura interna protegida
+    }
+
+    var lib = new GoodLibrary();
+    lib.AddBook(new Book(""1984"", ""Orwell"", 1949));
+
+    // Cliente usa iteradores abstraídos
+    var iter = lib.CreateIterator();
+    while (iter.HasNext())
+        Console.WriteLine(iter.Next()); // ✅ Desacoplado
+
+    // Cambio interno no afecta clientes";
+}
