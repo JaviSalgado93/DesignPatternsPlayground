@@ -1,1 +1,1 @@
-﻿
+﻿# Patrón Iterator
