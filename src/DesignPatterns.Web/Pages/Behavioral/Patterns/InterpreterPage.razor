@@ -1,0 +1,491 @@
+﻿@page "/behavioral/interpreter"
+
+<PageTitle>Interpreter Pattern - Design Patterns</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <!-- Breadcrumb -->
+    <Breadcrumb Items="@breadcrumbItems" />
+
+    <!-- Header -->
+    <div class="mb-12">
+        <div class="flex items-center gap-3 md:gap-4 mb-4">
+            <HeroIcon IconName="code-bracket" AdditionalClass="w-10 h-10 text-primary-600" />
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">Interpreter Pattern</h1>
+                <p class="text-secondary-600 text-lg mt-2">Patrón Comportamental</p>
+            </div>
+        </div>
+        <p class="text-secondary-600 text-base md:text-lg max-w-3xl">
+            Interpreter define una representación gramatical para un lenguaje y un intérprete para procesar
+            sentencias en ese lenguaje. Permite crear lenguajes específicos de dominio (DSL) personalizados.
+        </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left Column - Conceptual Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- ===== DEFINICIÓN ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-primary-600">
+                <div class="flex items-start gap-4 mb-4">
+                    <HeroIcon IconName="light-bulb" AdditionalClass="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-secondary-900 mb-3">¿Qué es Interpreter?</h2>
+                        <p class="text-secondary-700 leading-relaxed">
+                            Interpreter es un patrón comportamental que define una representación gramatical para un lenguaje
+                            y un intérprete para procesar sentencias en ese lenguaje. Permite implementar lenguajes específicos
+                            de dominio (DSL) y evaluar expresiones complejas de manera flexible y extensible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COMPONENTES CLAVE ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- AbstractExpression -->
+                <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="document" AdditionalClass="w-6 h-6 text-blue-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">AbstractExpression</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Define interfaz Interpret(). Todas las expresiones la implementan.
+                    </p>
+                </div>
+
+                <!-- TerminalExpression -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">TerminalExpression</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Representa elementos básicos. Números, variables.
+                    </p>
+                </div>
+
+                <!-- NonterminalExpression -->
+                <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="link" AdditionalClass="w-6 h-6 text-yellow-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">NonterminalExpression</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Operaciones complejas. Suma, resta, multiplicación.
+                    </p>
+                </div>
+
+                <!-- Context -->
+                <div class="bg-purple-50 rounded-xl shadow-md p-6 border-l-4 border-purple-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="cog" AdditionalClass="w-6 h-6 text-purple-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Context</h3>
+                    </div>
+                    <p class="text-secondary-700 text-sm leading-relaxed">
+                        Información global para interpretar. Variables y estado.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== VENTAJAS Y DESVENTAJAS ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ventajas -->
+                <div class="bg-green-50 rounded-xl shadow-md p-6 border-l-4 border-accent-green">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="check-circle" AdditionalClass="w-6 h-6 text-accent-green" />
+                        <h3 class="text-xl font-bold text-secondary-900">Ventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Fácil cambiar y extender gramática</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Implementar lenguajes simples</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Estructura clara y mantenible</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-accent-green flex-shrink-0 mt-1" />
+                            <span>Flexible para múltiples contextos</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Desventajas -->
+                <div class="bg-red-50 rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-2 mb-4">
+                        <HeroIcon IconName="exclamation-circle" AdditionalClass="w-6 h-6 text-red-600" />
+                        <h3 class="text-xl font-bold text-secondary-900">Desventajas</h3>
+                    </div>
+                    <ul class="space-y-2 text-secondary-700">
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Clases numerosas para gramática compleja</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Rendimiento limitado</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Difícil para lenguajes complejos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <HeroIcon IconName="arrow-right" AdditionalClass="w-4 h-4 text-red-600 flex-shrink-0 mt-1" />
+                            <span>Overhead de creación de objetos</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== EJEMPLOS DE CÓDIGO ===== -->
+            <div>
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="code-bracket" AdditionalClass="w-6 h-6 text-primary-600" />
+                    Ejemplos de Código
+                </h2>
+
+                <TabContainer TabTitles="@tabTitles" @bind-ActiveTabIndex="activeTab">
+                    <!-- Tab 1: Básico -->
+                    <TabPanel IsActive="activeTab == 0">
+                        <div class="space-y-4">
+                            <InfoBox Type="info" Title="Ejemplo Básico: Math Expressions">
+                                Evaluación de expresiones matemáticas simples.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@basicCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 2: Avanzado -->
+                    <TabPanel IsActive="activeTab == 1">
+                        <div class="space-y-4">
+                            <InfoBox Type="tip" Title="Ejemplo Avanzado: Command Interpreter">
+                                Interpretador de comandos personalizados con variables.
+                            </InfoBox>
+                            <CodeBlock Language="csharp" Code="@advancedCode" />
+                        </div>
+                    </TabPanel>
+
+                    <!-- Tab 3: Gramática -->
+                    <TabPanel IsActive="activeTab == 2">
+                        <div class="space-y-4">
+                            <InfoBox Type="success" Title="Definición de Gramática">
+                                BNF para expresiones matemáticas.
+                            </InfoBox>
+                            <CodeBlock Language="text" Code="@grammarCode" />
+                        </div>
+                    </TabPanel>
+                </TabContainer>
+            </div>
+
+            <!-- ===== CASOS DE USO ===== -->
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-accent-purple">
+                <h2 class="text-2xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                    <HeroIcon IconName="chart-bar" AdditionalClass="w-6 h-6 text-accent-purple" />
+                    Casos de Uso Comunes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach (var useCase in useCases)
+                    {
+                        <div class="flex items-start gap-3 p-3 bg-secondary-50 rounded-lg">
+                            <HeroIcon IconName="check" AdditionalClass="w-5 h-5 text-accent-purple flex-shrink-0 mt-1" />
+                            <span class="text-secondary-700">@useCase</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Quick Reference -->
+        <div class="space-y-6">
+            <!-- Pattern Info Card -->
+            <div class="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-xl shadow-md p-6 border border-primary-200">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Información Rápida</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <span class="font-semibold text-secondary-700">Tipo: </span>
+                        <p class="text-secondary-600">Patrón Comportamental</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Dificultad:</span>
+                        <p>
+                            <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Difícil</span>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Propósito:</span>
+                        <p class="text-secondary-600">Evaluar lenguajes/expresiones</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-secondary-700">Frecuencia de uso:</span>
+                        <p class="text-secondary-600">Media (especializado)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var tag in tags)
+                    {
+                        <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                            @tag
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="bg-blue-50 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="star" AdditionalClass="w-5 h-5 text-blue-600" />
+                    Mejores Prácticas
+                </h3>
+                <ul class="space-y-2 text-sm text-secondary-700">
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Gramática bien definida</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Separar parsing e interpretación</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Context bien encapsulado</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <HeroIcon IconName="check" AdditionalClass="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                        <span>Manejo de errores robusto</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Related Patterns -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-secondary-100">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4">Patrones Relacionados</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="/behavioral/composite" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="rectangle-stack" AdditionalClass="w-4 h-4" />
+                            Composite →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/visitor" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="eye" AdditionalClass="w-4 h-4" />
+                            Visitor →
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/behavioral/iterator" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-1">
+                            <HeroIcon IconName="arrow-path" AdditionalClass="w-4 h-4" />
+                            Iterator →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Grammar Card -->
+            <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl shadow-md p-6 border-l-4 border-orange-500">
+                <h3 class="text-lg font-bold text-secondary-900 mb-4 flex items-center gap-2">
+                    <HeroIcon IconName="list-bullet" AdditionalClass="w-5 h-5 text-orange-600" />
+                    Estructura
+                </h3>
+                <div class="space-y-2 text-sm text-secondary-700">
+                    <p>
+                        <span class="font-semibold">Expresión:</span><br />
+                        Terminal o No-terminal
+                    </p>
+                    <p>
+                        <span class="font-semibold">Context:</span><br />
+                        Variables y estado
+                    </p>
+                    <p class="text-orange-600 font-bold flex items-center gap-1">
+                        <HeroIcon IconName="document" AdditionalClass="w-4 h-4" />
+                        Árbol sintáctico
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="bg-gradient-to-r from-accent-purple/10 to-pink-50 rounded-xl p-6 md:p-8 border border-accent-purple/30 mt-12">
+        <h2 class="text-2xl font-bold text-secondary-900 mb-4 flex items-center gap-2">
+            <HeroIcon IconName="academic-cap" AdditionalClass="w-6 h-6 text-accent-purple" />
+            Ejercicios Prácticos
+        </h2>
+        <p class="text-secondary-700 mb-4">
+            Ahora que entiendes Interpreter, intenta implementar tu propio ejemplo:
+        </p>
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="text-secondary-700">Crea un intérprete para expresiones booleanas (AND, OR, NOT)</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <span class="text-secondary-700">Implementa un DSL para consultas de base de datos simples</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-accent-purple/20">
+                <span class="flex-shrink-0 bg-accent-purple text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <span class="text-secondary-700">Crea un lenguaje simple de configuración con soporte para variables</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<BreadcrumbItem> breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Home", "/"),
+        new BreadcrumbItem("Behavioral", "/behavioral"),
+        new BreadcrumbItem("Interpreter", "/behavioral/interpreter")
+    };
+
+    private int activeTab = 0;
+    private List<string> tabTitles = new() { "Básico", "Avanzado", "Gramática" };
+
+    private List<string> useCases = new()
+    {
+        "Expresiones matemáticas",
+        "DSL personalizados",
+        "Comandos de consola",
+        "Lenguajes de configuración",
+        "Consultas simples",
+        "Procesamiento de scripts",
+        "Evaluación condicional",
+        "Parsing de expresiones"
+    };
+
+    private List<string> tags = new() { "Gramática", "Expresiones", "DSL", "Parsing" };
+
+    private string basicCode = @"
+    // ===== Abstract Expression =====
+    public interface IMathExpression
+    {
+        double Evaluate();
+        string GetExpression();
+    }
+
+    // ===== Terminal Expressions =====
+    public class NumberExpr : IMathExpression
+    {
+        private double _value;
+
+        public NumberExpr(double value) => _value = value;
+
+        public double Evaluate() => _value;
+        public string GetExpression() => _value.ToString();
+    }
+
+    // ===== Non-Terminal Expressions =====
+    public class AddExpr : IMathExpression
+    {
+        private IMathExpression _left;
+        private IMathExpression _right;
+
+        public AddExpr(IMathExpression left, IMathExpression right)
+        {
+            _left = left;
+            _right = right;
+        }
+
+        public double Evaluate() 
+            => _left.Evaluate() + _right.Evaluate();
+
+        public string GetExpression() 
+            => $""({_left.GetExpression()} + {_right.GetExpression()})"";
+    }
+
+    // ===== Uso =====
+    // 5 + 3
+    var expr = new AddExpr(
+        new NumberExpr(5), 
+        new NumberExpr(3)
+    );
+
+    Console.WriteLine($""Expresión: {expr.GetExpression()}"");
+    Console.WriteLine($""Resultado: {expr.Evaluate()}"")";
+
+    private string advancedCode = @"
+    // ===== Command Interpreter =====
+    public class CommandInterpreter
+    {
+        private CommandContext _context;
+
+        public CommandInterpreter() => _context = new CommandContext();
+
+        public void Execute(string commandLine)
+        {
+            string[] parts = commandLine.Split(' ');
+            string command = parts[0].ToUpper();
+
+            ICommand cmd = command switch
+            {
+                ""SET"" => new SetCommand(
+                    _context, parts[1], 
+                    string.Join("" "", parts.Skip(2))),
+            
+                ""PRINT"" => new PrintCommand(
+                    _context, parts[1]),
+            
+                ""ECHO"" => new EchoCommand(
+                    _context, 
+                    string.Join("" "", parts.Skip(1))),
+            
+                _ => throw new InvalidOperationException(
+                    $""Comando desconocido: {command}"")
+            };
+
+            cmd.Execute();
+        }
+    }
+
+    // ===== Uso =====
+    var interpreter = new CommandInterpreter();
+
+    interpreter.Execute(""SET nombre Juan"");
+    interpreter.Execute(""PRINT nombre"");
+    interpreter.Execute(""ECHO Bienvenido"");";
+
+    private string grammarCode = @"
+    Expresión Matemática BNF:
+    ═════════════════════════════
+
+    <expresión>     ::= <suma>
+    <suma>          ::= <multiplicación> 
+                      | <suma> '+' <multiplicación>
+                      | <suma> '-' <multiplicación>
+    <multiplicación>::= <potencia>
+                      | <multiplicación> '*' <potencia>
+                      | <multiplicación> '/' <potencia>
+    <potencia>      ::= <primario>
+                      | <primario> '^' <potencia>
+    <primario>      ::= <número>
+                      | <variable>
+                      | '(' <expresión> ')'
+    <número>        ::= [0-9]+
+    <variable>      ::= [a-z]+
+
+    Ejemplo: (5 + 3) * 2 ^ 3
+    ═════════════════════════════
+
+    Árbol sintáctico:
+            *
+           / \
+          +   ^
+         / \ / \
+        5  3 2  3
+
+    Evaluación:
+      5 + 3 = 8
+      2 ^ 3 = 8
+      8 * 8 = 64";
+}
