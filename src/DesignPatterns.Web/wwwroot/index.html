@@ -2,10 +2,31 @@
 <html lang="en">
 
 <head>
+    <!-- SCRIPT DE BASE HREF PRIMERO (antes de cualquier asset) -->
+    <script>
+        // Detecta si estamos en desarrollo o producción INMEDIATAMENTE
+        const isDevelopment = window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1';
+
+        if (!isDevelopment) {
+            // En GitHub Pages, extrae la subcarpeta dinámicamente
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            if (pathParts.length > 0) {
+                // Ajusta base href ANTES de cargar assets
+                const baseElement = document.createElement('base');
+                baseElement.href = `/${pathParts[0]}/`;
+                baseElement.id = 'app-base';
+                document.head.appendChild(baseElement);
+            }
+        }
+        // En localhost, la base por defecto "/" se mantiene
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design Patterns Playground</title>
     <base href="/" id="app-base" />
+
     <link rel="preload" id="webassembly" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
@@ -20,23 +41,6 @@
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="DesignPatterns.Web.styles.css" rel="stylesheet" />
     <script type="importmap"></script>
-
-    <!-- Ajusta base href según el ambiente -->
-    <script>
-        // Detecta si estamos en desarrollo o producción
-        const isDevelopment = window.location.hostname === 'localhost' ||
-            window.location.hostname === '127.0.0.1';
-        const baseElement = document.getElementById('app-base');
-
-        if (!isDevelopment) {
-            // En GitHub Pages, extrae la subcarpeta dinámicamente
-            const pathParts = window.location.pathname.split('/').filter(p => p);
-            if (pathParts.length > 0) {
-                baseElement.href = `/${pathParts[0]}/`;
-            }
-        }
-        // En localhost, mantiene "/" (por defecto)
-    </script>
 </head>
 
 <body>
