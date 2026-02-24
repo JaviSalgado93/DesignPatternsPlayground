@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Patterns - Redirect</title>
+    <script>
+        // GitHub Pages 404 redirect para Blazor WASM
+        // Esto permite que las rutas client-side funcionen con F5 (recarga)
+        const path = window.location.pathname;
+
+        // Si no estamos en /DesignPatternsPlayground/, redirige
+        if (!path.startsWith('/DesignPatternsPlayground/')) {
+            window.location.replace('/DesignPatternsPlayground/');
+        } else {
+            // Si estamos en /DesignPatternsPlayground/, vuelve a index.html
+            // Blazor Router se encargará de la navegación
+            window.location.replace('/DesignPatternsPlayground/index.html');
+        }
+    </script>
+</head>
+<body>
+    <p>Redirigiendo...</p>
+</body>
+</html>

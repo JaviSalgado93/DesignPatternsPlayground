@@ -2,30 +2,29 @@
 <html lang="en">
 
 <head>
-    <!-- SCRIPT DE BASE HREF PRIMERO (antes de cualquier asset) -->
+    <!-- SCRIPT DE BASE HREF - EJECUTARSE PRIMERO Y MÁS FUERTE -->
     <script>
-        // Detecta si estamos en desarrollo o producción INMEDIATAMENTE
-        const isDevelopment = window.location.hostname === 'localhost' ||
-            window.location.hostname === '127.0.0.1';
+        (function () {
+            const isDevelopment = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1';
 
-        if (!isDevelopment) {
-            // En GitHub Pages, extrae la subcarpeta dinámicamente
-            const pathParts = window.location.pathname.split('/').filter(p => p);
-            if (pathParts.length > 0) {
-                // Ajusta base href ANTES de cargar assets
-                const baseElement = document.createElement('base');
-                baseElement.href = `/${pathParts[0]}/`;
-                baseElement.id = 'app-base';
-                document.head.appendChild(baseElement);
+            if (!isDevelopment) {
+                // En GitHub Pages
+                const pathParts = window.location.pathname.split('/').filter(p => p);
+                if (pathParts.length > 0) {
+                    const baseHref = `/${pathParts[0]}/`;
+                    document.write(`<base href="${baseHref}" />`);
+                }
             }
-        }
-        // En localhost, la base por defecto "/" se mantiene
+        })();
     </script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design Patterns Playground</title>
-    <base href="/" id="app-base" />
+
+    <!-- Si no se ejecutó el script anterior, fallback -->
+    <base href="/" />
 
     <link rel="preload" id="webassembly" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
