@@ -17,32 +17,36 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      
+
       - name: Restore dependencies
         run: dotnet restore src/DesignPatternsPlayground.sln
-      
+
       - name: Build
         run: dotnet build src/DesignPatternsPlayground.sln -c Release --no-restore
-      
+
       - name: Publish
         run: dotnet publish src/DesignPatterns.Web/DesignPatterns.Web.csproj -c Release -o release --no-build
-      
-      - name: Change index.html base href
-        run: sed -i 's/<base href="\/" \/>/<base href="\/DesignPatternsPlayground\/" \/>/g' release/wwwroot/index.html
-      
+
       - name: Create .nojekyll file
         run: touch release/wwwroot/.nojekyll
-      
+
+      - name: Fix base href for GitHub Pages
+        run: |
+          echo "Verifying index.html exists..."
+          ls -la release/wwwroot/index.html
+          echo "Current base href:"
+          grep '<base' release/wwwroot/index.html || echo "No base tag found"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'release/wwwroot'
-      
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
