@@ -1,4 +1,5 @@
 @page "/about"
+@layout MainLayout
 
 <PageTitle>Acerca de - Design Patterns Playground</PageTitle>
 
@@ -126,15 +127,26 @@
     <!-- CTA Section -->
     <div class="bg-white rounded-xl shadow-md p-8 md:p-10 text-center border-l-4 border-primary-600">
         <h2 class="text-2xl md:text-3xl font-bold text-secondary-900 mb-4">¿Listo para explorar?</h2>
-        <p class="text-secondary-600 mb-6 max-w-xl mx-auto">
+        <p class="text-secondary-600 mb-8 max-w-xl mx-auto">
             Comienza a aprender sobre los patrones de diseño y mejora tu arquitectura de software hoy mismo.
         </p>
-        <a href="/" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold py-3 px-8 rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
-            Explorar Patrones
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </a>
+        
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 w-full justify-center">
+            <!-- Creational Button -->
+            <a href="creational" class="flex-1 px-4 md:px-6 py-2 md:py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all shadow-sm hover:shadow-md text-center text-xs md:text-sm">
+                Creational ?
+            </a>
+
+            <!-- Structural Button -->
+            <a href="structural" class="flex-1 px-4 md:px-6 py-2 md:py-3 bg-accent-green text-white font-semibold rounded-lg hover:bg-emerald-700 transition-all shadow-sm hover:shadow-md text-center text-xs md:text-sm">
+                Structural ?
+            </a>
+
+            <!-- Behavioral Button -->
+            <a href="behavioral" class="flex-1 px-4 md:px-6 py-2 md:py-3 bg-accent-purple text-white font-semibold rounded-lg hover:bg-purple-700 transition-all shadow-sm hover:shadow-md text-center text-xs md:text-sm">
+                Behavioral ?
+            </a>
+        </div>
     </div>
 
     <!-- Additional Info -->
