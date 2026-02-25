@@ -35,27 +35,17 @@ jobs:
       - name: Create .nojekyll file
         run: touch release/wwwroot/.nojekyll
 
-      - name: Create 404.html for Blazor WASM routing
+      - name: Create 404.html for Blazor WASM
         run: |
           cat > release/wwwroot/404.html << 'EOF'
           <!DOCTYPE html>
-          <html lang="es">
+          <html>
           <head>
-              <meta charset="utf-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>404 - Design Patterns Playground</title>
               <script>
-                  // GitHub Pages 404 handler para Blazor WASM
-                  const segment = window.location.pathname.split('/').pop();
-                  if (segment !== '' && segment !== 'index.html') {
-                      sessionStorage.setItem('redirect', window.location.pathname);
-                  }
-                  window.location.replace('/DesignPatternsPlayground/index.html');
+                  sessionStorage.redirect = location.href;
               </script>
+              <meta http-equiv="refresh" content="0;URL='/DesignPatternsPlayground/index.html'"></meta>
           </head>
-          <body>
-              <p>Redirigiendo...</p>
-          </body>
           </html>
           EOF
 
